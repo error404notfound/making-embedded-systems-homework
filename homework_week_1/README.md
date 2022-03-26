@@ -1,6 +1,6 @@
 # Homework - Exercise 1
 
-<img align="right" width="100" height="100" src="https://github.com/error404notfound/making-embedded-systems-homework/blob/main/homework_week_1/Assets/images/Introduction%20and%20Description%20.png">
+<img align="right"  src="https://github.com/error404notfound/making-embedded-systems-homework/blob/main/homework_week_1/Assets/images/Introduction%20and%20Description%20.png">
 <p>
 Sense stones are an interactive set of irregular river stones that encourage calming play and exploration through haptic, light, and audio output.
 
