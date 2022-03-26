@@ -1,5 +1,5 @@
 # Homework - Exercise 1
-## Sense stones
+![alt text](https://github.com/error404notfound/making-embedded-systems-homework/blob/main/homework_week_1/Assets/images/Introduction%20and%20Description%20.png)
 Sense stones are an interactive set of irregular river stones that encourage calming play and exploration through haptic, light, and audio output.
 
 Utilizing BLE, an accelerometer, a captive touch grid, and acting as a tactile button, the way the stones are played with changes the output they produce.
@@ -22,7 +22,7 @@ Initial setup requires interaction with a BLE-connected app. After that, users c
 - Reaction button play - as each lights up, the stone is tapped.
 - Yes and No buttons.
 - Hide and seek
-- Record the interaction data for later examination when used away from a BLE connection. 
+- Record the interaction data for later examination when used away from a BLE connection.
 
 ### Open play
 
@@ -31,6 +31,3 @@ A Musical example.
 Initially, the stones are laid out in a line. Interacting with the stones changes the audio and light output. Moving the stones closer to each changes the note of the Audio sample played, picking the stones up changes the volume of the audio,  quick movements with the stones like shaking will increase the beat,
 
 *Once the framework is built, new modes or "sessions" could be developed to suit different needs, either for single stones or sets.*
-
-
-
