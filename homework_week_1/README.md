@@ -1,4 +1,5 @@
 # Homework - Exercise 1
+## Description 
 
 <img align="right" width = 50% src="https://github.com/error404notfound/making-embedded-systems-homework/blob/main/homework_week_1/Assets/images/Introduction%20and%20Description%20.png">
 <p>
