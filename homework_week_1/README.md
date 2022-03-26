@@ -35,5 +35,5 @@ Initially, the stones are laid out in a line. Interacting with the stones change
 *Once the framework is built, new modes or "sessions" could be developed to suit different needs, either for single stones or sets.*
 <p align="center">
   <img  src="https://github.com/error404notfound/making-embedded-systems-homework/blob/main/homework_week_1/Assets/images/20220324_215846.jpg">
-  * Exploded view of sense stone*
+  *Exploded view of sense stone*
 </p>
