@@ -1,4 +1,4 @@
-#Homework - Exercise 1
+# Homework - Exercise 1
 ## Sense stones
 Sense stones are an interactive set of irregular river stones that encourage calming play and exploration through haptic, light, and audio output.
 
@@ -8,21 +8,21 @@ Initial setup requires interaction with a BLE-connected app. After that, users c
 
 *Some possible examples.*
 
-###Modes to target stress and anxiety
+### Modes to target stress and anxiety
 
--Lead breathing exercises
--Sleep ritual - light and haptics guide users through the 8/5 breathing timer
+- Lead breathing exercises
+- Sleep ritual - light and haptics guide users through the 8/5 breathing timer
 
-###relaxation timer
+### relaxation timer
 
--Occupational therapy tool
--Haptic and lights display the difference between soft and hard touches, i.e., a light stroke that doesn't activate the tactile button would have a soft blue light response and a "purr" from the motors.
--Stimming toy (  data logged in this mode to help identify stress triggers, i.e.  user A's usage in stim mode increases at a particular time, which may indicate an external trigger that occurs around this time )
--Grouping by color or size order
--Reaction button play - as each lights up, the stone is tapped.
--Yes and No buttons.
--Hide and seek
--Record the interaction data for later examination when used away from a BLE connection. 
+- Occupational therapy tool
+- Haptic and lights display the difference between soft and hard touches, i.e., a light stroke that doesn't activate the tactile button would have a soft blue light response and a "purr" from the motors.
+- Stimming toy (  data logged in this mode to help identify stress triggers, i.e.  user A's usage in stim mode increases at a particular time, which may indicate an external trigger that occurs around this time )
+- Grouping by color or size order
+- Reaction button play - as each lights up, the stone is tapped.
+- Yes and No buttons.
+- Hide and seek
+- Record the interaction data for later examination when used away from a BLE connection. 
 
 ###Open play
 
