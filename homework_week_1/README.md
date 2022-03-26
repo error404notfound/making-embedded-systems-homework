@@ -37,3 +37,11 @@ Initially, the stones are laid out in a line. Interacting with the stones change
   <img  src="https://github.com/error404notfound/making-embedded-systems-homework/blob/main/homework_week_1/Assets/images/20220324_215846.jpg">
   <i>Exploded view of sense stone</i>
 </p>
+
+## Hardware Block Diagram
+
+
+<p align="center">
+  <img  src="https://github.com/error404notfound/making-embedded-systems-homework/blob/main/homework_week_1/Assets/diagrams/Homework%20-%201-Hardware%20Block.drawio.png">
+  <i>Version 4</i>
+</p>
