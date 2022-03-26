@@ -49,7 +49,7 @@ Initially, the stones are laid out in a line. Interacting with the stones change
 ## Software Block Diagram
 <p></p>
 <p align="center">
-  <img  src="https://github.com/error404notfound/making-embedded-systems-homework/blob/main/homework_week_1/Assets/diagrams/Homework%20-%201-HoC.drawio.png">
+  <img  src="https://github.com/error404notfound/making-embedded-systems-homework/blob/main/homework_week_1/Assets/diagrams/Homework%20-%201-Software%20Block.drawio.png">
   <i>Version 5</i>
 </p>
 
