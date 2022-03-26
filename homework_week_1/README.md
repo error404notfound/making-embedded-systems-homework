@@ -12,10 +12,10 @@ Initial setup requires interaction with a BLE-connected app. After that, users c
 
 - Lead breathing exercises
 - Sleep ritual - light and haptics guide users through the 8/5 breathing timer
+- Relaxation timer
 
-### relaxation timer
+### Occupational therapy tool
 
-- Occupational therapy tool
 - Haptic and lights display the difference between soft and hard touches, i.e., a light stroke that doesn't activate the tactile button would have a soft blue light response and a "purr" from the motors.
 - Stimming toy (  data logged in this mode to help identify stress triggers, i.e.  user A's usage in stim mode increases at a particular time, which may indicate an external trigger that occurs around this time )
 - Grouping by color or size order
@@ -24,11 +24,13 @@ Initial setup requires interaction with a BLE-connected app. After that, users c
 - Hide and seek
 - Record the interaction data for later examination when used away from a BLE connection. 
 
-###Open play
+### Open play
 
 A Musical example.
 
 Initially, the stones are laid out in a line. Interacting with the stones changes the audio and light output. Moving the stones closer to each changes the note of the Audio sample played, picking the stones up changes the volume of the audio,  quick movements with the stones like shaking will increase the beat,
 
 *Once the framework is built, new modes or "sessions" could be developed to suit different needs, either for single stones or sets.*
+
+
 
