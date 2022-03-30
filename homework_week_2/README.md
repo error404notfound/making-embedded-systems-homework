@@ -28,5 +28,9 @@ anywhere? (Try Digikey, Mouser, Octopart, Google, and so on.)
 
 |     Item      |   Digikey     |   Mouser      |   Octopart    | Aliexpress    |   Amazon      |
 | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
-| Processor:STM32F446RE  | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  |
-| Full board: NUCLEO-F446RE | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  |
+| Processor:STM32F446RE cost | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  |
+| Processor: Avaliablity | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  |
+| Processor: Leadtime | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  |
+| Full board: NUCLEO-F446RE cost | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  |
+| Full board: Avaliablity | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  |
+| Full board: Leadtime | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  |
