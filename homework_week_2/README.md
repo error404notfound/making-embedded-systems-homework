@@ -1,4 +1,9 @@
 # Exercise 2
+## STM32F429I-DISC1
+### What kind of processor is it?
+### How much Flash and RAM does it have? Any other memory types?
+### Does it have any special peripherals? (List 3-5 that you find interesting.)
+### If it has an ADC, what are the features?
 
 ## NUCLEO-F446RE
 ### What kind of processor is it?
