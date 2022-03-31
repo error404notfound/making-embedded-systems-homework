@@ -9,6 +9,14 @@ I3G4250D, ST MEMS motion sensor 3-axis digital output gyroscope
 
 ### If it has an ADC, what are the features?
 
+|     Item      |   Digikey     |   Mouser      |   Octopart    | Aliexpress    |   Amazon      |
+| ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
+| Processor:STM32F446RE cost | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  |
+| Processor: Avaliablity | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  |
+| Processor: Leadtime | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  |
+| Full board: NUCLEO-F446RE cost | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  |
+| Full board: Avaliablity | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  |
+| Full board: Leadtime | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  |
 ## NUCLEO-F446RE
 ### What kind of processor is it?
 STM32F446RE
