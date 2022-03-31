@@ -1,13 +1,22 @@
 # Exercise 2
 ## STM32F429I-DISC1
 ### What kind of processor is it?
+
 ### How much Flash and RAM does it have? Any other memory types?
+
+
 ### Does it have any special peripherals? (List 3-5 that you find interesting.)
 
 I3G4250D, ST MEMS motion sensor 3-axis digital output gyroscope
 2.4" QVGA TFT LCD
+- TGFX ( touch on the LCD screen ) 
+   - [GUI with touch GFX]( https://www.youtube.com/watch?v=Zy0bTHvviiE)
+   - [ touch screen tutorial ] (https://community.st.com/s/question/0D50X00009Xkga4SAB/stm32f429-touch-screen-tutorial)
+
 
 ### If it has an ADC, what are the features?
+
+### How much does the board cost vs what the processor costs? Is the processor in stock anywhere? 
 
 |     Item      |   Digikey     |   Mouser      |   Octopart    | Aliexpress    |   Amazon      |
 | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
@@ -30,8 +39,7 @@ Core: Arm® 32-bit Cortex®-M4 CPU with FPU, Adaptive real-time accelerator (ART
 ### Does it have any special peripherals? (List 3-5 that you find interesting.)
 
 ### If it has an ADC, what are the features?
--How much does the board cost vs what the processor costs? Is the processor in stock
-anywhere? (Try Digikey, Mouser, Octopart, Google, and so on.)
+### How much does the board cost vs what the processor costs? Is the processor in stock anywhere? 
 
 
 |     Item      |   Digikey     |   Mouser      |   Octopart    | Aliexpress    |   Amazon      |
