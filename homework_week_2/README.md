@@ -2,8 +2,13 @@
 ## STM32F429I-DISC1
 ### What kind of processor is it?
 
+STM32F429ZIT6 microcontroller
+
+- The STM32F427xx and STM32F429xx devices are based on the high-performance Arm® Cortex®-M4 32-bit RISC core operating at a frequency of up to 180 MHz. The Cortex-M4 core features a Floating point unit (FPU) single precision which supports all Arm® single-precision data-processing instructions and data types. It also implements a full set of DSP instructions and a memory protection unit (MPU) which enhances application security. The STM32F427xx and STM32F429xx devices incorporate high-speed embedded memories (Flash memory up to 2 Mbyte, up to 256 Kbytes of SRAM), up to 4 Kbytes of backup SRAM, and an extensive range of enhanced I/Os and peripherals connected to two APB buses, two AHB buses and a 32-bit multi-AHB bus matrix.
+- 
 ### How much Flash and RAM does it have? Any other memory types?
 
+Flash memory up to 2 Mbyte, up to 256 Kbytes of SRAM), up to 4 Kbytes of backup SRAM
 
 ### Does it have any special peripherals? (List 3-5 that you find interesting.)
 
@@ -33,42 +38,59 @@ The STM32F429ZIT6 controls this motion sensor through the SPI interface.
 
 
 ### If it has an ADC, what are the features?
+The microcontroller does: 3x12-bit ADC with 24 channels
+[ you tube explaining how to access ADC ]( https://www.youtube.com/watch?v=TH4Iruu-DBQ)
 
 ### Aditional links
 
 - [blog about stm32f4 discovery kits ](https://stm32f4-discovery.net/category/stm32f429-discovery/)
 
+### Application Notes
+   - How to use a USB to update the firmware.
+
 ### How much does the board cost vs what the processor costs? Is the processor in stock anywhere? 
 
-|     Item      |   Digikey     |   Mouser      |   Octopart    | Aliexpress    |   Amazon      |
-| ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
-| Processor:STM32F446RE cost | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  |
-| Processor: Avaliablity | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  |
-| Processor: Leadtime | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  |
-| Full board: NUCLEO-F446RE cost | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  |
-| Full board: Avaliablity | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  |
-| Full board: Leadtime | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  |
+|     Item      |   Digikey     |   Mouser      |   Octopart    |
+| ------------- | ------------- | ------------- | ------------- | 
+| Processor:STM32F429ZIT6 cost | Content Cell  | Content Cell  | Content Cell  | 
+| Processor: Avaliablity | Content Cell  | Content Cell  | Content Cell  | 
+| Processor: Leadtime | Content Cell  | Content Cell  | Content Cell  | 
+| Full board: STM32F429I-DISC1 cost | Content Cell  | Content Cell  | Content Cell  | 
+| Full board: Avaliablity | Content Cell  | Content Cell  | Content Cell  |
+| Full board: Leadtime | Content Cell  | Content Cell  | Content Cell  | 
+
+
 ## NUCLEO-F446RE
+
 ### What kind of processor is it?
-STM32F446RE
-Core: Arm® 32-bit Cortex®-M4 CPU with FPU, Adaptive real-time accelerator (ART Accelerator) allowing 0-wait state execution from Flash memory, frequency up to 180 MHz, MPU, 225 DMIPS/1.25 DMIPS/MHz (Dhrystone 2.1), and DSP instructions
+
+
 
 ### How much Flash and RAM does it have? Any other memory types?
-- 512 Kbytes of Flash memory
-- 128 Kbytes of SRAM
-- Flexible external memory controller with up to 16-bit data bus: SRAM, PSRAM, SDRAM/LPSDR SDRAM, NOR/NAND Flash memories
+
 
 ### Does it have any special peripherals? (List 3-5 that you find interesting.)
 
+
+
 ### If it has an ADC, what are the features?
+
+
+
 ### How much does the board cost vs what the processor costs? Is the processor in stock anywhere? 
 
 
-|     Item      |   Digikey     |   Mouser      |   Octopart    | Aliexpress    |   Amazon      |
-| ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
-| Processor:STM32F446RE cost | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  |
-| Processor: Avaliablity | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  |
-| Processor: Leadtime | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  |
-| Full board: NUCLEO-F446RE cost | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  |
-| Full board: Avaliablity | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  |
-| Full board: Leadtime | Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  |
+|     Item      |   Digikey     |   Mouser      |   Octopart    | 
+| ------------- | ------------- | ------------- | ------------- | 
+| Processor:STM32 microcontrolle cost | Content Cell  | Content Cell  | Content Cell  | 
+| Processor: Avaliablity | Content Cell  | Content Cell  | Content Cell  |
+| Processor: Leadtime | Content Cell  | Content Cell  | Content Cell  | 
+| Full board: NUCLEO-F446RE cost | Content Cell  | Content Cell  | Content Cell  | 
+| Full board: Avaliablity | Content Cell  | Content Cell  | Content Cell  | 
+| Full board: Leadtime | Content Cell  | Content Cell  | Content Cell  | 
+
+### Additional links
+
+### Application Notes
+- 
+- 
