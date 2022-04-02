@@ -50,14 +50,14 @@ The microcontroller does: 3x12-bit ADC with 24 channels
 
 ### How much does the board cost vs what the processor costs? Is the processor in stock anywhere? 
 
-|     Item      |   Digikey     |   Mouser      |   Octopart    |
+|     Item      |   Digikey     |   Mouser      |   Avent    |
 | ------------- | ------------- | ------------- | ------------- | 
-| Processor:STM32F429ZIT6 cost | Content Cell  | Content Cell  | Content Cell  | 
-| Processor: Avaliablity | Content Cell  | Content Cell  | Content Cell  | 
-| Processor: Leadtime | Content Cell  | Content Cell  | Content Cell  | 
-| Full board: STM32F429I-DISC1 cost | Content Cell  | Content Cell  | Content Cell  | 
-| Full board: Avaliablity | Content Cell  | Content Cell  | Content Cell  |
-| Full board: Leadtime | Content Cell  | Content Cell  | Content Cell  | 
+| Processor:STM32F429ZIT6 microcontrolle cost | $34.07000| 	$33.58  |14.305  | 
+| Processor: Avaliablity | 0 | 0 | 0 |
+| Processor: Leadtime | N/A  | n/A | N/A | 
+| Full board: STM32F429I-DISC1 cost | $49.45000  | $48.74  | 44.252  | 
+| Full board: Avaliablity | 10  | 29 | 0 |
+| Full board: Leadtime | N/A  | N/A | constrained part leadtime unavalible  | 
 
 
 ## NUCLEO-F446RE
@@ -96,7 +96,7 @@ Most shields designed for ARDUINO® can fit the STM32 Nucleo boards.
 
 |     Item      |   Digikey     |   Mouser      |  Avnet    | 
 | ------------- | ------------- | ------------- | ------------- | 
-| Processor:STM32F429ZIT6 microcontrolle cost | $5.06 | 	$33.58  |14.305  | 
+| Processor:STM32G070RB microcontrolle cost | $5.06 | 	$4.97  |$1.60 | 
 | Processor: Avaliablity | 0 | 0 | 0 |
 | Processor: Leadtime | N/A  | n/A | N/A | 
 | Full board: NUCLEO-F446RE cost | $24.64000  |$22.82  |$20.72  | 
