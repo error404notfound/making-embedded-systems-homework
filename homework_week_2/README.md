@@ -21,7 +21,7 @@ changes very little over temperature and time
 The I3G4250D has a full-scale of  245/ 500/ 2000 dps and is capable of measuring rates with a user-selectable bandwidth.
 The STM32F429ZIT6 controls this motion sensor through the SPI interface.
 
-     - [data sheet](https://www.st.com/resource/en/datasheet/i3g4250d.pdf)
+   -[data sheet](https://www.st.com/resource/en/datasheet/i3g4250d.pdf)
      
 - 2.4" QVGA TFT LCD
    - resolution of 320×240. ( Quater of VGA ) 
