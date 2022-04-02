@@ -61,36 +61,56 @@ The microcontroller does: 3x12-bit ADC with 24 channels
 
 
 ## NUCLEO-F446RE
+- The STM32 Nucleo-64 board provides an affordable and flexible way for users
+to try out new concepts and build prototypes by choosing from the various
+combinations of performance and power consumption features, provided by the
+STM32 microcontroller. For the compatible boards, the external SMPS significantly
+reduces power consumption in Run mode.
 
 ### What kind of processor is it?
-
-
+STM32G070RB
 
 ### How much Flash and RAM does it have? Any other memory types?
 
+high-speed embedded memories (128 Kbytes of Flash program memory with read protection, write protection, and 36 Kbytes of SRAM), DMA and an extensive range of system functions
 
 ### Does it have any special peripherals? (List 3-5 that you find interesting.)
+- User LD2: the green LED 
+   - the I/O is HIGH value, the LED is on
+   - the I/O is LOW, the LED is off
 
+- User Push button 
+   -the user button is connected to the I/O PC13 (pin 2) of the STM32
+microcontroller.
+
+-CN5, CN6, CN8, and CN9 are female connectors compatible with ARDUINO® standard.
+Most shields designed for ARDUINO® can fit the STM32 Nucleo boards.
 
 
 ### If it has an ADC, what are the features?
 
-
+- [getting started with ADC digikey video](https://www.digikey.co.nz/en/maker/projects/getting-started-with-stm32-working-with-adc-and-dma/f5009db3a3ed4370acaf545a3370c30c)
 
 ### How much does the board cost vs what the processor costs? Is the processor in stock anywhere? 
 
 
-|     Item      |   Digikey     |   Mouser      |   Octopart    | 
+|     Item      |   Digikey     |   Mouser      |  Avnet    | 
 | ------------- | ------------- | ------------- | ------------- | 
-| Processor:STM32 microcontrolle cost | Content Cell  | Content Cell  | Content Cell  | 
-| Processor: Avaliablity | Content Cell  | Content Cell  | Content Cell  |
-| Processor: Leadtime | Content Cell  | Content Cell  | Content Cell  | 
-| Full board: NUCLEO-F446RE cost | Content Cell  | Content Cell  | Content Cell  | 
-| Full board: Avaliablity | Content Cell  | Content Cell  | Content Cell  | 
-| Full board: Leadtime | Content Cell  | Content Cell  | Content Cell  | 
+| Processor:STM32F429ZIT6 microcontrolle cost | $5.06 | 	$33.58  |14.305  | 
+| Processor: Avaliablity | 0 | 0 | 0 |
+| Processor: Leadtime | N/A  | n/A | N/A | 
+| Full board: NUCLEO-F446RE cost | $24.64000  |$22.82  |$20.72  | 
+| Full board: Avaliablity | 0  | 0  | 0 | 
+| Full board: Leadtime |N/A | 53Weeks  | 0 | 
+
+Most  sites say it is a constrained part and the lead time is unavalaible
 
 ### Additional links
 
 ### Application Notes
-- 
+- Once the boot pins are selected, the application software can modify the memory
+accessible in the code area (in this way the code can be executed through the ICode bus in
+place of the System bus). This modification is performed by programming the Section 8.2.1:
+SYSCFG memory remap register (SYSCFG_MEMRMP) in the SYSCFG controller.
+The following memories can thus be remapped:
 - 
