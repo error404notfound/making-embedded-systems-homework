@@ -15,7 +15,8 @@ I use the interrupt HAL_GPIO_EXTI_Callback which I override in my main.c
 to be able to use the interrupt I had to set up the NVIC in the STM .ioc interface, I have it set to fire on the rising and falling edge. 
 To debounce I check to see if the last fire is still with in my debouncing time offset, if so it counts as a SINGLE_PRESS.
 
-I want to extend the button press intergration to detect a long press to switch between 
+I use a simple timer to debounce the button events for both the button up and the button down. 
+I want to change betweent these two LEDS on a double click. 
   - User LD3: The green LED 
   - User LD4: the red LED
 
