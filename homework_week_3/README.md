@@ -28,8 +28,10 @@ so for the Green LED the port is the GPIO G and the pin is 13.
 
 #### What are the registers you read to find the state of the user button?
 To read the status of the user button I have to look at GIPOA and pin 0,
-GPIO port output type register (GPIOx_OTYPER) 
-
+The IDR (GPIO port input data register) is read.
+```
+(GPIOA->IDR & GPIO_PIN_0)
+```
 #### Can you read the register directly and see the button change in the debugger or output the value of the memory address to the debugger.
 Yes, by making sure the register view is open. I found it usefull to screen shot the before and after so it was easy to compare for changes. 
 Working through [this tutorial]( https://shawnhymel.com/1873/how-to-use-printf-on-stm32/) you can use printf, which I haven't yet implemented.
