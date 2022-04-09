@@ -12,8 +12,8 @@ I have used the HAL calls and also register manipulation as an example.
 
 
 I use the interrupt HAL_GPIO_EXTI_Callback which I override in my main.c 
-to be able to use the interrupt I had to set up the NVIC in the STM .ioc interface, I have it set to fire on the rising and falling edge. 
-To debounce I check to see if the last fire is still with in my debouncing time offset, if so it counts as a SINGLE_PRESS.
+to be able to use the interrupt I had to set up the NVIC in the STM .ioc interface
+I have it set to fire on the rising and falling edge. 
 
 I use a simple timer to debounce the button events for both the button up and the button down. 
 I want to change betweent these two LEDS on a double click. 
@@ -36,5 +36,7 @@ The IDR (GPIO port input data register) is read.
 #### Can you read the register directly and see the button change in the debugger or output the value of the memory address to the debugger.
 Yes, by making sure the register view is open. I found it usefull to screen shot the before and after so it was easy to compare for changes. 
 Working through [this tutorial]( https://shawnhymel.com/1873/how-to-use-printf-on-stm32/) you can use printf, which I haven't yet implemented.
+
+
 ### Resources
 [HAL library](https://microcontrollerslab.com/led-blinking-tutorial-stm32f4-discovery-board-gpio-hal-library/)
