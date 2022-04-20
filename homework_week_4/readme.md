@@ -1,7 +1,11 @@
-# Homework week 4
+# Sensory stone subsystem
 
-There are 4 ideas that I have for my final project I decided to flesh them out a little before deciding which one to pursue. 
-* [Stone subsystem](https://github.com/error404notfound/making-embedded-systems-homework/tree/main/homework_week_4/stone)
-* [Trampoline game](https://github.com/error404notfound/making-embedded-systems-homework/tree/main/homework_week_4/trampoline%20controller)
-* [Promodo timer](https://github.com/error404notfound/making-embedded-systems-homework/tree/main/homework_week_4/promodo%20timer)
-* [Activity tracker](https://github.com/error404notfound/making-embedded-systems-homework/tree/main/homework_week_4/Activity%20tracker)
+## description. 
+
+The aim of this project would be to implement some of the functionality of the [Sensory stones]() project. 
+  * implement shake to wake
+  * implement cli
+  * Gesture recognition utilising the accelerometor to set mode ( using edge impulse to generate model )
+  * Implement the breathing pattern trainer using addressable pixels for visual feedback. ( over clocking lms303 )
+  * Sleep timer
+  * 
