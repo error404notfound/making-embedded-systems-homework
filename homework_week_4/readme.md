@@ -4,9 +4,10 @@
 
 The aim of this project would be to implement some of the functionality of the [Sensory stones]() project. 
 
-  * implement shake to wake
-  *  Gesture recognition utilising the accelerometor to set mode ( using edge impulse to generate model ) ( detect 3 modes ) 
-  * Implement the breathing pattern trainer using LCD  for visual feedback. 
+  * Implement shake to wake ( using gyroscope) 
+  * User button interrupt to switch to CLI mode
+  * Gesture recognition utilising the accelerometor to set mode ( using edge impulse to generate model ) ( detect 3 modes ) 
+  * Implement the breathing pattern trainer using LEDS  for visual feedback. 
   * Sleep timer
   * Save user settings to non volitaile memeory
   * Data logging to USB mass storage ( as proof of concept ) 
