@@ -35,3 +35,5 @@ The aim of this project would be to implement some of the functionality of the [
   
   ## State Table
   One of the functionalitys that I want to develope is the ablity to load state tables  ( from the CLI for example ) as a way to use the same hardware and software frame work for new modes. For this reason below is the Main state table for the stone as well as an example of a state table with in the Breathing trainer mode. 
+
+  <img src="https://github.com/error404notfound/making-embedded-systems-homework/blob/main/homework_week_4/assets/Controller%20state%20table.png"  border="10"/>
