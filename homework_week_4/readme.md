@@ -41,4 +41,4 @@ The aim of this project would be to implement some of the functionality of the [
   <img src="https://github.com/error404notfound/making-embedded-systems-homework/blob/main/homework_week_4/assets/Controller%20state%20table.png"  border="10"/>
   
 ### Mode State Table: Breathing 
-  <img src="https://github.com/error404notfound/making-embedded-systems-homework/blob/main/homework_week_4/assets/Controller%20state%20table.png"  border="10"/>
+  <img src="https://github.com/error404notfound/making-embedded-systems-homework/blob/main/homework_week_4/assets/Breathing%20state%20table.png"  border="10"/>
