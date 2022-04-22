@@ -14,7 +14,7 @@ The aim of this project would be to implement some of the functionality of the [
   * implement cli 
      *  pass test data to the cli
      *  mimic commands that would be replicated over ble 
-        * output accelerometor data
+        * log activity/session data
         * set game state table 
      *  test perpiherlas
      *  save to mass storage
