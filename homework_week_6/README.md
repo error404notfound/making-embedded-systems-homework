@@ -9,4 +9,6 @@ Orange stars cohort
 - [Exercise 3](https://github.com/error404notfound/making-embedded-systems-homework/blob/main/homework_week_3/README.md )
 - [Exercise 4](https://github.com/error404notfound/making-embedded-systems-homework/blob/main/homework_week_4/README.md )
 - [Exercise 5](https://github.com/error404notfound/making-embedded-systems-homework/blob/main/homework_week_5/README.md )
+- [Exercise 6](https://github.com/error404notfound/making-embedded-systems-homework/blob/main/homework_week_6/README.md )
+
 
