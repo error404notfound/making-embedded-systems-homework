@@ -20,7 +20,10 @@ Implementing a subsytem of the bigger sensory stone project.
   - save  input data to mass storage
   - Load Led patterns 
   - set user prefrences ( like choosing the colour of the light in breathing mode )
-  - 
+  
+  Event driven things
+  Data Driven things
+  
 ## Hardware Description
 ## Software Description
 Describe the code in general
