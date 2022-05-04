@@ -20,16 +20,52 @@ Implementing a subsytem of the bigger sensory stone project.
   - save  input data to mass storage
   - Load Led patterns 
   - set user prefrences ( like choosing the colour of the light in breathing mode )
+  - 
 ## Hardware Description
 ## Software Description
+Describe the code in general
+○ Describe the parts you wrote in some detail (maybe 3-5 sentences per module)
+○ Describe code you re-used from other sources, including the licenses for those
 ## Build Instructions
+○ How to build the system (including the toolchain(s))
+■ Hardware
+■ Software
+○ How you debugged and tested the system
+○ How you powered it (and how you might in the future)
+
 ## MVP
 
+###Using only only on boad peripherals instead of additional ones. 
+  - LED screen for visual out put 
+  - Gyroscope only 
+  - USB for storage/data logging 
+ 
+ ###Implement simple gestures for the mode selection only using gyroscope:
+   - x full twist for Breathing  mode
+   - y full twist for Colour response mode
+  
+  ###Mode simplification 
+  - **Breathing Mode**
+   -   use timer to change colour of Led with arrow to indicate inwards breath and outwards breaths.
+  
+  - **Color Mode**
+    - X rotation changes R value
+    - Y rotation changes G value
+    - Z rotation changes B value
+  
+  - Button press to enter CLI mode
+  - State Machine for General Mode management and for the Modes them selves.
+  - USB mass storage 
+
+
 ## Pitfalls / Blocking 
-**Software:**
+### Software:
 Working with the IDE
-**Hardware:**
+
+### Hardware:
 Getting additional parts ( external power supply for the neopixels. ) 
+ABlity to actually wire the system with my limited hardware experince ( quality of soldering ) 
+
 ## Tasks
 ### Getting Data out of the sensors
   - Gyroscope 
@@ -42,6 +78,13 @@ Timer configured in PWM output mode, that gets it data from a DMA buffer
 ### Command line implemtation 
 ### Button interuppt 
 
+## Extension 
+○ What would be needed to get this project ready for production?
+○ How would you extend this project to do something more? Are there other
+features you’d like? How would you go about adding them?
+- firmware update
+- Low power 
+- Implementing the Edge Impulse gesture recognition
 
 ## Code used from 
 https://github.dev/adem-alnajjar/Gyroscope-L3GD20-_STM32/
@@ -61,7 +104,7 @@ http://arm-software.github.io/CMSIS_5/General/html/index.html#License
 https://www.thevfdcollective.com/ They have a Open Source statment but no refrence to an actual licence. 
 
 ## Project requirement checklist
-- 3 perpherials: _PWM LEDS, accelerometor, gyroscope, USB_
+- 3 perpherials: _PWM LEDS, accelerometor on I2C, gyroscope on SPI , USB_
 - Button that causes an interrupt: _User button switches to CLI mode_
 - Cortex-M processor: _STM32F429ZIT6 on the STM32f429i-disc_
 - Implement Serail output: _CLI_
