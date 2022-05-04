@@ -11,7 +11,7 @@ Implementing a subsytem of the bigger sensory stone project.
 - Sleep timer
 - Save user settings to non volitaile memeory
 - Data logging of movement  to USB mass storage ( as proof of concept )
-- implement cli **( Serial interface ) **
+- implement cli
   - pass test data to the cli
   - mimic commands that would be replicated over ble
   - log activity/session data
@@ -67,8 +67,7 @@ https://www.thevfdcollective.com/ They have a Open Source statment but no refren
 - Implement Serail output: _CLI_
 - Implement State Machine: _Implicit in overall implementation and in the different modes_
 - Algorithmic piece that makes the system interesting: 
-   - _Resperation detection and  interpretation for the breathing training _
-   - _The interpretation of movement data into hue and brightness changes_
-
+  -  _Resperation detection and  interpretation for the breathing training_ 
+  -  _The interpretation of movement data into hue and brightness change_ 
 
 
