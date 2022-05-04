@@ -35,16 +35,16 @@ Describe the code in general
 
 ## MVP
 
-###Using only only on boad peripherals instead of additional ones. 
+### Using only only on boad peripherals instead of additional ones. 
   - LED screen for visual out put 
   - Gyroscope only 
   - USB for storage/data logging 
  
- ###Implement simple gestures for the mode selection only using gyroscope:
+ ### Implement simple gestures for the mode selection only using gyroscope:
    - x full twist for Breathing  mode
    - y full twist for Colour response mode
   
-  ###Mode simplification 
+  ### Mode simplification 
   - **Breathing Mode**
    -   use timer to change colour of Led with arrow to indicate inwards breath and outwards breaths.
   
@@ -53,9 +53,9 @@ Describe the code in general
     - Y rotation changes G value
     - Z rotation changes B value
   
-  - Button press to enter CLI mode
-  - State Machine for General Mode management and for the Modes them selves.
-  - USB mass storage 
+  ### Button press to enter CLI mode
+  ### State Machine for General Mode management and for the Modes them selves.
+  ### USB mass storage 
 
 
 ## Pitfalls / Blocking 
