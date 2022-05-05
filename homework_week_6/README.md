@@ -136,6 +136,7 @@ Getting additional parts ( external power supply for the neopixels. )
 ABlity to actually wire the system with my limited hardware experince ( quality of soldering ) 
 
 ## Tasks
+
 ### Getting Data out of the sensors
   - [ ] Gyroscope 
   - [ ] Accelerometor ( needs to be hooked up as an external sensor ) 
@@ -147,18 +148,30 @@ Timer configured in PWM output mode, that gets it data from a DMA buffer
 ### Command line implemtation 
 - [x] Use homework code as a frame work to implement UART via the  ST-Link virtual com port to computer terminal.
 - [ ] Implement additional commands 
-  - [ ]   
+  - [ ] pass test data to the cli
+  - [ ] set all Leds RGB
+  - [ ] log activity/session data
+  - [ ] set mode  state table ( load mode from command line ) 
+  - [ ] test peripherals ( get peripheral settings ) 
+  - [ ] save  input data to mass storage ( as a test of being able to download additional modes ) 
+  - [ ] Load Led patterns 
+  - [ ] set user preferences ( like choosing the color of the light in breathing mode )  
+   
 ### Button interuppt 
+- [ ] User button set to interupt to set MODE flag
 
+### Gestuure Recognition 
+- [ ] Double Tap
+- [ ] Wrist Rotation
+- [ ] Flick
 
-Input Related 
-- [x] Earth (Orbit/Moon)
-- [x] Mars
-- [ ] Jupiter
-- [ ] Saturn
-- [ ] Uranus
-- [ ] Neptune
-- [ ] Comet Haley
+### Sleep Mode
+
+### Breathing Mode
+
+### Session Controller 
+
+### Code documenation 
 
 ## Extension 
 ○ What would be needed to get this project ready for production?
