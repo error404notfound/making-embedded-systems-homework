@@ -6,37 +6,46 @@ Implementing a subsytem of the bigger sensory stone project.
 
 ## Application description
 ### Features
-- Breathing pattern trainer using LEDS for visual feedback.
-- Movement of stone represented with colour and brightness patters and changes
-- Sleep timer
-- Save user settings to non volitaile memeory
-- Data logging of movement  to USB mass storage ( as proof of concept )
+- Crude Gesture recogntion to change modes
+- **Breathing Mode:** The user lies with the device on there chest and slows there breathing to the required rate for the required time to make the LEDS glow ( [inspriation from](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3203837/#:~:text=Accelerometers%20have%20been%20increasingly%20used,using%20digital%20signal%20processing%20technology.))
+- **Colour Mode:** The movements of the stone in XYZ from the accelerometer change RGB, respectively.
+  - accelerometer double-tap stores the color 
+  - double tap again, resets
+- Timer based Sleep Mode ( implement low power mode ), if there are no user interactions. 
+- Save user settings to non-volatile memory
+- Data logging of movement to USB mass storage ( as proof of concept ), data manipulation to save files nicely for use later.
 - implement cli
   - pass test data to the cli
   - mimic commands that would be replicated over ble
   - log activity/session data
   - set activity  state table
-  - test perpiherlas
+  - test peripherals
   - save  input data to mass storage
   - Load Led patterns 
-  - set user prefrences ( like choosing the colour of the light in breathing mode )
+  - set user preferences ( like choosing the color of the light in breathing mode )
   
-  Event driven things
-  Data Driven things
+
   
 ## Hardware Description
 ## Software Description
 Describe the code in general
+
 ○ Describe the parts you wrote in some detail (maybe 3-5 sentences per module)
 ○ Describe code you re-used from other sources, including the licenses for those
+
 ## Build Instructions
-○ How to build the system (including the toolchain(s))
+
 ### Software
 Install CubeIDE
+○ How you debugged and tested the system
+○ How you powered it (and how you might in the future)
+
 ### Hardware
+
 #### BOM
 - ST32429I-disc main board
 - 5v external power source ( I am using this )
+- Power bank to power the board.
 - 8 wsb32i addressabel LEDS
 - LIS3DH 3axis accelerometor
 - Bread board
@@ -44,9 +53,14 @@ Install CubeIDE
 - Breadboard 
 - Various plastic bits to build enclosure 
 - Hot glue ( always hot glue ) 
+- various jumper wires. 
+[ Hardware connection schematic ]
+[images of Build]
 
 ○ How you debugged and tested the system
-○ How you powered it (and how you might in the future)
+Use Multimeter to insure power is getting to the right places. 
+
+
 
 ## MVP
 
@@ -116,7 +130,9 @@ As advertised on arm's website, all CMSIS SW components are under the business-f
 http://arm-software.github.io/CMSIS_5/General/html/index.html#License
 
 ### Port of VFD collective code fot neopizels on stm32
-https://www.thevfdcollective.com/ They have a Open Source statment but no refrence to an actual licence. 
+https://www.thevfdcollective.com/ They have a Open Source statment but no refrence to an actual licence. This may be problematic in the future because there is no specific licencse. 
+
+Trying to avoid creative commons share alike. 
 
 ## Project requirement checklist
 - 3 perpherials: _PWM LEDS, accelerometor on I2C, gyroscope on SPI , USB_
