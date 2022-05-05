@@ -173,11 +173,23 @@ Timer configured in PWM output mode, that gets it data from a DMA buffer
 
 ### Code documenation 
 
+### Usb Controller 
+
+### User
+
+### Settings
+
+
 ## Extension 
 ○ What would be needed to get this project ready for production?
+-  change micro controller to Nrf5280 or use stm32 compatible ble
+-  use edge impulse or tiny ml to extend gesture recognition 
+-  custom PCB design
+-  additional out puts via sound and haptics 
+-  enclouser design and implementation
 ○ How would you extend this project to do something more? Are there other
 features you’d like? How would you go about adding them?
-- firmware update
+- firmware update via USB but ideally over BLE.
 - Low power 
 - Implementing the Edge Impulse gesture recognition
 
