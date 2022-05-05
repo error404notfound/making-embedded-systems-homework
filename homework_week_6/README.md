@@ -31,8 +31,20 @@ Describe the code in general
 ○ Describe code you re-used from other sources, including the licenses for those
 ## Build Instructions
 ○ How to build the system (including the toolchain(s))
-■ Hardware
-■ Software
+### Software
+Install CubeIDE
+### Hardware
+#### BOM
+- ST32429I-disc main board
+- 5v external power source ( I am using this )
+- 8 wsb32i addressabel LEDS
+- LIS3DH 3axis accelerometor
+- Bread board
+- FAT fromatted USB stick
+- Breadboard 
+- Various plastic bits to build enclosure 
+- Hot glue ( always hot glue ) 
+
 ○ How you debugged and tested the system
 ○ How you powered it (and how you might in the future)
 
