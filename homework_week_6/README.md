@@ -97,15 +97,28 @@ ABlity to actually wire the system with my limited hardware experince ( quality 
 
 ## Tasks
 ### Getting Data out of the sensors
-  - Gyroscope 
-  - Accelerometor ( needs to be hooked up as an external sensor ) 
+  - [ ] Gyroscope 
+  - [ ] Accelerometor ( needs to be hooked up as an external sensor ) 
 
 ### Getting data out to the Neopixels 
 Timer configured in PWM output mode, that gets it data from a DMA buffer
   -https://www.thevfdcollective.com/blog/stm32-and-sk6812-rgbw-led
   
 ### Command line implemtation 
+- [x] Use homework code as a frame work to implement UART via the  ST-Link virtual com port to computer terminal.
+- [ ] Implement additional commands 
+  - [ ]   
 ### Button interuppt 
+
+
+Input Related 
+- [x] Earth (Orbit/Moon)
+- [x] Mars
+- [ ] Jupiter
+- [ ] Saturn
+- [ ] Uranus
+- [ ] Neptune
+- [ ] Comet Haley
 
 ## Extension 
 ○ What would be needed to get this project ready for production?
