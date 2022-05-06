@@ -56,7 +56,9 @@ Describe the code in general
 ### Hireachy of Controll Diagram 
 
 <img src="https://github.com/error404notfound/making-embedded-systems-homework/blob/main/homework_week_6/Assets/Final_project-HoC.drawio.png" alt="HOC DIAGRAM" >.   
+### State machines
 
+[WIP state machines](https://docs.google.com/spreadsheets/d/17PMDYJjGAu57bdqYYfYD17IWfWSP6R6QakWD0pAHUXw/edit?usp=sharing)
 ### Main
 ### Session Controller 
 The session controller handles the main state machine and the input from the users button and routing the command line interface comands ( to keep the command line more encapsulate d) 
