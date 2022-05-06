@@ -29,7 +29,7 @@ In this version the focus is on the frame work of creating an interactive object
   
 
   
-## Hardware Description
+## Hardware Description 
 #### BOM
 - ST32429I-disc main board
 - 5v external power source ( I am using this )
