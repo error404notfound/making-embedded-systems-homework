@@ -2,7 +2,9 @@
 
 
 ## Introduction
-Implementing a subsytem of the bigger sensory stone project. 
+
+Implementing a subsytem of the bigger sensory stone project. This version is physically larger than the eventual implementation. 
+
 
 ## Application description
 ### Features
@@ -39,9 +41,13 @@ Implementing a subsytem of the bigger sensory stone project.
 - Various plastic bits to build enclosure 
 - Hot glue ( always hot glue ) 
 - various jumper wires. 
-[ Hardware block diagram ]
-[ Hardware connection schematic ]
-[images of Build]
+- 
+### Hardware block diagram 
+<img src="https://github.com/error404notfound/making-embedded-systems-homework/blob/main/homework_week_6/Assets/Final_project-Hardware%20Block.drawio.png " alt="Hardware block diagram" >
+### Hardware Schematic 
+### Images of Build 
+
+### Enclousre description 
 
 ## Software Description
 Describe the code in general
