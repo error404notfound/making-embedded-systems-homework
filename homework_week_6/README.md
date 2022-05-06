@@ -49,19 +49,28 @@ Describe the code in general
 ○ Describe the parts you wrote in some detail (maybe 3-5 sentences per module)
 ### Main
 ### Session Controller 
-The session controller handles the statemachines for the different modes. 
+The session controller handles the main state machine and the input from the users button and routing the command line interface comands ( to keep the command line more encapsulate d) 
 
 ### Gyroscope control 
 Abstraction layer for the gyroscope 
 ### Acellerometor Control 
+Abstraction layer
 ### Gesture decoder 
 accesss the gyro & accelromator data to identifiy 
 ### Sleep 
+
 ### Breathing 
+Handles the Sleep mode statemachine and accesss the 
+### Colour 
+
 ### Console 
+
 ### USB Controller 
+
 ### Util 
-### User
+
+### User Settings 
+### System Settings 
 
 
 ### Code used from 
