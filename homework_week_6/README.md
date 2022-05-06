@@ -49,9 +49,13 @@ Describe the code in general
 ○ Describe the parts you wrote in some detail (maybe 3-5 sentences per module)
 ### Main
 ### Session Controller 
+The session controller handles the statemachines for the different modes. 
+
 ### Gyroscope control 
+Abstraction layer for the gyroscope 
 ### Acellerometor Control 
 ### Gesture decoder 
+accesss the gyro & accelromator data to identifiy 
 ### Sleep 
 ### Breathing 
 ### Console 
@@ -156,7 +160,8 @@ Timer configured in PWM output mode, that gets it data from a DMA buffer
   - [ ] test peripherals ( get peripheral settings ) 
   - [ ] save  input data to mass storage ( as a test of being able to download additional modes ) 
   - [ ] Load Led patterns 
-  - [ ] set user preferences ( like choosing the color of the light in breathing mode )  
+  - [ ] set user preferences ( like choosing the color of the light in breathing mode ) 
+  - [ ] Adjust thresholds for the different gestures  
    
 ### Button interuppt 
 - [ ] User button set to interupt to set MODE flag
