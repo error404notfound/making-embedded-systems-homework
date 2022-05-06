@@ -3,7 +3,8 @@
 
 ## Introduction
 
-Implementing a subsytem of the bigger sensory stone project. This version is physically larger than the eventual implementation. 
+This project is a stepping stone ( lol ) towards the implementation of the [sense stones project](https://github.com/error404notfound/making-embedded-systems-homework/tree/main/homework_week_1)
+In this version the focus is on the frame work of creating an interactive object that can be used at home for mindfullness exercises as well as being a tool for occupational therapy and free play.
 
 
 ## Application description
