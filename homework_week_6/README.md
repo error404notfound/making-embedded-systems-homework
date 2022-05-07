@@ -62,29 +62,34 @@ Describe the code in general
 ### Main
 ### Session Controller 
 The session controller handles the main state machine and the input from the users button and routing the command line interface comands ( to keep the command line more encapsulate d) 
-
+### Mode Controller
+Stradgey Pattern
+## Sensor Data Hub
 ### Gyroscope control 
 Abstraction layer for the gyroscope 
 ### Acellerometor Control 
 Abstraction layer
+### Button Management
 ### Gesture decoder 
 accesss the gyro & accelromator data to identifiy 
 ### Sleep 
-
+Going into low power mode and exiting.
 ### Breathing 
-Handles the Sleep mode statemachine and accesss the 
+Handles the Breathing mode statemachine and data consumption
 ### Colour 
-
-### Console 
+Handles the Colour mode statemachine and data consumption
+### Command line
 
 ### USB Controller 
-
+### Output Controller
+### Led Controller
 ### Util 
 
 ### User Settings 
 ### System Settings 
-
-
+### Asset Managment 
+### File Managment
+### Logging
 ### Code used from 
 
 **Gyroscope calibrartion and data acces**s: https://github.dev/adem-alnajjar/Gyroscope-L3GD20-_STM32/.   
