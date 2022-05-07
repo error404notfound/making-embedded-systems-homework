@@ -46,7 +46,17 @@ In this version the focus is on the frame work of creating an interactive object
 ### Hardware block diagram 
 <img src="https://github.com/error404notfound/making-embedded-systems-homework/blob/main/homework_week_6/Assets/Final_project-Hardware%20Block.drawio.png " alt="Hardware block diagram" >
 ### Hardware Schematic 
-### Images of Build 
+### Pins  used
+
+####SPI
+Component  | Sclk |cs | MISO | MOSI | 
+--- | --- | --- | --- |--- |
+Acce | X | X | X | X | 
+Gyro | X | X | X | X | 
+
+#### UART
+#### USB
+#### PWM
 
 ### Enclousre description 
 
