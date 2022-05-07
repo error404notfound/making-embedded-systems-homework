@@ -270,4 +270,4 @@ development process.
 - https://www.st.com/resource/en/user_manual/dm00093903-discovery-kit-with-stm32f429zi-mcu-stmicroelectronics.pdf
 - https://www.st.com/resource/en/user_manual/um1670-discovery-kit-with-stm32f429zi-mcu-stmicroelectronics.pdf
 - https://www.st.com/resource/en/application_note/an5698-adapting-the-xcubestl-functional-safety-package-for-stm32-iec-61508-compliant-to-other-safety-standards-stmicroelectronics.pdf
-
+- https://www.digikey.com/en/datasheets/parallaxinc/parallax-inc-28085-ws2812b-rgb-led-datasheet
