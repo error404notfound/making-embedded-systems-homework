@@ -42,13 +42,17 @@ In this version the focus is on the frame work of creating an interactive object
 - Various plastic bits to build enclosure 
 - Hot glue ( always hot glue ) 
 - various jumper wires. 
-- 
+
+
 ### Hardware block diagram 
-<img src="https://github.com/error404notfound/making-embedded-systems-homework/blob/main/homework_week_6/Assets/Final_project-Hardware%20Block.drawio.png " alt="Hardware block diagram" >
+<img src="https://github.com/error404notfound/making-embedded-systems-homework/blob/main/homework_week_6/Assets/Final_project-Hardware%20Block.drawio.png " alt="Hardware block diagram">
+
 ### Hardware Schematic 
+// todo:
+
 ### Pins  used
 
-####SPI
+#### SPI
 Component  | Sclk |cs | MISO | MOSI | 
 --- | --- | --- | --- |--- |
 Acce | X | X | X | X | 
@@ -59,7 +63,7 @@ Gyro | X | X | X | X |
 #### PWM
 
 ### Enclousre description 
-
+// todo:
 ## Software Description
 Describe the code in general
 
@@ -248,20 +252,22 @@ features you’d like? How would you go about adding them?
   -  _The interpretation of movement data into hue and brightness change_ 
 
 Bonus points are available by including one of these:
-● An analysis of the power used in the system (expected vs actual)
-Jumper JP3, labeled Idd, allows the consumption of STM32F429ZIT6 to be measured by
+-  An analysis of the power used in the system (expected vs actual)
+   - Jumper JP3, labeled Idd, allows the consumption of STM32F429ZIT6 to be measured by
 removing the jumper and connecting an ammeter.
 • Jumper ON: STM32F429ZIT6 is powered (default).
 • Jumper OFF: an ammeter must be connected to measure the STM32F429ZIT6
 current, (if there is no ammeter, the STM32F429ZIT6 is not powered).
-● Implementation of firmware update with a description in the report of how it works
-● A description of profiling the system to make it run faster
+
+-  Implementation of firmware update with a description in the report of how it works
+- A description of profiling the system to make it run faster_
+
 Additional bonus points are available by having a version control history showing the
 development process.
 
 ### Datasheets
-https://www.st.com/en/mems-and-sensors/lis3dh.html#documentation
-https://www.st.com/resource/en/user_manual/dm00093903-discovery-kit-with-stm32f429zi-mcu-stmicroelectronics.pdf
-https://www.st.com/resource/en/user_manual/um1670-discovery-kit-with-stm32f429zi-mcu-stmicroelectronics.pdf
-https://www.st.com/resource/en/application_note/an5698-adapting-the-xcubestl-functional-safety-package-for-stm32-iec-61508-compliant-to-other-safety-standards-stmicroelectronics.pdf
+- https://www.st.com/en/mems-and-sensors/lis3dh.html#documentation
+- https://www.st.com/resource/en/user_manual/dm00093903-discovery-kit-with-stm32f429zi-mcu-stmicroelectronics.pdf
+- https://www.st.com/resource/en/user_manual/um1670-discovery-kit-with-stm32f429zi-mcu-stmicroelectronics.pdf
+- https://www.st.com/resource/en/application_note/an5698-adapting-the-xcubestl-functional-safety-package-for-stm32-iec-61508-compliant-to-other-safety-standards-stmicroelectronics.pdf
 
