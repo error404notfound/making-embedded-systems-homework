@@ -127,7 +127,10 @@ http://arm-software.github.io/CMSIS_5/General/html/index.html#License
 ### Port of VFD collective code fot neopizels on stm32
 https://www.thevfdcollective.com/ They have a Open Source statment but no refrence to an actual licence. This may be problematic in the future because there is no specific licencse. 
 
-Trying to avoid creative commons share alike. 
+### Fast HSL to RGB 
+Fast hsl2rgb algorithm: https://stackoverflow.com/questions/13105185/fast-algorithm-for-rgb-hsl-conversion
+
+ 
 
 ## Build Instructions
 
