@@ -23,6 +23,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "stm32_hal_neopixel.h"
+#include "gyroI3G450D.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/

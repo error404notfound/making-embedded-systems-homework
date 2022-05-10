@@ -1,0 +1,2 @@
+../Core/Src/gyroI3G450D.c:90:6:I3G450D_Init	8	static
+../Core/Src/gyroI3G450D.c:137:6:I3G450D_loop	104	static
