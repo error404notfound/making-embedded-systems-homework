@@ -22,7 +22,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "stm32_hal_neopixel.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -72,7 +72,7 @@ static void MX_TIM2_Init(void);
 void MX_USB_HOST_Process(void);
 
 /* USER CODE BEGIN PFP */
-
+uint32_t hsl_to_rgb(uint8_t h, uint8_t s, uint8_t l);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -118,7 +118,8 @@ int main(void)
   MX_USB_HOST_Init();
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
-
+  uint8_t angle = 0;
+  const uint8_t angle_difference = 11;
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -126,9 +127,20 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-    MX_USB_HOST_Process();
+    //MX_USB_HOST_Process();
 
     /* USER CODE BEGIN 3 */
+	  for(uint8_t i = 0; i < 8 /* Change that to your amount of LEDs */; i++) {
+	  			// Calculate color
+	  			uint32_t rgb_color = hsl_to_rgb(angle + (i * angle_difference), 255, 127);
+	  			// Set color
+	  			led_set_RGB(i, (rgb_color >> 16) & 0xFF, (rgb_color >> 8) & 0xFF, rgb_color & 0xFF);
+	  		}
+	  		// Write to LED
+	    	++angle;
+	  		led_render();
+	  		// Some delay
+	  		HAL_Delay(10);
   }
   /* USER CODE END 3 */
 }
@@ -643,7 +655,34 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+uint32_t hsl_to_rgb(uint8_t h, uint8_t s, uint8_t l) {
+	if(l == 0) return 0;
 
+	volatile uint8_t  r, g, b, lo, c, x, m;
+	volatile uint16_t h1, l1, H;
+	l1 = l + 1;
+	if (l < 128)    c = ((l1 << 1) * s) >> 8;
+	else            c = (512 - (l1 << 1)) * s >> 8;
+
+	H = h * 6;              // 0 to 1535 (actually 1530)
+	lo = H & 255;           // Low byte  = primary/secondary color mix
+	h1 = lo + 1;
+
+	if ((H & 256) == 0)   x = h1 * c >> 8;          // even sextant, like red to yellow
+	else                  x = (256 - h1) * c >> 8;  // odd sextant, like yellow to green
+
+	m = l - (c >> 1);
+	switch(H >> 8) {       // High byte = sextant of colorwheel
+	 case 0 : r = c; g = x; b = 0; break; // R to Y
+	 case 1 : r = x; g = c; b = 0; break; // Y to G
+	 case 2 : r = 0; g = c; b = x; break; // G to C
+	 case 3 : r = 0; g = x; b = c; break; // C to B
+	 case 4 : r = x; g = 0; b = c; break; // B to M
+	 default: r = c; g = 0; b = x; break; // M to R
+	}
+
+	return (((uint32_t)r + m) << 16) | (((uint32_t)g + m) << 8) | ((uint32_t)b + m);
+}
 /* USER CODE END 4 */
 
 /**
