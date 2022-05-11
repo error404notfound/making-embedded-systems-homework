@@ -24,6 +24,9 @@
 /* USER CODE BEGIN Includes */
 #include "stm32_hal_neopixel.h"
 #include "gyroI3G450D.h"
+#include "retarget.h"
+#include "console.h"
+#include <stdio.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -115,20 +118,24 @@ int main(void)
   MX_SPI5_Init();
   MX_TIM1_Init();
   MX_USART1_UART_Init();
-  MX_DMA_Init();
+ // MX_DMA_Init();
   MX_USB_HOST_Init();
-  MX_TIM2_Init();
+  //MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
-  uint8_t angle = 0;
-  const uint8_t angle_difference = 11;
+
+  I3G450D_Init();
+  RetargetInit(&huart1);
+  ConsoleInit(&huart1);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  uint8_t angle = 0;
+  const uint8_t angle_difference = 11;
   while (1)
   {
     /* USER CODE END WHILE */
-    //MX_USB_HOST_Process();
+    MX_USB_HOST_Process();
 
     /* USER CODE BEGIN 3 */
 	  for(uint8_t i = 0; i < 8 /* Change that to your amount of LEDs */; i++) {
@@ -139,8 +146,10 @@ int main(void)
 	  		}
 	  		// Write to LED
 	    	++angle;
-	  		led_render();
+	  		//led_render();
 	  		// Some delay
+	  		ConsoleProcess();
+	  		//I3G450D_loop();
 	  		HAL_Delay(10);
   }
   /* USER CODE END 3 */

@@ -1,0 +1,17 @@
+../Core/Src/console.c:44:17:ConsoleCommandMatch	24	static
+../Core/Src/console.c:77:17:ConsoleResetBuffer	32	static
+../Core/Src/console.c:97:16:ConsoleCommandEndline	24	static
+../Core/Src/console.c:116:6:ConsoleInit	24	static
+../Core/Src/console.c:136:6:ConsoleProcess	32	static
+../Core/Src/console.c:198:25:ConsoleParamFindN	40	static
+../Core/Src/console.c:228:18:ConsoleReceiveParamInt16	48	static
+../Core/Src/console.c:263:18:ConsoleReceiveParamHexUint16	48	static
+../Core/Src/console.c:301:18:ConsoleSendParamHexUint16	32	static
+../Core/Src/console.c:322:18:ConsoleSendParamHexUint8	24	static
+../Core/Src/console.c:347:13:smallItoa	40	static
+../Core/Src/console.c:384:18:ConsoleSendParamInt16	24	static
+../Core/Src/console.c:398:18:ConsoleSendParamInt32	32	static
+../Core/Src/console.c:410:25:ConsoleUtilHexCharToInt	24	static
+../Core/Src/console.c:441:25:ConsoleUtilsIntToHexChar	24	static
+../Core/Src/console.c:467:18:ConsoleSendString	16	static
+../Core/Src/console.c:475:18:ConsoleSendLine	16	static

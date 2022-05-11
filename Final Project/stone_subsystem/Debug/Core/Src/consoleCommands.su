@@ -1,0 +1,9 @@
+../Core/Src/consoleCommands.c:41:25:ConsoleCommandComment	16	static
+../Core/Src/consoleCommands.c:48:25:ConsoleCommandHelp	32	static
+../Core/Src/consoleCommands.c:68:25:ConsoleCommandToggleLed	24	static
+../Core/Src/consoleCommands.c:72:25:ConsoleCommandGyroStatus	24	static
+../Core/Src/consoleCommands.c:76:25:ConsoleCommandGyroDump	24	static
+../Core/Src/consoleCommands.c:80:25:ConsoleCommandParamExampleInt16	24	static
+../Core/Src/consoleCommands.c:96:25:ConsoleCommandParamExampleHexUint16	24	static
+../Core/Src/consoleCommands.c:110:25:ConsoleCommandVer	24	static
+../Core/Src/consoleCommands.c:122:31:ConsoleCommandsGetTable	4	static
