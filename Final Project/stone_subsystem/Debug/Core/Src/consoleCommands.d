@@ -24,8 +24,6 @@ Core/Src/consoleCommands.o: ../Core/Src/consoleCommands.c \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h \
- ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_sdram.h \
- ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_fmc.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h \
@@ -34,8 +32,6 @@ Core/Src/consoleCommands.o: ../Core/Src/consoleCommands.c \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
- ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_hcd.h \
- ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usb.h \
  ../Core/Inc/console.h ../Core/Inc/consoleIo.h ../Core/Inc/version.h
 ../Core/Inc/consoleCommands.h:
 ../Core/Inc/console.h:
@@ -63,8 +59,6 @@ Core/Src/consoleCommands.o: ../Core/Src/consoleCommands.c \
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h:
-../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_sdram.h:
-../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_fmc.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c_ex.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h:
@@ -73,8 +67,6 @@ Core/Src/consoleCommands.o: ../Core/Src/consoleCommands.c \
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
-../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_hcd.h:
-../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usb.h:
 ../Core/Inc/console.h:
 ../Core/Inc/consoleIo.h:
 ../Core/Inc/version.h:
