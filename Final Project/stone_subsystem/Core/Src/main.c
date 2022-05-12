@@ -138,12 +138,15 @@ void WS2812_Send (void)
 
 		for (int i=23; i>=0; i--)
 		{
-			if (color&(1<<i))
+			if (color&(1<<i))// if the bit is a 1 then we want to send a high for 2/3rds of the time ( the high duty cycle 0.4/0.4+ 0.84 = 0.32 , close enough
 			{
-				pwmData[indx] = 60;  // 2/3 of 90
+				pwmData[indx] = 60;  // 2/3 of 90 WS2812B HiGH
 			}
 
-			else pwmData[indx] = 30;  // 1/3 of 90
+			else // duty cycle for low
+			{
+				pwmData[indx] = 30;  // 1/3 of 90WS2812B LOW
+			}
 
 			indx++;
 		}
@@ -157,7 +160,9 @@ void WS2812_Send (void)
 	}
 
 	HAL_TIM_PWM_Start_DMA(&htim2, TIM_CHANNEL_1, (uint32_t *)pwmData, indx);
-	while (!datasentflag){};
+	while (!datasentflag){
+
+	};
 	datasentflag = 0;
 }
 
@@ -311,11 +316,11 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  rainbow_effect_right();
-		  HAL_Delay (30);
+	  //rainbow_effect_right();
+		HAL_Delay (30);
 
-	  		ConsoleProcess();
-	  		I3G450D_loop();
+		ConsoleProcess();
+		I3G450D_loop();
 
   }
   /* USER CODE END 3 */
