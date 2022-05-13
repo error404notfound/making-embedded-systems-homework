@@ -12,7 +12,7 @@
   * This software is licensed under terms that can be found in the LICENSE file
   * in the root directory of this software component.
   * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
+  * use full sites : https://kawaii.computer/stm32/2020/06/07/ws2812b-stm32f0-circular-dma.html
   ******************************************************************************
   */
 /* USER CODE END Header */
@@ -75,10 +75,11 @@ uint32_t hsl_to_rgb(uint8_t h, uint8_t s, uint8_t l);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-#define MAX_LED 6
+#define MAX_LED 24
 #define USE_BRIGHTNESS 0
 
-
+#define PWM_HI (38)
+#define PWM_LO (19)
 uint8_t LED_Data[MAX_LED][4];
 uint8_t LED_Mod[MAX_LED][4];  // for brightness
 
@@ -136,16 +137,16 @@ void WS2812_Send (void)
 		color = ((LED_Data[i][1]<<16) | (LED_Data[i][2]<<8) | (LED_Data[i][3]));
 #endif
 
-		for (int i=23; i>=0; i--)
+		for (int j=23; j>=0; j--)// There are 24 bits per Colour Channel.
 		{
-			if (color&(1<<i))// if the bit is a 1 then we want to send a high for 2/3rds of the time ( the high duty cycle 0.4/0.4+ 0.84 = 0.32 , close enough
+			if (color&(1<<j))// if the bit is a 1 then we want to send a high for 2/3rds of the time ( the high duty cycle 0.4/0.4+ 0.84 = 0.32 , close enough
 			{
-				pwmData[indx] = 60;  // 2/3 of 90 WS2812B HiGH
+				pwmData[indx] = PWM_HI;  // 2/3 of 90 WS2812B HiGH High (1) at 62% duty (0.8µs).
+			//
 			}
-
 			else // duty cycle for low
 			{
-				pwmData[indx] = 30;  // 1/3 of 90WS2812B LOW
+				pwmData[indx] = PWM_LO;  // 1/3 of 90WS2812B LOW Low (0) at 32% duty (0.4µs).
 			}
 
 			indx++;
@@ -297,30 +298,26 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  Set_LED(0, 255, 0, 0);
- //  Set_LED(1, 0, 255, 0);
- //  Set_LED(2, 0, 0, 255);
- //
- //  Set_LED(3, 46, 89, 128);
- //
- //  Set_LED(4, 156, 233, 100);
- //  Set_LED(5, 102, 0, 235);
- //  Set_LED(6, 47, 38, 77);
- //
- //  Set_LED(7, 255, 200, 0);
 
-   Set_Brightness(10);
-   WS2812_Send();
+
+for(int i = 0; i < MAX_LED; i++)
+{
+	// setting all LEDS to be green
+	  Set_LED(0, 0, 255, 0);
+
+	}
+
   while (1)
   {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
 	  //rainbow_effect_right();
-		HAL_Delay (30);
 
-		ConsoleProcess();
-		I3G450D_loop();
+	  WS2812_Send();
+	  HAL_Delay (50);
+		//ConsoleProcess();
+		//I3G450D_loop();
 
   }
   /* USER CODE END 3 */
@@ -505,7 +502,7 @@ static void MX_TIM2_Init(void)
   htim2.Instance = TIM2;
   htim2.Init.Prescaler = 0;
   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim2.Init.Period = 90-1;
+  htim2.Init.Period = 60-1;
   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim2) != HAL_OK)
@@ -690,8 +687,8 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : B1_Pin MEMS_INT1_Pin MEMS_INT2_Pin TP_INT1_Pin */
-  GPIO_InitStruct.Pin = B1_Pin|MEMS_INT1_Pin|MEMS_INT2_Pin|TP_INT1_Pin;
+  /*Configure GPIO pins : B1_Pin MEMS_INT1_Pin MEMS_INT2_Pin */
+  GPIO_InitStruct.Pin = B1_Pin|MEMS_INT1_Pin|MEMS_INT2_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_EVT_RISING;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
