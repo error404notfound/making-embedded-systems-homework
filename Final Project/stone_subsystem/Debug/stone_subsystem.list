@@ -915,7 +915,7 @@ void WS2812_Send (void)
 				pwmData[indx] = PWM_HI;  // 2/3 of 90 WS2812B HiGH High (1) at 62% duty (0.8µs).
  80008ac:	4a1f      	ldr	r2, [pc, #124]	; (800092c <WS2812_Send+0xd0>)
  80008ae:	697b      	ldr	r3, [r7, #20]
- 80008b0:	2126      	movs	r1, #38	; 0x26
+ 80008b0:	2138      	movs	r1, #56	; 0x38
  80008b2:	f822 1013 	strh.w	r1, [r2, r3, lsl #1]
  80008b6:	e004      	b.n	80008c2 <WS2812_Send+0x66>
 			//
@@ -925,7 +925,7 @@ void WS2812_Send (void)
 				pwmData[indx] = PWM_LO;  // 1/3 of 90WS2812B LOW Low (0) at 32% duty (0.4µs).
  80008b8:	4a1c      	ldr	r2, [pc, #112]	; (800092c <WS2812_Send+0xd0>)
  80008ba:	697b      	ldr	r3, [r7, #20]
- 80008bc:	2113      	movs	r1, #19
+ 80008bc:	211c      	movs	r1, #28
  80008be:	f822 1013 	strh.w	r1, [r2, r3, lsl #1]
 			}
 

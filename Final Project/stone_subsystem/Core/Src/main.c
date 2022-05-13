@@ -78,8 +78,8 @@ uint32_t hsl_to_rgb(uint8_t h, uint8_t s, uint8_t l);
 #define MAX_LED 24
 #define USE_BRIGHTNESS 0
 
-#define PWM_HI (38)
-#define PWM_LO (19)
+#define PWM_HI (56) // 64% of our cyle time
+#define PWM_LO (28) // 32% of our cycle time which is 89
 uint8_t LED_Data[MAX_LED][4];
 uint8_t LED_Mod[MAX_LED][4];  // for brightness
 
