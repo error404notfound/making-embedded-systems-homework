@@ -75,15 +75,15 @@ uint32_t hsl_to_rgb(uint8_t h, uint8_t s, uint8_t l);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-#define MAX_LED 24
+#define MAX_LED 4
 #define USE_BRIGHTNESS 0
 
-#define PWM_HI (56) // 64% of our cyle time
-#define PWM_LO (28) // 32% of our cycle time which is 89
+#define PWM_HI (58) // 64% of our cyle time
+#define PWM_LO (29) // 32% of our cycle time which is 89
 uint8_t LED_Data[MAX_LED][4];
 uint8_t LED_Mod[MAX_LED][4];  // for brightness
 
-int datasentflag=0;
+volatile int datasentflag=0;
 
 void HAL_TIM_PWM_PulseFinishedCallback(TIM_HandleTypeDef *htim)
 {
@@ -154,7 +154,7 @@ void WS2812_Send (void)
 
 	}
 
-	for (int i=0; i<50; i++)
+	for (int i=0; i<80; i++)
 	{
 		pwmData[indx] = 0;
 		indx++;
@@ -303,7 +303,7 @@ int main(void)
 for(int i = 0; i < MAX_LED; i++)
 {
 	// setting all LEDS to be green
-	  Set_LED(0, 0, 255, 0);
+	  Set_LED(i, 0, 255, 0);
 
 	}
 
@@ -502,7 +502,7 @@ static void MX_TIM2_Init(void)
   htim2.Instance = TIM2;
   htim2.Init.Prescaler = 0;
   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim2.Init.Period = 60-1;
+  htim2.Init.Period = 90-1;
   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim2) != HAL_OK)

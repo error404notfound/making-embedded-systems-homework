@@ -87,7 +87,7 @@
 					</folderInfo>
 					<fileInfo id="com.st.stm32cube.ide.mcu.gnu.managedbuild.config.exe.debug.186125754.1818223377" name="stm32_hal_neopixel.h" rcbsApplicability="disable" resourcePath="Core/Inc/stm32_hal_neopixel.h" toolsToInvoke=""/>
 					<sourceEntries>
-						<entry excluding="Inc/stm32_hal_neopixel.h|Src/stm32_hal_neopixel.c|Src/syscalls.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Core"/>
+						<entry excluding="Inc/stm32_hal_neopixel.h|Src/syscalls.c|Src/stm32_hal_neopixel.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Core"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Drivers"/>
 					</sourceEntries>
 				</configuration>

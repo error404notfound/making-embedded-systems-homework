@@ -1,3 +1,4 @@
+"./Core/Src/Controlers/sessionControler.o"
 "./Core/Src/console.o"
 "./Core/Src/consoleCommands.o"
 "./Core/Src/consoleIo.o"
