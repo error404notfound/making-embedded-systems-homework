@@ -207,10 +207,6 @@ void Error_Handler(void);
 #define SWDIO_GPIO_Port GPIOA
 #define SWCLK_Pin GPIO_PIN_14
 #define SWCLK_GPIO_Port GPIOA
-#define TP_INT1_Pin GPIO_PIN_15
-#define TP_INT1_GPIO_Port GPIOA
-#define R2_Pin GPIO_PIN_10
-#define R2_GPIO_Port GPIOC
 #define D2_Pin GPIO_PIN_0
 #define D2_GPIO_Port GPIOD
 #define D3_Pin GPIO_PIN_1
