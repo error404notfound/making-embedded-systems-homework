@@ -18,7 +18,9 @@ typedef enum
 #define RANGE_8G   CTRL_REG4_FS8G
 #define RANGE_16G  CTRL_REG4_FS16G
 
-
+/* CS pin */
+#define CSpin GPIO_PIN_2
+#define CSport GPIOD
 /* Public APIs */
 void Lis3dhInit(SPI_HandleTypeDef *hspi );
 int Lis3dhGetAcc(int16_t* x, int16_t* y, int16_t* z);
@@ -29,5 +31,6 @@ void Lis3dhSetRange(int8_t range);
 void csOn(void);
 void csOff(void);
 int spiConfig(void);
-int spiRead(uint8_t addr, uint8_t* buffer, int len);
-int spiWrite(uint8_t addr, uint8_t* buffer, int len);
+uint8_t LIS3DH_readReg(uint8_t lis3dhReg);
+void LIS3DH_writeReg(uint8_t lis3dhReg, uint8_t lis3dhValue);
+

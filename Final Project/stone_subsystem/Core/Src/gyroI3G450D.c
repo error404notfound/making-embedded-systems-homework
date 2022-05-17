@@ -131,7 +131,12 @@ void I3G450D_Init(void)
 	HAL_SPI_Transmit(&hspi5,spiTxBuf,2,50);
 	HAL_GPIO_WritePin(GPIOC,GPIO_PIN_1,GPIO_PIN_SET);
 	HAL_Delay(20);
-
+	// read who am i register
+	HAL_GPIO_WritePin(GPIOC,GPIO_PIN_1,GPIO_PIN_RESET);
+	spiTxBuf[0]=0x0F|0x80;
+	HAL_SPI_Transmit(&hspi5,spiTxBuf,1,50);
+	HAL_SPI_Receive(&hspi5,&spiRxBuf[1],1,50);
+	HAL_GPIO_WritePin(GPIOC,GPIO_PIN_1,GPIO_PIN_SET);
 }
 
 void I3G450D_loop(void)
