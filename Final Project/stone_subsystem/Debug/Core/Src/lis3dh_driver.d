@@ -32,6 +32,8 @@ Core/Src/lis3dh_driver.o: ../Core/Src/lis3dh_driver.c \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
+ ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_hcd.h \
+ ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usb.h \
  ../Core/Inc/lis3dh_regs.h
 ../Core/Inc/lis3dh_driver.h:
 ../Core/Inc/lis3dh_regs.h:
@@ -67,4 +69,6 @@ Core/Src/lis3dh_driver.o: ../Core/Src/lis3dh_driver.c \
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_hcd.h:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usb.h:
 ../Core/Inc/lis3dh_regs.h:
