@@ -74,10 +74,14 @@ LPen bit in CTRL_REG1, enable at least one of the axes and select the preferred 
 
 	 HAL_StatusTypeDef hal_res;
 	csOn();
-	accelSpiTxBuf[0]=LIS3DH_REG_CTRL1;
-	accelSpiTxBuf[1]=0x07;
-		hal_res = HAL_SPI_Transmit(LIS3DH_hspi,accelSpiTxBuf,2,50);
-
+	//accelSpiTxBuf[0]=LIS3DH_REG_CTRL1;
+	//accelSpiTxBuf[1]=0x07;
+	//hal_res = HAL_SPI_Transmit(LIS3DH_hspi,accelSpiTxBuf,2,50);
+	HAL_Delay(20);
+	accelSpiTxBuf[0]=LIS3DH_REG_CTRL1|0x80;
+	hal_res = 	HAL_SPI_Transmit(LIS3DH_hspi,accelSpiTxBuf,1,50);
+	hal_res = 	HAL_SPI_Receive(LIS3DH_hspi,&accelSpiRxBuf[1],1,50);
+	uint8_t ctrl_reg = accelSpiRxBuf[1];
 	csOff();
 	HAL_Delay(20);
 	//uint8_t result = LIS3DH_readReg(WHO_AM_I);
