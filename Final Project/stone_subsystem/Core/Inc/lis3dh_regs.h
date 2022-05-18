@@ -32,7 +32,7 @@
 #define LIS3DH_ON_ADC		     0x80
 
 
-#define WHO_AM_I         0X0F
+#define WHO_AM_I         0X8F
 #define WHO_AM_I_VALUE   0x33
 
 

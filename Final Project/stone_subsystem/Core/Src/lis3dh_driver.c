@@ -11,8 +11,8 @@
 #include "stm32f4xx_hal.h"
 
 
-#define LIS3DH_ADDR (0x19)// if SDO/SA0 is 3V, its 0x19
-const uint16_t i2c_timeout = 100;
+const uint16_t LIS3DH_ADDR =  (0x18<<1);// if SDO/SA0 is 3V, its 0x19
+const uint16_t i2c_timeout = 200;
 
 static uint8_t accelSpiTxBuf[2];
 static uint8_t accelSpiRxBuf[7];
@@ -69,18 +69,35 @@ turn on the device and gather acceleration data, select the HR bit in CTRL_REG4 
 LPen bit in CTRL_REG1, enable at least one of the axes and select the preferred ODR.*/
 
 
+	HAL_StatusTypeDef ret;
+	    uint8_t buf[12];
 
-	/*(LIS3DH_hspi = hspi;
-	HAL_StatusTypeDef hal_res;
+	    buf[0] = WHO_AM_I|LIS3DH_READ;
 
-//writs to Ctrl_reg1 to wake it up.
-	LIS3DH_writeReg(0x20,0x7);
-	uint8_t ctrl_reg =LIS3DH_readReg(0x20);
-	uint8_t who_am_i = LIS3DH_readReg(0x0f);
-	*/
-	uint8_t check;
-	uint8_t Data;
-	HAL_I2C_Mem_Read(I2Cx, LIS3DH_ADDR, WHO_AM_I, 1, &check, 1, i2c_timeout);
+	    ret = HAL_I2C_Master_Transmit(I2Cx, LIS3DH_ADDR, buf, 1, HAL_MAX_DELAY);
+	    if(ret != HAL_OK) {
+	        //Handle Error
+
+	    } else {
+
+	        ret = HAL_I2C_Master_Receive(I2Cx, LIS3DH_ADDR, buf, 2, HAL_MAX_DELAY);
+	        if(ret != HAL_OK) {
+
+	        	//Handle error.
+
+	        } else {
+
+	        	// configure the sensor.
+	        	// selecting the HR bit in CTRL_REG_4
+
+	        	// set the LPen bit in the CTRL_REG_1
+	        	// Select the preferred ODR.
+	        	// we want to read all axis
+
+	        }
+
+	    }
+
 
 
 
@@ -108,21 +125,6 @@ int Lis3dhGetAcc(int16_t* x, int16_t* y, int16_t* z){
 void Lis3dhSetRange(int8_t range){}
 
 
-/* Private APIs */
-/** @brief Set SPI Chip select OFF
- * @retval none
- */
-void csOff(void)
-{
-	HAL_GPIO_WritePin(CSport, CSpin , GPIO_PIN_SET);
-}
 
 
-/** @brief Set SPI Chip select ON this accelerometor expects low on cs transmitting
- * @retval none
- */
-void csOn(void)
-{
-	HAL_GPIO_WritePin(CSport, CSpin , GPIO_PIN_RESET);
-}
 

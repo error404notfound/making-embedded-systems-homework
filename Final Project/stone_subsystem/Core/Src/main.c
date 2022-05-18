@@ -103,7 +103,7 @@ int main(void)
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-  HAL_Init();
+ HAL_Init();
 
   /* USER CODE BEGIN Init */
 
@@ -145,7 +145,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   uint8_t angle = 0;
   const uint8_t angle_difference = 11;
-  hi2c2;
+
 
   while (1)
   {
