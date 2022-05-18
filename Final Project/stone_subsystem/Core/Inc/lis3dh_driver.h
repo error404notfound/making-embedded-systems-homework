@@ -22,7 +22,7 @@ typedef enum
 #define CSpin GPIO_PIN_2
 #define CSport GPIOD
 /* Public APIs */
-void Lis3dhInit(SPI_HandleTypeDef *hspi );
+void Lis3dhInit(I2C_HandleTypeDef *I2Cx);
 int Lis3dhGetAcc(int16_t* x, int16_t* y, int16_t* z);
 void Lis3dhSetRange(int8_t range);
 

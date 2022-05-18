@@ -11,6 +11,9 @@
 #include "stm32f4xx_hal.h"
 
 
+#define LIS3DH_ADDR (0x19)// if SDO/SA0 is 3V, its 0x19
+const uint16_t i2c_timeout = 100;
+
 static uint8_t accelSpiTxBuf[2];
 static uint8_t accelSpiRxBuf[7];
 
@@ -58,7 +61,7 @@ void LIS3DH_writeReg(uint8_t lis3dhReg, uint8_t lis3dhValue)
 
 
 
-void Lis3dhInit(SPI_HandleTypeDef *hspi){
+void Lis3dhInit(I2C_HandleTypeDef *I2Cx){
 /*Once the device is powered up, it automatically downloads the calibration coefficients from
 the embedded flash to the internal registers. When the boot procedure is completed, i.e.
 after approximately 5 milliseconds, the device automatically enters power-down mode. To
@@ -67,13 +70,17 @@ LPen bit in CTRL_REG1, enable at least one of the axes and select the preferred 
 
 
 
-	LIS3DH_hspi = hspi;
+	/*(LIS3DH_hspi = hspi;
 	HAL_StatusTypeDef hal_res;
 
 //writs to Ctrl_reg1 to wake it up.
 	LIS3DH_writeReg(0x20,0x7);
 	uint8_t ctrl_reg =LIS3DH_readReg(0x20);
 	uint8_t who_am_i = LIS3DH_readReg(0x0f);
+	*/
+	uint8_t check;
+	uint8_t Data;
+	HAL_I2C_Mem_Read(I2Cx, LIS3DH_ADDR, WHO_AM_I, 1, &check, 1, i2c_timeout);
 
 
 

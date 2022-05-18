@@ -63,12 +63,6 @@ void Error_Handler(void);
 #define PC14_OSC32_IN_GPIO_Port GPIOC
 #define PC15_OSC32_OUT_Pin GPIO_PIN_15
 #define PC15_OSC32_OUT_GPIO_Port GPIOC
-#define A0_Pin GPIO_PIN_0
-#define A0_GPIO_Port GPIOF
-#define A1_Pin GPIO_PIN_1
-#define A1_GPIO_Port GPIOF
-#define A2_Pin GPIO_PIN_2
-#define A2_GPIO_Port GPIOF
 #define A3_Pin GPIO_PIN_3
 #define A3_GPIO_Port GPIOF
 #define A4_Pin GPIO_PIN_4
