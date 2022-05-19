@@ -97,13 +97,20 @@ uint32_t hsl_to_rgb(uint8_t h, uint8_t s, uint8_t l);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
+	int p;
+	uint32_t stack_pointer = &p;
+
+	// the heap pointer
+	int *ptr;
+	ptr = malloc(15 * sizeof(*ptr));
+
 
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
- HAL_Init();
+  HAL_Init();
 
   /* USER CODE BEGIN Init */
 

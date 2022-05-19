@@ -59,14 +59,15 @@ LPen bit in CTRL_REG1, enable at least one of the axes and select the preferred 
 	        } else {
 
 	        	// configure the sensor.
-	        	// Setting our resolution 10hrtz and that we will read all three axis
+	        	// Setting our resolution 100HZ so that we can use interrupts
+	        	// and that we will read all three axis
 	        	 sendBuff[0]  = LIS3DH_REG_CTRL1  |LIS3DH_READ;
 
 	        	  ret = HAL_I2C_Master_Transmit(I2Cx, LIS3DH_ADDR, sendBuff, 1, HAL_MAX_DELAY);
 	        	  ret = HAL_I2C_Master_Receive(I2Cx, LIS3DH_ADDR, reciveBuff, 2, HAL_MAX_DELAY);
 
 	        	  sendBuff[0] = LIS3DH_REG_CTRL1;
-	        	  sendBuff[1] =0x27;
+	        	  sendBuff[1] = 0x57;
 	        	  ret = HAL_I2C_Master_Transmit(I2Cx, LIS3DH_ADDR, sendBuff, 2, HAL_MAX_DELAY);
 					//Read to make sure the write worked.
 					sendBuff[0]  = LIS3DH_REG_CTRL1  |LIS3DH_READ;
