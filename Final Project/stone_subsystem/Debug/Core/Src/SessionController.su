@@ -1,0 +1,4 @@
+../Core/Src/SessionController.c:21:6:ChangeUser	16	static
+../Core/Src/SessionController.c:25:6:SessionControllerInit	4	static
+../Core/Src/SessionController.c:34:6:SessionControllerProcess	4	static
+../Core/Src/SessionController.c:48:6:IdleState	4	static

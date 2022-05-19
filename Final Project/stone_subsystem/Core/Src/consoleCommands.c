@@ -19,9 +19,10 @@ static eCommandResult_T ConsoleCommandVer(const char buffer[]);
 static eCommandResult_T ConsoleCommandHelp(const char buffer[]);
 static eCommandResult_T ConsoleCommandParamExampleInt16(const char buffer[]);
 static eCommandResult_T ConsoleCommandParamExampleHexUint16(const char buffer[]);
-static eCommandResult_T ConsoleCommandToggleLed(const char buffer[]);
-static eCommandResult_T ConsoleCommandGyroStatus(const char buffer[]);
-static eCommandResult_T ConsoleCommandGyroDump(const char buffer[]);
+static eCommandResult_T ConsoleCommandWeek8Homework(const char buffer[]);
+
+uint8_t dummyGlobal;
+
 
 static const sConsoleCommandTable_T mConsoleCommandTable[] =
 {
@@ -30,9 +31,8 @@ static const sConsoleCommandTable_T mConsoleCommandTable[] =
 	{"ver", &ConsoleCommandVer, HELP("Get the version string")},
 	{"int", &ConsoleCommandParamExampleInt16, HELP("How to get a signed int16 from params list: int -321")},
 	{"u16h", &ConsoleCommandParamExampleHexUint16, HELP("How to get a hex u16 from the params list: u16h aB12")},
-	{"toggle LED", &ConsoleCommandToggleLed, HELP("toggle the state of the Gree user LED")},
-	{"get Gyro status",&ConsoleCommandGyroStatus,HELP("Check the Gyro status")},
-	{"get Gyro dump",&ConsoleCommandGyroDump,HELP("start Gyro Dump")},
+	{"week8", &ConsoleCommandWeek8Homework, HELP("Print out the answers for homework week 8")},
+
 
 
 	CONSOLE_COMMAND_TABLE_END // must be LAST
@@ -65,18 +65,7 @@ static eCommandResult_T ConsoleCommandHelp(const char buffer[])
 	}
 	return result;
 }
-static eCommandResult_T ConsoleCommandToggleLed(const char buffer[]){
-	eCommandResult_T result = COMMAND_SUCCESS;
-	return result;
-}
-static eCommandResult_T ConsoleCommandGyroStatus(const char buffer[]){
-	eCommandResult_T result = COMMAND_SUCCESS;
-	return result;
-}
-static eCommandResult_T ConsoleCommandGyroDump(const char buffer[]){
-	eCommandResult_T result = COMMAND_SUCCESS;
-	return result;
-}
+
 static eCommandResult_T ConsoleCommandParamExampleInt16(const char buffer[])
 {
 	int16_t parameterInt;
@@ -106,7 +95,38 @@ static eCommandResult_T ConsoleCommandParamExampleHexUint16(const char buffer[])
 	}
 	return result;
 }
+static eCommandResult_T ConsoleCommandWeek8Homework(const char buffer[])
+{
+	eCommandResult_T result = COMMAND_SUCCESS;
 
+	// stack pointer.
+	int p;
+	uint32_t stack_pointer = &p;
+
+	// the heap pointer
+	int *ptr;
+	ptr = malloc(15 * sizeof(*ptr));
+
+	// An unintialise global variable
+	uint32_t gVar = &dummyGlobal;
+
+	// A static variable inside a function
+	static int staticInFunc = 0;
+	uint32_t staticInFunAddress = &staticInFunc;
+
+	// A variable inside a function.
+	int v = 0;
+	uint32_t varInFunc = &v;
+
+
+	ConsoleIoSendString("----------- Home Work Week 8 -----------\n");
+	ConsoleIoSendString("Stack Pointer: ");
+	ConsoleIoSendString(" (0x");
+
+
+		return result;
+
+}
 static eCommandResult_T ConsoleCommandVer(const char buffer[])
 {
 	eCommandResult_T result = COMMAND_SUCCESS;
