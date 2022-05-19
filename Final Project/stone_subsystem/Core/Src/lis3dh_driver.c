@@ -13,55 +13,23 @@
 
 const uint16_t LIS3DH_ADDR =  (0x18<<1);// if SDO/SA0 is 3V, its 0x19
 const uint16_t i2c_timeout = 200;
-
-static uint8_t accelSpiTxBuf[2];
-static uint8_t accelSpiRxBuf[7];
-
-
-SPI_HandleTypeDef * LIS3DH_hspi;
+I2C_HandleTypeDef *I2Cx;
 
 uint8_t LIS3DH_readReg(uint8_t lis3dhReg){
 
 
-
-
-		uint8_t sendAddr;
-		uint8_t readData;
-
-		sendAddr = LIS3DH_READ | lis3dhReg;
-
-	    csOn();
-
-	    HAL_SPI_Transmit(LIS3DH_hspi, &sendAddr, 1, HAL_MAX_DELAY);
-	    HAL_SPI_Receive( LIS3DH_hspi, &readData, 1, HAL_MAX_DELAY);
-
-		csOff();
-
-		return (readData);
+return 0;
 
 }
 void LIS3DH_writeReg(uint8_t lis3dhReg, uint8_t lis3dhValue)
 {
-	uint8_t sendAddr;
-	uint8_t sendData;
 
-	sendAddr = LIS3DH_WRITE | lis3dhReg;
-	sendData = lis3dhValue;
-
-   csOn();
-
-    HAL_SPI_Transmit(LIS3DH_hspi, &sendAddr, 1, HAL_MAX_DELAY);
-    HAL_SPI_Transmit(LIS3DH_hspi, &sendData, 1, HAL_MAX_DELAY);
-
-	csOff();
-
-	return;
 
 }
 
 
 
-void Lis3dhInit(I2C_HandleTypeDef *I2Cx){
+void Lis3dhInit(I2C_HandleTypeDef *I2Cxhandle){
 /*Once the device is powered up, it automatically downloads the calibration coefficients from
 the embedded flash to the internal registers. When the boot procedure is completed, i.e.
 after approximately 5 milliseconds, the device automatically enters power-down mode. To
@@ -69,18 +37,21 @@ turn on the device and gather acceleration data, select the HR bit in CTRL_REG4 
 LPen bit in CTRL_REG1, enable at least one of the axes and select the preferred ODR.*/
 
 
-	HAL_StatusTypeDef ret;
-	    uint8_t buf[12];
+	 HAL_StatusTypeDef ret;
 
-	    buf[0] = WHO_AM_I|LIS3DH_READ;
+	    uint8_t sendBuff[2];
+	    uint8_t reciveBuff[12];
+	    I2Cx = I2Cxhandle;
 
-	    ret = HAL_I2C_Master_Transmit(I2Cx, LIS3DH_ADDR, buf, 1, HAL_MAX_DELAY);
+	    sendBuff[0] = WHO_AM_I|LIS3DH_READ;
+
+	    ret = HAL_I2C_Master_Transmit(I2Cx, LIS3DH_ADDR, sendBuff, 1, HAL_MAX_DELAY);
 	    if(ret != HAL_OK) {
 	        //Handle Error
 
 	    } else {
 
-	        ret = HAL_I2C_Master_Receive(I2Cx, LIS3DH_ADDR, buf, 2, HAL_MAX_DELAY);
+	        ret = HAL_I2C_Master_Receive(I2Cx, LIS3DH_ADDR, reciveBuff, 2, HAL_MAX_DELAY);
 	        if(ret != HAL_OK) {
 
 	        	//Handle error.
@@ -88,11 +59,21 @@ LPen bit in CTRL_REG1, enable at least one of the axes and select the preferred 
 	        } else {
 
 	        	// configure the sensor.
-	        	// selecting the HR bit in CTRL_REG_4
+	        	// Setting our resolution 10hrtz and that we will read all three axis
+	        	 sendBuff[0]  = LIS3DH_REG_CTRL1  |LIS3DH_READ;
 
-	        	// set the LPen bit in the CTRL_REG_1
-	        	// Select the preferred ODR.
-	        	// we want to read all axis
+	        	  ret = HAL_I2C_Master_Transmit(I2Cx, LIS3DH_ADDR, sendBuff, 1, HAL_MAX_DELAY);
+	        	  ret = HAL_I2C_Master_Receive(I2Cx, LIS3DH_ADDR, reciveBuff, 2, HAL_MAX_DELAY);
+
+	        	  sendBuff[0] = LIS3DH_REG_CTRL1;
+	        	  sendBuff[1] =0x27;
+	        	  ret = HAL_I2C_Master_Transmit(I2Cx, LIS3DH_ADDR, sendBuff, 2, HAL_MAX_DELAY);
+					//Read to make sure the write worked.
+					sendBuff[0]  = LIS3DH_REG_CTRL1  |LIS3DH_READ;
+
+					ret = HAL_I2C_Master_Transmit(I2Cx, LIS3DH_ADDR, sendBuff, 1, HAL_MAX_DELAY);
+					ret = HAL_I2C_Master_Receive(I2Cx, LIS3DH_ADDR, reciveBuff, 2, HAL_MAX_DELAY);
+
 
 	        }
 
@@ -105,20 +86,34 @@ LPen bit in CTRL_REG1, enable at least one of the axes and select the preferred 
 
 
 }
-int Lis3dhGetAcc(int16_t* x, int16_t* y, int16_t* z){
+int Lis3dhGetAcc(){
+
+	uint8_t sendBuff[2];
+	uint8_t reciveBuff[12];
+	uint8_t  x,y,z;
+
+	HAL_StatusTypeDef ret;
+
+	//1. Read STATUS_REG
+	 sendBuff[0]  = LIS3DH_REG_STATUS  | LIS3DH_READ;
+		ret = HAL_I2C_Master_Transmit(I2Cx, LIS3DH_ADDR, sendBuff, 1, HAL_MAX_DELAY);
+		ret = HAL_I2C_Master_Receive(I2Cx, LIS3DH_ADDR, reciveBuff, 2, HAL_MAX_DELAY);
+
+	// if there is new data on any axis proceed ZYXDA,ZDA,YDA = 1 in the status_reg.
+
+	// else do nothing. this isn't ideal maybe we should hang out here till there is new data.
+	sendBuff[0] = LIS3DH_REG_OUT_X_L  | LIS3DH_READ;
+	ret = HAL_I2C_Master_Transmit(I2Cx, LIS3DH_ADDR, sendBuff, 1, HAL_MAX_DELAY);
+	ret = HAL_I2C_Master_Receive(I2Cx, LIS3DH_ADDR, reciveBuff, 6 , HAL_MAX_DELAY);
+
+	  x = reciveBuff[0];
+	  x |= ((uint16_t)reciveBuff[1]) << 8;
+	  y = reciveBuff[2];
+	  y |= ((uint16_t)reciveBuff[3]) << 8;
+	  z = reciveBuff[4];
+	  z |= ((uint16_t)reciveBuff[5]) << 8;
 
 
-	/*1. Read STATUS_REG
-	2. If STATUS_REG(3) = 0 then go to 1
-	3. If STATUS_REG(7) = 1 then some data have been overwritten
-	4. Read OUTX_L
-	5. Read OUTX_H
-	6. Read OUTY_L
-	7. Read OUTY_H
-	8. Read OUTZ_L
-	9. Read OUTZ_H
-	10. Data processing
-	11. Go to 1*/
 	//HAL_SPI_Transmit (SPI_HandleTypeDef *hspi, uint8_t *pData, uint16_t Size, uint32_t Timeout)
 	return 0;
 }

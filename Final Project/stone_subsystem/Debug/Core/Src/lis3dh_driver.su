@@ -1,7 +1,5 @@
-../Core/Src/lis3dh_driver.c:23:9:LIS3DH_readReg	24	static
-../Core/Src/lis3dh_driver.c:43:6:LIS3DH_writeReg	24	static
-../Core/Src/lis3dh_driver.c:64:6:Lis3dhInit	48	static
-../Core/Src/lis3dh_driver.c:101:5:Lis3dhGetAcc	24	static
-../Core/Src/lis3dh_driver.c:118:6:Lis3dhSetRange	16	static
-../Core/Src/lis3dh_driver.c:125:6:csOff	8	static
-../Core/Src/lis3dh_driver.c:134:6:csOn	8	static
+../Core/Src/lis3dh_driver.c:18:9:LIS3DH_readReg	16	static
+../Core/Src/lis3dh_driver.c:24:6:LIS3DH_writeReg	16	static
+../Core/Src/lis3dh_driver.c:32:6:Lis3dhInit	40	static
+../Core/Src/lis3dh_driver.c:89:5:Lis3dhGetAcc	40	static
+../Core/Src/lis3dh_driver.c:120:6:Lis3dhSetRange	16	static

@@ -145,7 +145,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   uint8_t angle = 0;
   const uint8_t angle_difference = 11;
-
+uint8_t x,y,z;
 
   while (1)
   {
@@ -167,6 +167,8 @@ int main(void)
 
 	  		ConsoleProcess();
 	  		I3G450D_loop();
+	  		Lis3dhGetAcc();
+
 
   }
   /* USER CODE END 3 */
