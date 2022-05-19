@@ -1,12 +1,20 @@
-# Building Embedded Systems
+### Building Embedded Systems
 
-Repositry for assignements from the classpert Making Embedded Systems course lead by Elecia White
-Orange stars cohort 
+## Homework week 8
 
-## Homework
-- [Exercise 1]( https://github.com/error404notfound/making-embedded-systems-homework/blob/main/homework_week_1/README.md )
-- [Exercise 2](https://github.com/error404notfound/making-embedded-systems-homework/blob/main/homework_week_2/README.md )
-- [Exercise 3](https://github.com/error404notfound/making-embedded-systems-homework/blob/main/homework_week_3/README.md )
-- [Exercise 4](https://github.com/error404notfound/making-embedded-systems-homework/blob/main/homework_week_4/README.md )
-- [Exercise 5](https://github.com/error404notfound/making-embedded-systems-homework/blob/main/homework_week_5/README.md )
+### Print out the heap pointer
+By doing a malloc we can get the current pointer to the heap
+
+### Print out the stack pointer. 
+The stack pointer is a tiny bit trickier. To make sure I got it right I looked in debug 
+
+### An uniintialized global variable
+
+### A static variable inside a funciton 
+
+### A variable inside a fucntion. 
+
+
+
+
 
