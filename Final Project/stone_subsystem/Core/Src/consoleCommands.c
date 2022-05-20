@@ -7,13 +7,14 @@
 //		3. Implement the function, using ConsoleReceiveParam<Type> to get the parameters from the buffer.
 
 #include <string.h>
+#include <stdlib.h>
 #include "consoleCommands.h"
 #include "console.h"
 #include "consoleIo.h"
 #include "version.h"
 
 #define IGNORE_UNUSED_VARIABLE(x)     if ( &x == &x ) {}
-
+#define _OPEN_SYS_ITOA_EXT
 static eCommandResult_T ConsoleCommandComment(const char buffer[]);
 static eCommandResult_T ConsoleCommandVer(const char buffer[]);
 static eCommandResult_T ConsoleCommandHelp(const char buffer[]);
@@ -118,10 +119,53 @@ static eCommandResult_T ConsoleCommandWeek8Homework(const char buffer[])
 	int v = 0;
 	uint32_t varInFunc = &v;
 
+	char textToWrite[ 16 ];
+	sprintf( textToWrite, "%x", stack_pointer );
+
+
 
 	ConsoleIoSendString("----------- Home Work Week 8 -----------\n");
 	ConsoleIoSendString("Stack Pointer: ");
-	ConsoleIoSendString(" (0x");
+	ConsoleIoSendString(" 0x");
+	ConsoleIoSendString(textToWrite);
+	ConsoleIoSendString("\n");
+
+
+  sprintf( textToWrite, "%x", ptr );
+
+	ConsoleIoSendString("Heap Pointer: ");
+	ConsoleIoSendString(" 0x");
+	ConsoleIoSendString(textToWrite);
+	ConsoleIoSendString("\n");
+
+
+	sprintf( textToWrite, "%x", gVar );
+
+	ConsoleIoSendString("Unintialised Global Variable: ");
+	ConsoleIoSendString(" 0x");
+	ConsoleIoSendString(textToWrite);
+	ConsoleIoSendString("\n");
+
+
+	sprintf( textToWrite, "%x", staticInFunAddress );
+
+	ConsoleIoSendString("Static var in function: ");
+	ConsoleIoSendString(" 0x");
+	ConsoleIoSendString(textToWrite);
+	ConsoleIoSendString("\n");
+
+
+	sprintf( textToWrite, "%x", varInFunc );
+
+	ConsoleIoSendString("Var in function: ");
+	ConsoleIoSendString(" 0x");
+	ConsoleIoSendString(textToWrite);
+	ConsoleIoSendString("\n");
+
+	ConsoleIoSendString("----------------------\n");
+
+
+
 
 
 		return result;

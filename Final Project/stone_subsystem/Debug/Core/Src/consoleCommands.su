@@ -1,7 +1,7 @@
-../Core/Src/consoleCommands.c:41:25:ConsoleCommandComment	16	static
-../Core/Src/consoleCommands.c:48:25:ConsoleCommandHelp	32	static
-../Core/Src/consoleCommands.c:69:25:ConsoleCommandParamExampleInt16	24	static
-../Core/Src/consoleCommands.c:85:25:ConsoleCommandParamExampleHexUint16	24	static
-../Core/Src/consoleCommands.c:98:25:ConsoleCommandWeek8Homework	48	static
-../Core/Src/consoleCommands.c:130:25:ConsoleCommandVer	24	static
-../Core/Src/consoleCommands.c:142:31:ConsoleCommandsGetTable	4	static
+../Core/Src/consoleCommands.c:42:25:ConsoleCommandComment	16	static
+../Core/Src/consoleCommands.c:49:25:ConsoleCommandHelp	32	static
+../Core/Src/consoleCommands.c:70:25:ConsoleCommandParamExampleInt16	24	static
+../Core/Src/consoleCommands.c:86:25:ConsoleCommandParamExampleHexUint16	24	static
+../Core/Src/consoleCommands.c:99:25:ConsoleCommandWeek8Homework	64	static
+../Core/Src/consoleCommands.c:174:25:ConsoleCommandVer	24	static
+../Core/Src/consoleCommands.c:186:31:ConsoleCommandsGetTable	4	static

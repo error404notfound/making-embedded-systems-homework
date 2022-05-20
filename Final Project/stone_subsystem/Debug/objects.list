@@ -1,3 +1,5 @@
+"./Core/Src/BreathTrainerMode.o"
+"./Core/Src/ColourChangeMode.o"
 "./Core/Src/MovementController.o"
 "./Core/Src/OutputController.o"
 "./Core/Src/SessionController.o"
