@@ -19,8 +19,11 @@ created a static variable with in this console funciton and take a pointer to it
 ### A variable inside a fucntion. 
 created and intialised a variable in the console funciton and then took a pointer to it. 
 
-### Console out put. 
+### Console output. 
+<img src="[img_girl.jpg](https://github.com/error404notfound/making-embedded-systems-homework/blob/main/homework_week_8/assets/Screen%20Shot%202022-05-20%20at%2012.17.55%20PM.png)" alt="Console output" >
+### Example of debug. 
 
+<img src="[img_girl.jpg](https://github.com/error404notfound/making-embedded-systems-homework/blob/main/homework_week_8/assets/Screen%20Shot%202022-05-19%20at%207.36.52%20PM.png)" alt="Debug console output" >
 
 ### Code
 ```
