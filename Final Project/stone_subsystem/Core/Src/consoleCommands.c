@@ -20,7 +20,7 @@ static eCommandResult_T ConsoleCommandVer(const char buffer[]);
 static eCommandResult_T ConsoleCommandHelp(const char buffer[]);
 static eCommandResult_T ConsoleCommandParamExampleInt16(const char buffer[]);
 static eCommandResult_T ConsoleCommandParamExampleHexUint16(const char buffer[]);
-static eCommandResult_T ConsoleCommandWeek8Homework(const char buffer[]);
+//static eCommandResult_T ConsoleCommandWeek8Homework(const char buffer[]);
 
 uint8_t dummyGlobal;
 
@@ -32,7 +32,7 @@ static const sConsoleCommandTable_T mConsoleCommandTable[] =
 	{"ver", &ConsoleCommandVer, HELP("Get the version string")},
 	{"int", &ConsoleCommandParamExampleInt16, HELP("How to get a signed int16 from params list: int -321")},
 	{"u16h", &ConsoleCommandParamExampleHexUint16, HELP("How to get a hex u16 from the params list: u16h aB12")},
-	{"week8", &ConsoleCommandWeek8Homework, HELP("Print out the answers for homework week 8")},
+	////{"week8", &ConsoleCommandWeek8Homework, HELP("Print out the answers for homework week 8")},
 
 
 
@@ -99,7 +99,7 @@ static eCommandResult_T ConsoleCommandParamExampleHexUint16(const char buffer[])
 static eCommandResult_T ConsoleCommandWeek8Homework(const char buffer[])
 {
 	eCommandResult_T result = COMMAND_SUCCESS;
-
+/*
 	// stack pointer.
 	int p;
 	uint32_t stack_pointer = &p;
@@ -112,11 +112,11 @@ static eCommandResult_T ConsoleCommandWeek8Homework(const char buffer[])
 	uint32_t gVar = &dummyGlobal;
 
 	// A static variable inside a function
-	static int staticInFunc = 0;
+	static int staticInFunc = 0;// will end up in bss becuase it's intialised to zerp
 	uint32_t staticInFunAddress = &staticInFunc;
 
 	// A variable inside a function.
-	int v = 0;
+	int v = 0;// will end up in bss becuase it's intialised to zerp
 	uint32_t varInFunc = &v;
 
 	char textToWrite[ 16 ];
@@ -165,8 +165,8 @@ static eCommandResult_T ConsoleCommandWeek8Homework(const char buffer[])
 	ConsoleIoSendString("----------------------\n");
 
 
-
-
+free(ptr);
+*/
 
 		return result;
 

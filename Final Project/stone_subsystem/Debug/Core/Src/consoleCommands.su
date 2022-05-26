@@ -2,6 +2,6 @@
 ../Core/Src/consoleCommands.c:49:25:ConsoleCommandHelp	32	static
 ../Core/Src/consoleCommands.c:70:25:ConsoleCommandParamExampleInt16	24	static
 ../Core/Src/consoleCommands.c:86:25:ConsoleCommandParamExampleHexUint16	24	static
-../Core/Src/consoleCommands.c:99:25:ConsoleCommandWeek8Homework	64	static
+../Core/Src/consoleCommands.c:99:25:ConsoleCommandWeek8Homework	24	static
 ../Core/Src/consoleCommands.c:174:25:ConsoleCommandVer	24	static
 ../Core/Src/consoleCommands.c:186:31:ConsoleCommandsGetTable	4	static

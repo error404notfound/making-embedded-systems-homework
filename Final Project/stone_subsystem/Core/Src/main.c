@@ -28,6 +28,7 @@
 #include "lis3dh_driver.h"
 #include "retarget.h"
 #include "console.h"
+#include "sessionController.h"
 #include <stdio.h>
 /* USER CODE END Includes */
 
@@ -97,12 +98,7 @@ uint32_t hsl_to_rgb(uint8_t h, uint8_t s, uint8_t l);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-	int p;
-	uint32_t stack_pointer = &p;
 
-	// the heap pointer
-	int *ptr;
-	ptr = malloc(15 * sizeof(*ptr));
 
 
   /* USER CODE END 1 */
@@ -139,10 +135,12 @@ int main(void)
   MX_I2C2_Init();
   /* USER CODE BEGIN 2 */
 
-  I3G450D_Init();
+
+
   RetargetInit(&huart1);
   ConsoleInit(&huart1);
-  Lis3dhInit(&hi2c2);
+
+  SessionControllerInit(&hi2c2,&htim2,&hspi5);
 
 
 
@@ -152,6 +150,9 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   uint8_t angle = 0;
   const uint8_t angle_difference = 11;
+  int usbWriteFlag = 1;
+
+
 uint8_t x,y,z;
 
   while (1)
@@ -160,21 +161,22 @@ uint8_t x,y,z;
     MX_USB_HOST_Process();
 
     /* USER CODE BEGIN 3 */
-	 for(uint8_t i = 0; i < 8 /* Change that to your amount of LEDs */; i++) {
+	// for(uint8_t i = 0; i < 8 /* Change that to your amount of LEDs */; i++) {
 	  			// Calculate color
-				uint32_t rgb_color = hsl_to_rgb(angle + (i * angle_difference), 255, 127);
+	//			uint32_t rgb_color = hsl_to_rgb(angle + (i * angle_difference), 255, 127);
 	  			// Set color
-	 			led_set_RGB(i, (rgb_color >> 16) & 0xFF, (rgb_color >> 8) & 0xFF, rgb_color & 0xFF);
-	 		}
+	 //			led_set_RGB(i, (rgb_color >> 16) & 0xFF, (rgb_color >> 8) & 0xFF, rgb_color & 0xFF);
+	 //		}
 	  		// Write to LED
-	  	  	 ++angle;
+	 // 	  	 ++angle;
 	  		//led_render();
 	  		// Some delay*/
 
 
-	  		ConsoleProcess();
-	  		I3G450D_loop();
-	  		Lis3dhGetAcc();
+	  //		ConsoleProcess();
+	  //		I3G450D_loop();
+	  //		Lis3dhGetAcc();
+	  SessionControllerProcess();
 
 
   }
@@ -795,6 +797,12 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Alternate = GPIO_AF14_LTDC;
   HAL_GPIO_Init(G7_GPIO_Port, &GPIO_InitStruct);
 
+  /*Configure GPIO pin : PG9 */
+  GPIO_InitStruct.Pin = GPIO_PIN_9;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(GPIOG, &GPIO_InitStruct);
+
   /*Configure GPIO pins : G3_Pin B4_Pin */
   GPIO_InitStruct.Pin = G3_Pin|B4_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
@@ -849,6 +857,14 @@ uint32_t hsl_to_rgb(uint8_t h, uint8_t s, uint8_t l) {
 
 	return (((uint32_t)r + m) << 16) | (((uint32_t)g + m) << 8) | ((uint32_t)b + m);
 }
+
+// process usb out put.
+void WriteDataUSB(){
+
+
+	}
+
+
 /* USER CODE END 4 */
 
 /**

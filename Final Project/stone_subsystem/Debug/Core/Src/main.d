@@ -50,7 +50,8 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Middlewares/Third_Party/FatFs/src/ff.h ../FATFS/Target/usbh_diskio.h \
  ../USB_HOST/App/usb_host.h ../Core/Inc/stm32_hal_neopixel.h \
  ../Core/Inc/gyroI3G450D.h ../Core/Inc/main.h ../Core/Inc/lis3dh_driver.h \
- ../Core/Inc/lis3dh_regs.h ../Core/Inc/retarget.h ../Core/Inc/console.h
+ ../Core/Inc/lis3dh_regs.h ../Core/Inc/retarget.h ../Core/Inc/console.h \
+ ../Core/Inc/sessionController.h
 ../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 ../Core/Inc/stm32f4xx_hal_conf.h:
@@ -112,3 +113,4 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Core/Inc/lis3dh_regs.h:
 ../Core/Inc/retarget.h:
 ../Core/Inc/console.h:
+../Core/Inc/sessionController.h:

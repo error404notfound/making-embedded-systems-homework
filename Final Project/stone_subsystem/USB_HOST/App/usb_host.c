@@ -118,6 +118,7 @@ static void USBH_UserProcess  (USBH_HandleTypeDef *phost, uint8_t id)
 
   case HOST_USER_CONNECTION:
   Appli_state = APPLICATION_START;
+
   break;
 
   default:
