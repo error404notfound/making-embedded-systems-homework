@@ -25,12 +25,10 @@ typedef enum
 void Lis3dhInit(I2C_HandleTypeDef *I2Cxhandle);
 int Lis3dhGetAcc();
 void Lis3dhSetRange(int8_t range);
+void AccelGetData(int16_t *x, int16_t*y, int16_t*z);
 
 
 /* Private APIs */
-void csOn(void);
-void csOff(void);
-int spiConfig(void);
-uint8_t LIS3DH_readReg(uint8_t lis3dhReg);
-void LIS3DH_writeReg(uint8_t lis3dhReg, uint8_t lis3dhValue);
+
+
 

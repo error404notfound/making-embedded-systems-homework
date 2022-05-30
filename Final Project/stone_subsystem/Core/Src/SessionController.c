@@ -3,6 +3,11 @@
  *
  *  Created on: May 19, 2022
  *      Author: jennie.stenhouse
+ *      This is the main state machine and process for the system
+ *      To add another state it needs to be added to the state_t enum as well as having an entry in the state table and two methods.
+ *      the init ( which should do minimal setup
+ *      and the process which uses can query data from the movement controller. and send output via the output function for the state.
+ *
  */
 
 
@@ -15,22 +20,24 @@
 #include "retarget.h"
 
 // private varaibles.
-#define NUM_STATES  7
-#define NUM_ACTIONS 5
+
 int userID = 12345678;
+
 typedef int (*stateInit )(void);
 typedef int (*ledOutput)(void);
-typedef enum { START, IDLE_AWAKE, DEEP_SLEEP, WAITING_FOR_SELECTION, LOAD_MODE, CLI_MODE, IN_MODE } state_t;
+typedef int (*stateProcess)(void);
+typedef enum { START, IDLE_AWAKE, DEEP_SLEEP, WAITING_FOR_SELECTION, LOAD_MODE, IN_MODE,CLI_MODE } state_t;
 typedef enum { IDEL_AWAKE_OUTPUT, SLEEP_OUTPUT, WAITING_FOR_INPUT, CLI_MODE_OUTPUT, LOADING_MODE_OUTPUT} output_t;
 
 
 typedef struct {
-	/*Button press Response */ stateInit buttonPress;
-	/*Gesture recon response */ stateInit gestureRecognize;
-	/*Shake to wake */ stateInit shakeToWake;
+	/*Button press Response */ stateInit onButtonPress;
+	/*Gesture recon response */ stateInit onGestureRecognize;
+	/*Shake to wake */ stateInit onShakeToWake;
 	/*LED output */ ledOutput LedOutput;
 	/*OnEnd */stateInit onEnd;
 	/* timeout */ int timeout;
+	/* stateProcess */ stateProcess stateProcess;
 }stateTableEntry_t;
 
 // set up functions for each state.
@@ -42,6 +49,15 @@ int LoadMode();
 int CliMode();
 int StartPreviouseMode();
 int InMode();
+// Process for each state
+int StartProcess();
+int IdleAwakeProcess();
+int DeepSleepProcess();
+int WaitingForSelectionProcess();
+int LoadModeProcess();
+int CliModeProcess();
+int StartPreviouseModeProcess();
+int InModeProcess();
 
 // output for each function.
 int IdelAwakeOutput();
@@ -54,25 +70,26 @@ int ModeLoading();
 
 // state table
 static stateTableEntry_t  stateTabel[]={
-				// Button Press, Gesture Recognized, Shake to wake, Led output, Timeout/completion , timeout length in milliseconds
-/*START*/		{ NULL,				NULL, 				NULL,		NULL, 		&IdleAwake, 		800 },
-/*IDEL AWAKE */	{ &CliMode,			NULL, 				NULL,		NULL, 		&WaitingForSelection, 800 },
-/*DEEP SLEEP */	{ CliMode,			NULL, 				IdleAwake,	NULL, 		&DeepSleep, 800 },
-/* WAITING */	{ CliMode,			LoadMode, 			NULL,		NULL, 		&DeepSleep, 800 },
-/* LOAD_MODE */	{ CliMode,			NULL, 				NULL,		NULL, 		&InMode, 800 },
-/* IN_MODE */	{ CliMode,			NULL, 				NULL,		NULL, 		&IdleAwake, 800 },
-/* CLI_MODE */	{ StartPreviouseMode,NULL, 				NULL,		NULL, 		&IdleAwake, 800 },
+				// Button Press, Gesture Recognized, Shake to wake, Led output, Timeout/completion , timeout length in milliseconds stateprocces
+/*START*/		{ NULL,				NULL, 				NULL,		NULL, 		&IdleAwake, 		800,&StartProcess },
+/*IDEL AWAKE */	{ &CliMode,			NULL, 				NULL,		NULL, 		&WaitingForSelection, 800, &IdleAwakeProcess },
+/*DEEP SLEEP */	{ &CliMode,			NULL, 				IdleAwake,	NULL, 		&DeepSleep, 800, &DeepSleepProcess },
+/* WAITING */	{ &CliMode,			LoadMode, 			NULL,		NULL, 		&DeepSleep, 800 , &WaitingForSelectionProcess},
+/* LOAD_MODE */	{ &CliMode,			NULL, 				NULL,		NULL, 		&InMode, 800 , &LoadModeProcess},
+/* IN_MODE */	{ &CliMode,			NULL, 				NULL,		NULL, 		&IdleAwake, 800, &InModeProcess },
+/* CLI_MODE */	{ &StartPreviouseMode,NULL, 				NULL,		NULL, 		&IdleAwake, 800, &CliModeProcess },
 
 
 };
 state_t currentState;
 state_t previouseState;
 uint32_t timeStateStarted;
-uint8_t buttonPressed;
+uint8_t buttonPressed =0;
 uint8_t shakeToWakeTriggered;
 uint8_t gestureRecognized;
 uint8_t loggingToUsbEnabled;
 uint8_t inMode;
+uint8_t cliMode =0;
 // struct for loggin
 // mode, time in mode
 TIM_HandleTypeDef * timerHandle;
@@ -110,7 +127,7 @@ void SessionControllerProcess()
 	uint32_t timeSinceStarted = currentTime -timeStateStarted;
 
 
-	gestureRecognized = MovementControllerProcess();
+	MovementControllerProcess();
 
 	if ( HAL_GetTick() - timeStateStarted > timeout )
 	{
@@ -120,8 +137,7 @@ void SessionControllerProcess()
 	}
 	if ( 1 == buttonPressed )
 	{
-		// change state to cli
-		cliMode = true;
+		current.onButtonPress();
 	}
 	if( 1 == gestureRecognized ){
 		// gesture recognized response.
@@ -139,7 +155,9 @@ void SessionControllerProcess()
 
 	}
 	else{
-		// run out put for current state.
+		// run out put for current state
+		// run proccess for current state.
+		current.stateProcess();
 	}
 
 
@@ -177,6 +195,8 @@ int LoadMode(){
 }
 int CliMode(){
 	currentState = CLI_MODE;
+	// clear the button press
+	buttonPressed = 0;
 	timeStateStarted = HAL_GetTick();
 	ConsoleSendLine(" State = CliMode");
 
@@ -205,4 +225,27 @@ int WaitingForInputOutput(){}
 int CliModeOutput(){}
 int ModeLoading(){}
 
+int StartProcess(){return 0;}
+int IdleAwakeProcess(){return 0;}
+int DeepSleepProcess(){return 0;}
+int WaitingForSelectionProcess(){return 0;}
+int LoadModeProcess(){return 0;}
+int CliModeProcess(){return 0;}
+int StartPreviouseModeProcess(){return 0;}
+int InModeProcess(){return 0;}
 
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+	uint16_t userButtonPin = GPIO_PIN_0;
+	GPIO_TypeDef *userButtonPort = GPIOA;
+
+	// make sure we are  using the right pin for the user button.
+
+
+
+	if(HAL_GPIO_ReadPin (userButtonPort, userButtonPin)==GPIO_PIN_SET){
+
+		buttonPressed = 1;
+	}
+
+}

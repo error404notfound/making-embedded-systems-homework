@@ -11,9 +11,11 @@
 #include "stm32f4xx_hal.h"
 
 
-const uint16_t LIS3DH_ADDR =  (0x18<<1);// if SDO/SA0 is 3V, its 0x19
+const uint16_t LIS3DH_ADDR =  (0x18<<1);// if SDO/SA0 is 3V, its 0x19 and shifted
 const uint16_t i2c_timeout = 200;
 I2C_HandleTypeDef *I2Cx;
+uint8_t  x,y,z;
+void errorHandler();
 
 uint8_t LIS3DH_readReg(uint8_t lis3dhReg){
 
@@ -44,10 +46,12 @@ LPen bit in CTRL_REG1, enable at least one of the axes and select the preferred 
 	    I2Cx = I2Cxhandle;
 
 	    sendBuff[0] = WHO_AM_I|LIS3DH_READ;
+	    ret = HAL_I2C_IsDeviceReady(I2Cx,LIS3DH_ADDR,1, HAL_MAX_DELAY);
 
 	    ret = HAL_I2C_Master_Transmit(I2Cx, LIS3DH_ADDR, sendBuff, 1, HAL_MAX_DELAY);
 	    if(ret != HAL_OK) {
 	        //Handle Error
+	    	errorHandler();
 
 	    } else {
 
@@ -55,25 +59,27 @@ LPen bit in CTRL_REG1, enable at least one of the axes and select the preferred 
 	        if(ret != HAL_OK) {
 
 	        	//Handle error.
+	        	errorHandler();
 
 	        } else {
 
 	        	// configure the sensor.
 	        	// Setting our resolution 100HZ so that we can use interrupts
 	        	// and that we will read all three axis
-	        	 sendBuff[0]  = LIS3DH_REG_CTRL1  |LIS3DH_READ;
+				sendBuff[0]  = LIS3DH_REG_CTRL1  |LIS3DH_READ;
 
-	        	  ret = HAL_I2C_Master_Transmit(I2Cx, LIS3DH_ADDR, sendBuff, 1, HAL_MAX_DELAY);
-	        	  ret = HAL_I2C_Master_Receive(I2Cx, LIS3DH_ADDR, reciveBuff, 2, HAL_MAX_DELAY);
+				ret = HAL_I2C_Master_Transmit(I2Cx, LIS3DH_ADDR, sendBuff, 1, HAL_MAX_DELAY);
+				ret = HAL_I2C_Master_Receive(I2Cx, LIS3DH_ADDR, reciveBuff, 2, HAL_MAX_DELAY);
 
-	        	  sendBuff[0] = LIS3DH_REG_CTRL1;
-	        	  sendBuff[1] = 0x57;
-	        	  ret = HAL_I2C_Master_Transmit(I2Cx, LIS3DH_ADDR, sendBuff, 2, HAL_MAX_DELAY);
-					//Read to make sure the write worked.
-					sendBuff[0]  = LIS3DH_REG_CTRL1  |LIS3DH_READ;
+				sendBuff[0] = LIS3DH_REG_CTRL1;
+				sendBuff[1] = 0x57;
+				ret = HAL_I2C_Master_Transmit(I2Cx, LIS3DH_ADDR, sendBuff, 2, HAL_MAX_DELAY);
 
-					ret = HAL_I2C_Master_Transmit(I2Cx, LIS3DH_ADDR, sendBuff, 1, HAL_MAX_DELAY);
-					ret = HAL_I2C_Master_Receive(I2Cx, LIS3DH_ADDR, reciveBuff, 2, HAL_MAX_DELAY);
+				//Read to make sure the write worked.
+				sendBuff[0]  = LIS3DH_REG_CTRL1  |LIS3DH_READ;
+
+				ret = HAL_I2C_Master_Transmit(I2Cx, LIS3DH_ADDR, sendBuff, 1, HAL_MAX_DELAY);
+				ret = HAL_I2C_Master_Receive(I2Cx, LIS3DH_ADDR, reciveBuff, 2, HAL_MAX_DELAY);
 
 
 	        }
@@ -91,7 +97,6 @@ int Lis3dhGetAcc(){
 
 	uint8_t sendBuff[2];
 	uint8_t reciveBuff[12];
-	uint8_t  x,y,z;
 
 	HAL_StatusTypeDef ret;
 
@@ -107,6 +112,7 @@ int Lis3dhGetAcc(){
 	ret = HAL_I2C_Master_Transmit(I2Cx, LIS3DH_ADDR, sendBuff, 1, HAL_MAX_DELAY);
 	ret = HAL_I2C_Master_Receive(I2Cx, LIS3DH_ADDR, reciveBuff, 6 , HAL_MAX_DELAY);
 
+
 	  x = reciveBuff[0];
 	  x |= ((uint16_t)reciveBuff[1]) << 8;
 	  y = reciveBuff[2];
@@ -115,12 +121,20 @@ int Lis3dhGetAcc(){
 	  z |= ((uint16_t)reciveBuff[5]) << 8;
 
 
-	//HAL_SPI_Transmit (SPI_HandleTypeDef *hspi, uint8_t *pData, uint16_t Size, uint32_t Timeout)
 	return 0;
 }
 void Lis3dhSetRange(int8_t range){}
 
+void AccelGetData(int16_t *acelX, int16_t*acelY, int16_t*acelZ)
+{
+	*acelX = x;
+	*acelY = y;
+	*acelZ = z;
 
-
+}
+void errorHandler()
+{
+	// handle the error
+}
 
 

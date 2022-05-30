@@ -87,7 +87,7 @@ static int16_t calibrationBuffer_Z[CALIBRATION_BUFFER_LENGTH];
 static uint8_t spiTxBuf[2];
 static uint8_t spiRxBuf[7];
 
-void I3G450D_Init(void)
+void I3G450D_Init(SPI_HandleTypeDef * hspi5)
 {
 	HAL_GPIO_WritePin(GPIOC,GPIO_PIN_1,GPIO_PIN_SET);
 	HAL_Delay(20);
@@ -352,5 +352,11 @@ void I3G450D_loop(void)
 						break;
 
 		}
+}
+void GyroGetData(int16_t *x, int16_t*y, int16_t*z)
+{
+	*x = Angle_X;
+	*y = Angle_Y;
+	*z = Angle_Z;
 }
 

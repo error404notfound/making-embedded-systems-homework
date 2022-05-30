@@ -8,7 +8,8 @@
 #ifndef INC_BREATHTRAINERMODE_H_
 #define INC_BREATHTRAINERMODE_H_
 
-
+int BreathTrainerModeInit();
+int BreathTrainerProcess();
 
 
 

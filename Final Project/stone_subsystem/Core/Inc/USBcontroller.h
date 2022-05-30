@@ -9,7 +9,9 @@
 #define INC_USBCONTROLLER_H_
 
 
-
+void LogMovmentToUSB();
+void LogSessionActivityToUSB();
+void LogUserSettingsToUSB();
 
 
 #endif /* INC_USBCONTROLLER_H_ */
