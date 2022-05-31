@@ -1,0 +1,2 @@
+../Core/Src/MovementController.c:24:6:MovementControllerInit	16	static
+../Core/Src/MovementController.c:31:5:MovementControllerProcess	16	static

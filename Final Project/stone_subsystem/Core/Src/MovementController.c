@@ -24,7 +24,7 @@ extern movementData_t lastAccel;
 void MovementControllerInit(I2C_HandleTypeDef *I2Cxhandle,SPI_HandleTypeDef *SPIxHandle) {
 	// Accelrometor Init
 	Lis3dhInit(I2Cxhandle);
-	I3G450D_Init(SPIxHandle);
+	I3G450D_Init();
 
 
 }

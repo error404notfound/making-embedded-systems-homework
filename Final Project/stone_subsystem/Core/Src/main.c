@@ -176,10 +176,10 @@ uint8_t x,y,z;
 	  		// Some delay*/
 
 
-	  //		ConsoleProcess();
+			ConsoleProcess();
 	  //		I3G450D_loop();
 	  //		Lis3dhGetAcc();
-	  SessionControllerProcess();
+	 // SessionControllerProcess();
 
 
   }

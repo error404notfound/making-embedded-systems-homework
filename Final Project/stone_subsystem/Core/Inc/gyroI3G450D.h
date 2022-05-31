@@ -10,7 +10,7 @@
 #include "main.h"
 
 
-	 void I3G450D_Init(SPI_HandleTypeDef *hspi5);
+	 void I3G450D_Init(void);
 	 void I3G450D_loop(void);
 	 void GyroGetData(int16_t *x, int16_t*y, int16_t*z);
 

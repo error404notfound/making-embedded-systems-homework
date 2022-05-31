@@ -1,0 +1,5 @@
+../Core/Src/console/consoleIo.c:14:6:reset	4	static
+../Core/Src/console/consoleIo.c:20:15:ConsoleIoInit	16	static
+../Core/Src/console/consoleIo.c:33:15:ConsoleIoReceive	32	static
+../Core/Src/console/consoleIo.c:63:15:ConsoleIoSendString	16	static
+../Core/Src/console/consoleIo.c:68:6:HAL_UART_RxCpltCallback	16	static

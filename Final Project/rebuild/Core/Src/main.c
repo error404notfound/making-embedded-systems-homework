@@ -17,7 +17,6 @@
   */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
-
 #include "main.h"
 #include "fatfs.h"
 #include "usb_host.h"
@@ -26,6 +25,8 @@
 /* USER CODE BEGIN Includes */
 #include <gyro_I3G450D_driver.h>
 #include <accel_LIS3DH_driver.h>
+#include <retarget.h>
+#include <console.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -46,7 +47,6 @@
  CRC_HandleTypeDef hcrc;
 
 I2C_HandleTypeDef hi2c1;
-I2C_HandleTypeDef hi2c3;
 
 SPI_HandleTypeDef hspi5;
 
@@ -65,7 +65,6 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_CRC_Init(void);
 static void MX_FMC_Init(void);
-static void MX_I2C3_Init(void);
 static void MX_SPI5_Init(void);
 static void MX_TIM1_Init(void);
 static void MX_USART1_UART_Init(void);
@@ -111,7 +110,6 @@ int main(void)
   MX_GPIO_Init();
   MX_CRC_Init();
   MX_FMC_Init();
-  MX_I2C3_Init();
   MX_SPI5_Init();
   MX_TIM1_Init();
   MX_USART1_UART_Init();
@@ -120,7 +118,9 @@ int main(void)
   MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
   I3G450D_Init(&hspi5);
-  Lis3dhInit(&hi2c3);
+ // Lis3dhInit(&hi2c3);
+  RetargetInit(&huart1);
+  ConsoleInit(&huart1);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -129,10 +129,9 @@ int main(void)
   {
     /* USER CODE END WHILE */
     MX_USB_HOST_Process();
-    I3G450D_loop();
-    Lis3dhGetAcc();
 
     /* USER CODE BEGIN 3 */
+    ConsoleProcess();
   }
   /* USER CODE END 3 */
 }
@@ -253,54 +252,6 @@ static void MX_I2C1_Init(void)
   /* USER CODE BEGIN I2C1_Init 2 */
 
   /* USER CODE END I2C1_Init 2 */
-
-}
-
-/**
-  * @brief I2C3 Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_I2C3_Init(void)
-{
-
-  /* USER CODE BEGIN I2C3_Init 0 */
-
-  /* USER CODE END I2C3_Init 0 */
-
-  /* USER CODE BEGIN I2C3_Init 1 */
-
-  /* USER CODE END I2C3_Init 1 */
-  hi2c3.Instance = I2C3;
-  hi2c3.Init.ClockSpeed = 100000;
-  hi2c3.Init.DutyCycle = I2C_DUTYCYCLE_2;
-  hi2c3.Init.OwnAddress1 = 0;
-  hi2c3.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
-  hi2c3.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
-  hi2c3.Init.OwnAddress2 = 0;
-  hi2c3.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
-  hi2c3.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
-  if (HAL_I2C_Init(&hi2c3) != HAL_OK)
-  {
-    Error_Handler();
-  }
-
-  /** Configure Analogue filter
-  */
-  if (HAL_I2CEx_ConfigAnalogFilter(&hi2c3, I2C_ANALOGFILTER_ENABLE) != HAL_OK)
-  {
-    Error_Handler();
-  }
-
-  /** Configure Digital filter
-  */
-  if (HAL_I2CEx_ConfigDigitalFilter(&hi2c3, 0) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN I2C3_Init 2 */
-
-  /* USER CODE END I2C3_Init 2 */
 
 }
 
@@ -526,10 +477,8 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : B5_Pin VSYNC_Pin G2_Pin R4_Pin
-                           R5_Pin */
-  GPIO_InitStruct.Pin = B5_Pin|VSYNC_Pin|G2_Pin|R4_Pin
-                          |R5_Pin;
+  /*Configure GPIO pins : B5_Pin VSYNC_Pin G2_Pin */
+  GPIO_InitStruct.Pin = B5_Pin|VSYNC_Pin|G2_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -584,8 +533,8 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : R7_Pin DOTCLK_Pin B3_Pin */
-  GPIO_InitStruct.Pin = R7_Pin|DOTCLK_Pin|B3_Pin;
+  /*Configure GPIO pins : R7_Pin DOTCLK_Pin */
+  GPIO_InitStruct.Pin = R7_Pin|DOTCLK_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -600,6 +549,14 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Alternate = GPIO_AF14_LTDC;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
+  /*Configure GPIO pin : I2C3_SDA_Pin */
+  GPIO_InitStruct.Pin = I2C3_SDA_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_AF_OD;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  GPIO_InitStruct.Alternate = GPIO_AF4_I2C3;
+  HAL_GPIO_Init(I2C3_SDA_GPIO_Port, &GPIO_InitStruct);
+
   /*Configure GPIO pins : G7_Pin B2_Pin */
   GPIO_InitStruct.Pin = G7_Pin|B2_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
@@ -608,13 +565,13 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Alternate = GPIO_AF14_LTDC;
   HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : G3_Pin B4_Pin */
-  GPIO_InitStruct.Pin = G3_Pin|B4_Pin;
+  /*Configure GPIO pin : G3_Pin */
+  GPIO_InitStruct.Pin = G3_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   GPIO_InitStruct.Alternate = GPIO_AF9_LTDC;
-  HAL_GPIO_Init(GPIOG, &GPIO_InitStruct);
+  HAL_GPIO_Init(G3_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pins : LD3_Pin LD4_Pin */
   GPIO_InitStruct.Pin = LD3_Pin|LD4_Pin;

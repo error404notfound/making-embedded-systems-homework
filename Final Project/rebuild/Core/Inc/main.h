@@ -189,16 +189,10 @@ void Error_Handler(void);
 #define G6_GPIO_Port GPIOC
 #define I2C3_SDA_Pin GPIO_PIN_9
 #define I2C3_SDA_GPIO_Port GPIOC
-#define I2C3_SCL_Pin GPIO_PIN_8
-#define I2C3_SCL_GPIO_Port GPIOA
 #define STLINK_RX_Pin GPIO_PIN_9
 #define STLINK_RX_GPIO_Port GPIOA
 #define STLINK_TX_Pin GPIO_PIN_10
 #define STLINK_TX_GPIO_Port GPIOA
-#define R4_Pin GPIO_PIN_11
-#define R4_GPIO_Port GPIOA
-#define R5_Pin GPIO_PIN_12
-#define R5_GPIO_Port GPIOA
 #define SWDIO_Pin GPIO_PIN_13
 #define SWDIO_GPIO_Port GPIOA
 #define SWCLK_Pin GPIO_PIN_14
@@ -217,10 +211,6 @@ void Error_Handler(void);
 #define B2_GPIO_Port GPIOD
 #define G3_Pin GPIO_PIN_10
 #define G3_GPIO_Port GPIOG
-#define B3_Pin GPIO_PIN_11
-#define B3_GPIO_Port GPIOG
-#define B4_Pin GPIO_PIN_12
-#define B4_GPIO_Port GPIOG
 #define LD3_Pin GPIO_PIN_13
 #define LD3_GPIO_Port GPIOG
 #define LD4_Pin GPIO_PIN_14

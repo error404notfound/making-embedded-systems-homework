@@ -21,6 +21,8 @@ C_DEPS :=
 
 # Every subdirectory with source files must be described here
 SUBDIRS := \
+Core/Src/console \
+Core/Src/controllers \
 Core/Src/drivers \
 Core/Src \
 Core/Startup \

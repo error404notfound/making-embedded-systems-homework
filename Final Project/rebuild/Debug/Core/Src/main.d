@@ -53,7 +53,9 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../USB_HOST/App/usb_host.h \
  /Users/jennie.stenhouse/Documents/LEARNING/MAKING\ EMBEDDED\ SYSTEMS/making-embedded-systems-homework/Final\ Project/rebuild/Core/Inc/drivers/gyro_I3G450D_driver.h \
  /Users/jennie.stenhouse/Documents/LEARNING/MAKING\ EMBEDDED\ SYSTEMS/making-embedded-systems-homework/Final\ Project/rebuild/Core/Inc/drivers/accel_LIS3DH_driver.h \
- /Users/jennie.stenhouse/Documents/LEARNING/MAKING\ EMBEDDED\ SYSTEMS/making-embedded-systems-homework/Final\ Project/rebuild/Core/Inc/drivers/accel_LIS3DH_regs.h
+ /Users/jennie.stenhouse/Documents/LEARNING/MAKING\ EMBEDDED\ SYSTEMS/making-embedded-systems-homework/Final\ Project/rebuild/Core/Inc/drivers/accel_LIS3DH_regs.h \
+ ../Core/Inc/retarget.h \
+ /Users/jennie.stenhouse/Documents/LEARNING/MAKING\ EMBEDDED\ SYSTEMS/making-embedded-systems-homework/Final\ Project/rebuild/Core/Inc/console/console.h
 ../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 ../Core/Inc/stm32f4xx_hal_conf.h:
@@ -113,3 +115,5 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 /Users/jennie.stenhouse/Documents/LEARNING/MAKING\ EMBEDDED\ SYSTEMS/making-embedded-systems-homework/Final\ Project/rebuild/Core/Inc/drivers/gyro_I3G450D_driver.h:
 /Users/jennie.stenhouse/Documents/LEARNING/MAKING\ EMBEDDED\ SYSTEMS/making-embedded-systems-homework/Final\ Project/rebuild/Core/Inc/drivers/accel_LIS3DH_driver.h:
 /Users/jennie.stenhouse/Documents/LEARNING/MAKING\ EMBEDDED\ SYSTEMS/making-embedded-systems-homework/Final\ Project/rebuild/Core/Inc/drivers/accel_LIS3DH_regs.h:
+../Core/Inc/retarget.h:
+/Users/jennie.stenhouse/Documents/LEARNING/MAKING\ EMBEDDED\ SYSTEMS/making-embedded-systems-homework/Final\ Project/rebuild/Core/Inc/console/console.h:
