@@ -632,21 +632,7 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
-{
-	uint16_t userButtonPin = GPIO_PIN_0;
-	GPIO_TypeDef *userButtonPort = GPIOA;
 
-	// make sure we are  using the right pin for the user button.
-
-
-
-	if(HAL_GPIO_ReadPin (userButtonPort, userButtonPin)==GPIO_PIN_SET){
-
-		//buttonPressed = 1;
-	}
-
-}
 /* USER CODE END 4 */
 
 /**

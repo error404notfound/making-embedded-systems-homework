@@ -29,7 +29,7 @@ typedef enum
 #define CSport GPIOD
 /* Public APIs */
 void Lis3dhInit(I2C_HandleTypeDef *I2Cxhandle);
-int Lis3dhGetAcc();
+HAL_StatusTypeDef Lis3dhGetAcc();
 void Lis3dhSetRange(int8_t range);
 void AccelGetData(int16_t *x, int16_t*y, int16_t*z);
 

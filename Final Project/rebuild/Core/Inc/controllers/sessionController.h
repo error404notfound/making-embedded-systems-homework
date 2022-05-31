@@ -8,7 +8,10 @@
 #ifndef INC_CONTROLLERS_SESSIONCONTROLLER_H_
 #define INC_CONTROLLERS_SESSIONCONTROLLER_H_
 
+#include "stm32f4xx_hal.h"
 
+void SessionControllerInit(I2C_HandleTypeDef *I2Cxhandle,TIM_HandleTypeDef *timer,SPI_HandleTypeDef *SPIxHandle);
+void SessionProcess();
 
 
 

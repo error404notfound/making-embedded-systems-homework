@@ -102,7 +102,7 @@ LPen bit in CTRL_REG1, enable at least one of the axes and select the preferred 
 
 
 }
-int Lis3dhGetAcc(){
+HAL_StatusTypeDef Lis3dhGetAcc(){
 
 	uint8_t sendBuff[2];
 	uint8_t reciveBuff[12];
@@ -131,7 +131,7 @@ int Lis3dhGetAcc(){
 	  val[2] = (val[2] * 256) + (int16_t)reciveBuff[4];
 
 
-	return 0;
+	return ret;
 }
 void Lis3dhSetRange(int8_t range){}
 
