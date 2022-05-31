@@ -1,6 +1,6 @@
 /*
  * accel_LIS3DH_driver.c
- *
+ *	inspireation from adafruit lis3dh library and https://github.com/STMicroelectronics/lis3dh/blob/master/lis3dh_reg.c
  *  Created on: May 30, 2022
  *      Author: jennie.stenhouse
  */
@@ -8,11 +8,7 @@
 
 
 
-/** @file lis3dh.c
- * @author david.siorpaes@st.com
- * LIS3DH accelerometer device driver. Uses SPI2 interface.
- *
- */
+
 
 
 
@@ -125,11 +121,14 @@ int Lis3dhGetAcc(){
 	ret = HAL_I2C_Master_Transmit(I2Cx, LIS3DH_ADDR, sendBuff, 1, HAL_MAX_DELAY);
 	ret = HAL_I2C_Master_Receive(I2Cx, LIS3DH_ADDR, reciveBuff, 6 , HAL_MAX_DELAY);
 
+	 int16_t val[3];
 
-
-	LastXAcel = *((int16_t*)reciveBuff);
-	LastYAcel = *((int16_t*)(reciveBuff + 2));
-	LastZAcel = *((int16_t*)(reciveBuff + 4));
+	 val[0] = (int16_t)reciveBuff[1];
+	  val[0] = (val[0] * 256) + (int16_t)reciveBuff[0];
+	  val[1] = (int16_t)reciveBuff[3];
+	  val[1] = (val[1] * 256) + (int16_t)reciveBuff[2];
+	  val[2] = (int16_t)reciveBuff[5];
+	  val[2] = (val[2] * 256) + (int16_t)reciveBuff[4];
 
 
 	return 0;
