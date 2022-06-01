@@ -19,9 +19,7 @@ static eCommandResult_T ConsoleCommandVer(const char buffer[]);
 static eCommandResult_T ConsoleCommandHelp(const char buffer[]);
 static eCommandResult_T ConsoleCommandParamExampleInt16(const char buffer[]);
 static eCommandResult_T ConsoleCommandParamExampleHexUint16(const char buffer[]);
-static eCommandResult_T ConsoleCommandToggleLed(const char buffer[]);
-static eCommandResult_T ConsoleCommandGyroStatus(const char buffer[]);
-static eCommandResult_T ConsoleCommandGyroDump(const char buffer[]);
+static eCommandResult_T ConsoleCommandDebugPrint(const char buffer[]);
 
 static const sConsoleCommandTable_T mConsoleCommandTable[] =
 {
@@ -30,9 +28,8 @@ static const sConsoleCommandTable_T mConsoleCommandTable[] =
 	{"ver", &ConsoleCommandVer, HELP("Get the version string")},
 	{"int", &ConsoleCommandParamExampleInt16, HELP("How to get a signed int16 from params list: int -321")},
 	{"u16h", &ConsoleCommandParamExampleHexUint16, HELP("How to get a hex u16 from the params list: u16h aB12")},
-	{"toggle LED", &ConsoleCommandToggleLed, HELP("toggle the state of the Gree user LED")},
-	{"get Gyro status",&ConsoleCommandGyroStatus,HELP("Check the Gyro status")},
-	{"get Gyro dump",&ConsoleCommandGyroDump,HELP("start Gyro Dump")},
+	{"debug", &ConsoleCommandDebugPrint, HELP("Toggle Debug output")},
+
 
 
 	CONSOLE_COMMAND_TABLE_END // must be LAST
@@ -65,18 +62,7 @@ static eCommandResult_T ConsoleCommandHelp(const char buffer[])
 	}
 	return result;
 }
-static eCommandResult_T ConsoleCommandToggleLed(const char buffer[]){
-	eCommandResult_T result = COMMAND_SUCCESS;
-	return result;
-}
-static eCommandResult_T ConsoleCommandGyroStatus(const char buffer[]){
-	eCommandResult_T result = COMMAND_SUCCESS;
-	return result;
-}
-static eCommandResult_T ConsoleCommandGyroDump(const char buffer[]){
-	eCommandResult_T result = COMMAND_SUCCESS;
-	return result;
-}
+
 static eCommandResult_T ConsoleCommandParamExampleInt16(const char buffer[])
 {
 	int16_t parameterInt;
@@ -124,4 +110,30 @@ const sConsoleCommandTable_T* ConsoleCommandsGetTable(void)
 	return (mConsoleCommandTable);
 }
 
+static eCommandResult_T ConsoleCommandDebugPrint(const char buffer[])
+{
+	eCommandResult_T result = COMMAND_SUCCESS;
+	// this makes funciton about the expected input. values that have n as the second letter will also trigger debug on.
+	// All though it's great input sanitisation it's okay for this.
+	char command[5] ={0};
+	result = ConsoleReceiveParamString(buffer, 1, &command);
+	char trigger = command[1];
+	if ('n'==trigger)
+	{
+		// trigger is on
+		setUserDebugLogging(1);
+	}
+	else if('f'== trigger){
+
+		// trigger is off.
+		setUserDebugLogging(0);
+	}
+	else
+	{
+		//the inputs bad output guide text.
+	}
+
+	return result;
+
+}
 

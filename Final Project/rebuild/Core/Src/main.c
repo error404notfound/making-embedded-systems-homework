@@ -23,10 +23,10 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include <gyro_I3G450D_driver.h>
-#include <accel_LIS3DH_driver.h>
+
 #include <retarget.h>
-#include <console.h>
+#include <sessionController.h>
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -120,10 +120,10 @@ int main(void)
   MX_I2C1_Init();
   MX_I2C3_Init();
   /* USER CODE BEGIN 2 */
-  I3G450D_Init(&hspi5);
-  Lis3dhInit(&hi2c3);
   RetargetInit(&huart1);
-  ConsoleInit(&huart1);
+  SessionControllerInit(&hi2c3,&hspi5,&huart1);
+
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -134,9 +134,8 @@ int main(void)
     MX_USB_HOST_Process();
 
     /* USER CODE BEGIN 3 */
-    ConsoleProcess();
-   I3G450D_loop();
-   Lis3dhGetAcc();
+    SessionControllerProcess();
+
   }
   /* USER CODE END 3 */
 }

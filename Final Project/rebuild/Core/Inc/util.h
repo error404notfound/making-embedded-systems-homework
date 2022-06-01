@@ -10,6 +10,9 @@
 
 
 #define VERSION_STRING "StoneCode 0.0.0.1"
-
-
+typedef enum { INIT_ERROR } stoneError_t;
+void debugPrint(char * buffer);
+void setUserDebugLogging ( int set );
+void resumeDebugLogging();
+void pauseDebugLogging();
 #endif /* INC_UTIL_H_ */

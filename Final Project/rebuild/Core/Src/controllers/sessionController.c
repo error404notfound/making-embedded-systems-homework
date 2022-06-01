@@ -16,9 +16,11 @@
 #include <stdio.h>
 #include "console.h"
 #include "retarget.h"
+#include "util.h"
+
 
 // private varaibles.
-
+#define MAX_STATE_TIMEOUT 1000
 int userID = 12345678;
 
 typedef int (*stateInit )(void);
@@ -75,7 +77,7 @@ static stateTableEntry_t  stateTabel[]={
 /* WAITING */	{ &CliMode,			LoadMode, 			NULL,		NULL, 		&DeepSleep, 800 , &WaitingForSelectionProcess},
 /* LOAD_MODE */	{ &CliMode,			NULL, 				NULL,		NULL, 		&InMode, 800 , &LoadModeProcess},
 /* IN_MODE */	{ &CliMode,			NULL, 				NULL,		NULL, 		&IdleAwake, 800, &InModeProcess },
-/* CLI_MODE */	{ &StartPreviouseMode,NULL, 				NULL,		NULL, 		&IdleAwake, 800, &CliModeProcess },
+/* CLI_MODE */	{ &StartPreviouseMode,NULL, 			NULL,		NULL, 	&StartPreviouseMode, MAX_STATE_TIMEOUT, &CliModeProcess },
 
 
 };
@@ -88,6 +90,7 @@ uint8_t gestureRecognized;
 uint8_t loggingToUsbEnabled;
 uint8_t inMode;
 uint8_t cliMode =0;
+int currentDebugMode=0;
 // struct for loggin
 // mode, time in mode
 TIM_HandleTypeDef * timerHandle;
@@ -97,20 +100,14 @@ void ChangeUser(uint8_t newUserID ){
 	userID = newUserID;
 }
 
-void SessionControllerInit(I2C_HandleTypeDef *I2Cxhandle,TIM_HandleTypeDef *timer,SPI_HandleTypeDef *SPIxHandle)
+void SessionControllerInit(I2C_HandleTypeDef *I2Cxhandle,SPI_HandleTypeDef *SPIxHandle,UART_HandleTypeDef * HUARTxHandler)
 {
-	// Pass down all the interface handles to there controllers
 
 
-
-
-	// Make sure that they return okay.
-	// There are error enter error state
-	// start general timer;
-
+	MovementControllerInit(I2Cxhandle,SPIxHandle);
+	ConsoleInit(HUARTxHandler);
 	currentState = START;
 	timeStateStarted = HAL_GetTick();
-	MovementControllerInit(I2Cxhandle,SPIxHandle);
 
 
 }
@@ -121,20 +118,22 @@ void SessionControllerProcess()
 // check to see if current state has reached it time out.
 	stateTableEntry_t current = stateTabel[currentState];
 	uint32_t timeout = current.timeout;
-	uint32_t currentTime = HAL_GetTick();
-	uint32_t timeSinceStarted = currentTime -timeStateStarted;
 
 
-	MovementControllerProcess();
+
+
+	//MovementControllerProcess();
+
 
 	if ( HAL_GetTick() - timeStateStarted > timeout )
 	{
-		previouseState = currentState;
+
 		current.onEnd();
 
 	}
 	if ( 1 == buttonPressed )
 	{
+
 		current.onButtonPress();
 	}
 	if( 1 == gestureRecognized ){
@@ -164,72 +163,94 @@ void SessionControllerProcess()
 // set up functions for each state.
 int Start(){
 	timeStateStarted = HAL_GetTick();
-	ConsoleSendLine(" State = starting");
+	debugPrint(" State = starting");
 	return 0;
 }
 int IdleAwake(){
+	previouseState = currentState;
 	currentState = IDLE_AWAKE;
 	timeStateStarted = HAL_GetTick();
-	ConsoleSendLine(" State = IdleAwake");
+	debugPrint(" State = IdleAwake");
 	return 0;
 }
 int DeepSleep(){
+	previouseState = currentState;
 	currentState = DEEP_SLEEP;
 	timeStateStarted = HAL_GetTick();
-	ConsoleSendLine(" State = DeepSleep");
+	debugPrint(" State = DeepSleep");
 	return 0;
 }
 int WaitingForSelection(){
+	previouseState = currentState;
 	currentState = WAITING_FOR_SELECTION;
 	timeStateStarted = HAL_GetTick();
-	ConsoleSendLine(" State = WaitingForSelection");
+	debugPrint(" State = WaitingForSelection");
 	return 0;
 }
 int LoadMode(){
+	previouseState = currentState;
 	currentState = WAITING_FOR_SELECTION;
 	timeStateStarted = HAL_GetTick();
-	ConsoleSendLine(" State = LoadMode");
+	debugPrint(" State = LoadMode");
 	return 0;
 }
 int CliMode(){
+
+	previouseState = currentState;
 	currentState = CLI_MODE;
 	// clear the button press
 	buttonPressed = 0;
+	// in climode we want the debug output off while we are waiting for input.
+	pauseDebugLogging();
+
 	timeStateStarted = HAL_GetTick();
-	ConsoleSendLine(" State = CliMode");
+	debugPrint(" State = CliMode");
 
 	return 0;
 }
 int StartPreviouseMode(){
 	currentState = previouseState;
+	previouseState = CLI_MODE;
+	// we also reset to our currentDebugMode
+	resumeDebugLogging();
 
 	timeStateStarted = HAL_GetTick();
-	ConsoleSendLine(" State = StartPreviouseMode");
+	debugPrint(" State = StartPreviouseMode");
 	return 0;
 }
 int InMode()
 {
 	currentState = IN_MODE;
 	timeStateStarted = HAL_GetTick();
-	ConsoleSendLine(" State = InMode");
+	debugPrint(" State = InMode");
 	return 0;
 
 }
 
 // output for each function.
-int IdelAwakeOutput(){}
-int SleepOutput(){}
-int WaitingForInputOutput(){}
-int CliModeOutput(){}
-int ModeLoading(){}
+int IdelAwakeOutput(){return 0;}
+int SleepOutput(){return 0;}
+int WaitingForInputOutput(){return 0;}
+int CliModeOutput(){return 0;}
+int ModeLoading(){return 0;}
 
 int StartProcess(){return 0;}
+
 int IdleAwakeProcess(){return 0;}
+
 int DeepSleepProcess(){return 0;}
+
 int WaitingForSelectionProcess(){return 0;}
+
 int LoadModeProcess(){return 0;}
-int CliModeProcess(){return 0;}
+
+int CliModeProcess(){
+	ConsoleProcess();
+
+	return 0;
+}
 int StartPreviouseModeProcess(){return 0;}
+
 int InModeProcess(){return 0;}
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)

@@ -13,13 +13,13 @@
 #ifndef MIN
   #define MIN(X, Y)		(((X) < (Y)) ? (X) : (Y))
 #endif
-
 #define NOT_FOUND		-1
 #define INT16_MAX_STR_LENGTH 8 // -65534: six characters plus a two NULLs
 #define INT32_MAX_STR_LENGTH 16
 #define NULL_CHAR            '\0'
 #define CR_CHAR              '\r'
 #define LF_CHAR              '\n'
+
 
 // global variables
 char mReceiveBuffer[CONSOLE_COMMAND_MAX_LENGTH];
@@ -36,7 +36,7 @@ static uint32_t ConsoleResetBuffer(char receiveBuffer[], const  uint32_t filledL
 
 static eCommandResult_T ConsoleUtilHexCharToInt(char charVal, uint8_t* pInt); // this might be replaceable with *pInt = atoi(str)
 static eCommandResult_T ConsoleUtilsIntToHexChar(uint8_t intVal, char* pChar); // this could be replaced with itoa (intVal, str, 16);
-static eCommandResult_T ConsoleDecodeJson(const char *buffer);
+
 
 // ConsoleCommandMatch
 // Look to see if the data in the buffer matches the command name given that
@@ -339,7 +339,6 @@ eCommandResult_T ConsoleSendParamHexUint8(uint8_t parameterUint8)
 	return COMMAND_SUCCESS;
 }
 
-
 #if CONSOLE_USE_BUILTIN_ITOA
 #define itoa smallItoa
 // The C library itoa is sometimes a complicated function and the library costs aren't worth it
@@ -477,4 +476,34 @@ eCommandResult_T ConsoleSendLine(const char *buffer)
 	ConsoleIoSendString(buffer);
 	ConsoleIoSendString(STR_ENDLINE);
 	return COMMAND_SUCCESS;
+}
+eCommandResult_T ConsoleReceiveParamString(const char * buffer, const uint8_t parameterNumber, char * parameterChar){
+	eCommandResult_T result = COMMAND_SUCCESS;
+	uint32_t startIndex = 0;
+	uint16_t value = 0;
+	uint32_t i =0;
+	char charVal;
+
+
+	result = ConsoleParamFindN(buffer, parameterNumber, &startIndex);
+	i = 0;
+	charVal = buffer[startIndex + i];
+	while ( ( LF_CHAR != charVal ) && ( CR_CHAR != charVal )
+				&& ( PARAMETER_SEPARATER != charVal )
+			&& ( i < INT16_MAX_STR_LENGTH ) )
+		{
+		parameterChar[i] = charVal;					// copy the relevant part
+			i++;
+			charVal = buffer[startIndex + i];
+		}
+		if ( i == INT16_MAX_STR_LENGTH)
+		{
+			result = COMMAND_PARAMETER_ERROR;
+		}
+		if ( COMMAND_SUCCESS == result )
+		{
+			parameterChar[i] = NULL_CHAR;
+		}
+	return result;
+
 }

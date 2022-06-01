@@ -40,7 +40,7 @@ Core/Src/controllers/sessionController.o: \
  /Users/jennie.stenhouse/Documents/LEARNING/MAKING\ EMBEDDED\ SYSTEMS/making-embedded-systems-homework/Final\ Project/rebuild/Core/Inc/controllers/movementInputController.h \
  /Users/jennie.stenhouse/Documents/LEARNING/MAKING\ EMBEDDED\ SYSTEMS/making-embedded-systems-homework/Final\ Project/rebuild/Core/Inc/controllers/visualOutputController.h \
  /Users/jennie.stenhouse/Documents/LEARNING/MAKING\ EMBEDDED\ SYSTEMS/making-embedded-systems-homework/Final\ Project/rebuild/Core/Inc/console/console.h \
- ../Core/Inc/retarget.h
+ ../Core/Inc/retarget.h ../Core/Inc/util.h
 /Users/jennie.stenhouse/Documents/LEARNING/MAKING\ EMBEDDED\ SYSTEMS/making-embedded-systems-homework/Final\ Project/rebuild/Core/Inc/controllers/sessionController.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 ../Core/Inc/stm32f4xx_hal_conf.h:
@@ -82,3 +82,4 @@ Core/Src/controllers/sessionController.o: \
 /Users/jennie.stenhouse/Documents/LEARNING/MAKING\ EMBEDDED\ SYSTEMS/making-embedded-systems-homework/Final\ Project/rebuild/Core/Inc/controllers/visualOutputController.h:
 /Users/jennie.stenhouse/Documents/LEARNING/MAKING\ EMBEDDED\ SYSTEMS/making-embedded-systems-homework/Final\ Project/rebuild/Core/Inc/console/console.h:
 ../Core/Inc/retarget.h:
+../Core/Inc/util.h:
