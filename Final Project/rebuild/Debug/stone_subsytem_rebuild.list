@@ -37,15 +37,15 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  16 .debug_ranges 00001bb8  00000000  00000000  00051418  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_macro  0002ce2f  00000000  00000000  00052fd0  2**0
+ 17 .debug_macro  0002ce61  00000000  00000000  00052fd0  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_line   0002b0dd  00000000  00000000  0007fdff  2**0
+ 18 .debug_line   0002b197  00000000  00000000  0007fe31  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_str    000ec0ed  00000000  00000000  000aaedc  2**0
+ 19 .debug_str    000ec170  00000000  00000000  000aafc8  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 20 .comment      00000050  00000000  00000000  00196fc9  2**0
+ 20 .comment      00000050  00000000  00000000  00197138  2**0
                   CONTENTS, READONLY
- 21 .debug_frame  000085fc  00000000  00000000  0019701c  2**2
+ 21 .debug_frame  000085fc  00000000  00000000  00197188  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -2429,18 +2429,18 @@ void SessionControllerProcess()
 		current.onButtonPress();
  80010de:	683b      	ldr	r3, [r7, #0]
  80010e0:	4798      	blx	r3
-	if( 1 == shakeToWakeTriggered)
-	{
-		// shake to wake response.
+	if( 1 == gestureRecognized ){
+		// gesture recognized response.
+		// get the gesture tag from MovementController.
+
 	}
-	// in mode
-	if( 1 == inMode )
+	if( 1 == shakeToWakeTriggered)
  80010e2:	4b09      	ldr	r3, [pc, #36]	; (8001108 <SessionControllerProcess+0x74>)
  80010e4:	781b      	ldrb	r3, [r3, #0]
  80010e6:	2b01      	cmp	r3, #1
  80010e8:	d001      	beq.n	80010ee <SessionControllerProcess+0x5a>
-
 	}
+
 	else{
 		// run out put for current state
 		// run proccess for current state.

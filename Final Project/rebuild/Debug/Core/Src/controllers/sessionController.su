@@ -1,6 +1,6 @@
-../Core/Src/controllers/sessionController.c:99:6:ChangeUser	16	static
-../Core/Src/controllers/sessionController.c:103:6:SessionControllerInit	24	static
-../Core/Src/controllers/sessionController.c:114:6:SessionControllerProcess	48	static
+../Core/Src/controllers/sessionController.c:103:6:ChangeUser	16	static
+../Core/Src/controllers/sessionController.c:107:6:SessionControllerInit	24	static
+../Core/Src/controllers/sessionController.c:118:6:SessionControllerProcess	48	static
 ../Core/Src/controllers/sessionController.c:164:5:Start	8	static
 ../Core/Src/controllers/sessionController.c:169:5:IdleAwake	8	static
 ../Core/Src/controllers/sessionController.c:176:5:DeepSleep	8	static

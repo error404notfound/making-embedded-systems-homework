@@ -634,16 +634,17 @@ Discarded input sections
  .group         0x0000000000000000        0xc ./Core/Src/controllers/sessionController.o
  .group         0x0000000000000000        0xc ./Core/Src/controllers/sessionController.o
  .group         0x0000000000000000        0xc ./Core/Src/controllers/sessionController.o
+ .group         0x0000000000000000        0xc ./Core/Src/controllers/sessionController.o
+ .group         0x0000000000000000        0xc ./Core/Src/controllers/sessionController.o
  .text          0x0000000000000000        0x0 ./Core/Src/controllers/sessionController.o
  .data          0x0000000000000000        0x0 ./Core/Src/controllers/sessionController.o
  .bss           0x0000000000000000        0x0 ./Core/Src/controllers/sessionController.o
  .data.userID   0x0000000000000000        0x4 ./Core/Src/controllers/sessionController.o
- .bss.shakeToWakeTriggered
-                0x0000000000000000        0x1 ./Core/Src/controllers/sessionController.o
  .bss.gestureRecognized
                 0x0000000000000000        0x1 ./Core/Src/controllers/sessionController.o
  .bss.loggingToUsbEnabled
                 0x0000000000000000        0x1 ./Core/Src/controllers/sessionController.o
+ .bss.inMode    0x0000000000000000        0x1 ./Core/Src/controllers/sessionController.o
  .bss.cliMode   0x0000000000000000        0x1 ./Core/Src/controllers/sessionController.o
  .bss.currentDebugMode
                 0x0000000000000000        0x4 ./Core/Src/controllers/sessionController.o
@@ -10025,8 +10026,9 @@ LOAD /Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.id
  .bss.buttonPressed
                 0x0000000020000298        0x1 ./Core/Src/controllers/sessionController.o
                 0x0000000020000298                buttonPressed
- .bss.inMode    0x0000000020000299        0x1 ./Core/Src/controllers/sessionController.o
-                0x0000000020000299                inMode
+ .bss.shakeToWakeTriggered
+                0x0000000020000299        0x1 ./Core/Src/controllers/sessionController.o
+                0x0000000020000299                shakeToWakeTriggered
  *fill*         0x000000002000029a        0x2 
  .bss.I2Cx      0x000000002000029c        0x4 ./Core/Src/drivers/accel_LIS3DH_driver.o
                 0x000000002000029c                I2Cx
@@ -10528,7 +10530,7 @@ LOAD /Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.id
  .debug_ranges  0x0000000000001ae0       0xc8 ./USB_HOST/Target/usbh_conf.o
  .debug_ranges  0x0000000000001ba8       0x10 ./USB_HOST/Target/usbh_platform.o
 
-.debug_macro    0x0000000000000000    0x2ce2f
+.debug_macro    0x0000000000000000    0x2ce61
  .debug_macro   0x0000000000000000      0x391 ./Core/Src/console/console.o
  .debug_macro   0x0000000000000391      0xa78 ./Core/Src/console/console.o
  .debug_macro   0x0000000000000e09       0x22 ./Core/Src/console/console.o
@@ -10623,131 +10625,133 @@ LOAD /Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.id
  .debug_macro   0x0000000000023974       0xbe ./Core/Src/controllers/movementInputController.o
  .debug_macro   0x0000000000023a32       0x28 ./Core/Src/controllers/movementInputController.o
  .debug_macro   0x0000000000023a5a      0x45e ./Core/Src/controllers/movementInputController.o
- .debug_macro   0x0000000000023eb8      0x40c ./Core/Src/controllers/sessionController.o
- .debug_macro   0x00000000000242c4       0x22 ./Core/Src/controllers/sessionController.o
- .debug_macro   0x00000000000242e6       0x16 ./Core/Src/controllers/sessionController.o
- .debug_macro   0x00000000000242fc       0x10 ./Core/Src/controllers/sessionController.o
- .debug_macro   0x000000000002430c       0x10 ./Core/Src/controllers/sessionController.o
- .debug_macro   0x000000000002431c       0x35 ./Core/Src/controllers/sessionController.o
- .debug_macro   0x0000000000024351      0x12c ./Core/Src/controllers/sessionController.o
- .debug_macro   0x000000000002447d      0x24b ./Core/Src/drivers/accel_LIS3DH_driver.o
- .debug_macro   0x00000000000246c8      0x25a ./Core/Src/drivers/gyro_I3G450D_driver.o
- .debug_macro   0x0000000000024922      0x458 ./Core/Src/drivers/gyro_I3G450D_driver.o
- .debug_macro   0x0000000000024d7a      0x50f ./Core/Src/main.o
- .debug_macro   0x0000000000025289       0x16 ./Core/Src/main.o
- .debug_macro   0x000000000002529f       0x73 ./Core/Src/main.o
- .debug_macro   0x0000000000025312      0x233 ./Core/Src/main.o
- .debug_macro   0x0000000000025545       0x2e ./Core/Src/main.o
- .debug_macro   0x0000000000025573       0x2e ./Core/Src/main.o
- .debug_macro   0x00000000000255a1       0x28 ./Core/Src/main.o
- .debug_macro   0x00000000000255c9       0x65 ./Core/Src/main.o
- .debug_macro   0x000000000002562e       0xeb ./Core/Src/main.o
- .debug_macro   0x0000000000025719       0x34 ./Core/Src/main.o
- .debug_macro   0x000000000002574d       0xf9 ./Core/Src/main.o
- .debug_macro   0x0000000000025846       0xdb ./Core/Src/main.o
- .debug_macro   0x0000000000025921       0x8e ./Core/Src/main.o
- .debug_macro   0x00000000000259af       0x41 ./Core/Src/main.o
- .debug_macro   0x00000000000259f0      0x463 ./Core/Src/retarget.o
- .debug_macro   0x0000000000025e53       0x1c ./Core/Src/retarget.o
- .debug_macro   0x0000000000025e6f       0x10 ./Core/Src/retarget.o
- .debug_macro   0x0000000000025e7f      0x23b ./Core/Src/retarget.o
- .debug_macro   0x00000000000260ba       0xc8 ./Core/Src/retarget.o
- .debug_macro   0x0000000000026182       0x7c ./Core/Src/retarget.o
- .debug_macro   0x00000000000261fe       0x17 ./Core/Src/retarget.o
- .debug_macro   0x0000000000026215      0x118 ./Core/Src/retarget.o
- .debug_macro   0x000000000002632d      0x189 ./Core/Src/retarget.o
- .debug_macro   0x00000000000264b6       0x16 ./Core/Src/retarget.o
- .debug_macro   0x00000000000264cc      0x132 ./Core/Src/retarget.o
- .debug_macro   0x00000000000265fe       0x1c ./Core/Src/retarget.o
- .debug_macro   0x000000000002661a       0x10 ./Core/Src/retarget.o
- .debug_macro   0x000000000002662a      0x23e ./Core/Src/stm32f4xx_hal_msp.o
- .debug_macro   0x0000000000026868      0x248 ./Core/Src/stm32f4xx_it.o
- .debug_macro   0x0000000000026ab0       0xff ./Core/Src/sysmem.o
- .debug_macro   0x0000000000026baf      0x22f ./Core/Src/system_stm32f4xx.o
- .debug_macro   0x0000000000026dde      0x1a8 ./Core/Src/util.o
- .debug_macro   0x0000000000026f86       0x97 ./Core/Src/util.o
- .debug_macro   0x000000000002701d       0xfd ./Core/Src/util.o
- .debug_macro   0x000000000002711a      0x28f ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.o
- .debug_macro   0x00000000000273a9      0x22f ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.o
- .debug_macro   0x00000000000275d8      0x22f ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_crc.o
- .debug_macro   0x0000000000027807      0x235 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.o
- .debug_macro   0x0000000000027a3c      0x235 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.o
- .debug_macro   0x0000000000027c71      0x22f ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_hcd.o
- .debug_macro   0x0000000000027ea0      0x276 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.o
- .debug_macro   0x0000000000028116      0x22f ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.o
- .debug_macro   0x0000000000028345      0x253 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.o
- .debug_macro   0x0000000000028598      0x22f ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_sdram.o
- .debug_macro   0x00000000000287c7      0x23e ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.o
- .debug_macro   0x0000000000028a05      0x230 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.o
- .debug_macro   0x0000000000028c35      0x22f ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.o
- .debug_macro   0x0000000000028e64      0x230 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.o
- .debug_macro   0x0000000000029094      0x278 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_fmc.o
- .debug_macro   0x000000000002930c      0x22f ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_usb.o
- .debug_macro   0x000000000002953b      0x4c2 ./FATFS/App/fatfs.o
- .debug_macro   0x00000000000299fd      0x4bf ./FATFS/Target/usbh_diskio.o
- .debug_macro   0x0000000000029ebc       0x16 ./FATFS/Target/usbh_diskio.o
- .debug_macro   0x0000000000029ed2       0x7c ./FATFS/Target/usbh_diskio.o
- .debug_macro   0x0000000000029f4e      0x471 ./Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc.o
- .debug_macro   0x000000000002a3bf      0x473 ./Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc_bot.o
- .debug_macro   0x000000000002a832       0x5f ./Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc_bot.o
- .debug_macro   0x000000000002a891      0x471 ./Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc_scsi.o
- .debug_macro   0x000000000002ad02      0x45a ./Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.o
- .debug_macro   0x000000000002b15c      0x452 ./Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.o
- .debug_macro   0x000000000002b5ae       0x28 ./Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.o
- .debug_macro   0x000000000002b5d6      0x44c ./Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ioreq.o
- .debug_macro   0x000000000002ba22      0x44c ./Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_pipes.o
- .debug_macro   0x000000000002be6e      0x4af ./Middlewares/Third_Party/FatFs/src/ff_gen_drv.o
- .debug_macro   0x000000000002c31d      0x473 ./USB_HOST/App/usb_host.o
- .debug_macro   0x000000000002c790      0x45c ./USB_HOST/Target/usbh_conf.o
- .debug_macro   0x000000000002cbec      0x243 ./USB_HOST/Target/usbh_platform.o
+ .debug_macro   0x0000000000023eb8      0x41e ./Core/Src/controllers/sessionController.o
+ .debug_macro   0x00000000000242d6       0x10 ./Core/Src/controllers/sessionController.o
+ .debug_macro   0x00000000000242e6       0x10 ./Core/Src/controllers/sessionController.o
+ .debug_macro   0x00000000000242f6       0x22 ./Core/Src/controllers/sessionController.o
+ .debug_macro   0x0000000000024318       0x16 ./Core/Src/controllers/sessionController.o
+ .debug_macro   0x000000000002432e       0x10 ./Core/Src/controllers/sessionController.o
+ .debug_macro   0x000000000002433e       0x10 ./Core/Src/controllers/sessionController.o
+ .debug_macro   0x000000000002434e       0x35 ./Core/Src/controllers/sessionController.o
+ .debug_macro   0x0000000000024383      0x12c ./Core/Src/controllers/sessionController.o
+ .debug_macro   0x00000000000244af      0x24b ./Core/Src/drivers/accel_LIS3DH_driver.o
+ .debug_macro   0x00000000000246fa      0x25a ./Core/Src/drivers/gyro_I3G450D_driver.o
+ .debug_macro   0x0000000000024954      0x458 ./Core/Src/drivers/gyro_I3G450D_driver.o
+ .debug_macro   0x0000000000024dac      0x50f ./Core/Src/main.o
+ .debug_macro   0x00000000000252bb       0x16 ./Core/Src/main.o
+ .debug_macro   0x00000000000252d1       0x73 ./Core/Src/main.o
+ .debug_macro   0x0000000000025344      0x233 ./Core/Src/main.o
+ .debug_macro   0x0000000000025577       0x2e ./Core/Src/main.o
+ .debug_macro   0x00000000000255a5       0x2e ./Core/Src/main.o
+ .debug_macro   0x00000000000255d3       0x28 ./Core/Src/main.o
+ .debug_macro   0x00000000000255fb       0x65 ./Core/Src/main.o
+ .debug_macro   0x0000000000025660       0xeb ./Core/Src/main.o
+ .debug_macro   0x000000000002574b       0x34 ./Core/Src/main.o
+ .debug_macro   0x000000000002577f       0xf9 ./Core/Src/main.o
+ .debug_macro   0x0000000000025878       0xdb ./Core/Src/main.o
+ .debug_macro   0x0000000000025953       0x8e ./Core/Src/main.o
+ .debug_macro   0x00000000000259e1       0x41 ./Core/Src/main.o
+ .debug_macro   0x0000000000025a22      0x463 ./Core/Src/retarget.o
+ .debug_macro   0x0000000000025e85       0x1c ./Core/Src/retarget.o
+ .debug_macro   0x0000000000025ea1       0x10 ./Core/Src/retarget.o
+ .debug_macro   0x0000000000025eb1      0x23b ./Core/Src/retarget.o
+ .debug_macro   0x00000000000260ec       0xc8 ./Core/Src/retarget.o
+ .debug_macro   0x00000000000261b4       0x7c ./Core/Src/retarget.o
+ .debug_macro   0x0000000000026230       0x17 ./Core/Src/retarget.o
+ .debug_macro   0x0000000000026247      0x118 ./Core/Src/retarget.o
+ .debug_macro   0x000000000002635f      0x189 ./Core/Src/retarget.o
+ .debug_macro   0x00000000000264e8       0x16 ./Core/Src/retarget.o
+ .debug_macro   0x00000000000264fe      0x132 ./Core/Src/retarget.o
+ .debug_macro   0x0000000000026630       0x1c ./Core/Src/retarget.o
+ .debug_macro   0x000000000002664c       0x10 ./Core/Src/retarget.o
+ .debug_macro   0x000000000002665c      0x23e ./Core/Src/stm32f4xx_hal_msp.o
+ .debug_macro   0x000000000002689a      0x248 ./Core/Src/stm32f4xx_it.o
+ .debug_macro   0x0000000000026ae2       0xff ./Core/Src/sysmem.o
+ .debug_macro   0x0000000000026be1      0x22f ./Core/Src/system_stm32f4xx.o
+ .debug_macro   0x0000000000026e10      0x1a8 ./Core/Src/util.o
+ .debug_macro   0x0000000000026fb8       0x97 ./Core/Src/util.o
+ .debug_macro   0x000000000002704f       0xfd ./Core/Src/util.o
+ .debug_macro   0x000000000002714c      0x28f ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.o
+ .debug_macro   0x00000000000273db      0x22f ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.o
+ .debug_macro   0x000000000002760a      0x22f ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_crc.o
+ .debug_macro   0x0000000000027839      0x235 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.o
+ .debug_macro   0x0000000000027a6e      0x235 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.o
+ .debug_macro   0x0000000000027ca3      0x22f ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_hcd.o
+ .debug_macro   0x0000000000027ed2      0x276 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.o
+ .debug_macro   0x0000000000028148      0x22f ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.o
+ .debug_macro   0x0000000000028377      0x253 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.o
+ .debug_macro   0x00000000000285ca      0x22f ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_sdram.o
+ .debug_macro   0x00000000000287f9      0x23e ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.o
+ .debug_macro   0x0000000000028a37      0x230 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.o
+ .debug_macro   0x0000000000028c67      0x22f ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.o
+ .debug_macro   0x0000000000028e96      0x230 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.o
+ .debug_macro   0x00000000000290c6      0x278 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_fmc.o
+ .debug_macro   0x000000000002933e      0x22f ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_usb.o
+ .debug_macro   0x000000000002956d      0x4c2 ./FATFS/App/fatfs.o
+ .debug_macro   0x0000000000029a2f      0x4bf ./FATFS/Target/usbh_diskio.o
+ .debug_macro   0x0000000000029eee       0x16 ./FATFS/Target/usbh_diskio.o
+ .debug_macro   0x0000000000029f04       0x7c ./FATFS/Target/usbh_diskio.o
+ .debug_macro   0x0000000000029f80      0x471 ./Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc.o
+ .debug_macro   0x000000000002a3f1      0x473 ./Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc_bot.o
+ .debug_macro   0x000000000002a864       0x5f ./Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc_bot.o
+ .debug_macro   0x000000000002a8c3      0x471 ./Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc_scsi.o
+ .debug_macro   0x000000000002ad34      0x45a ./Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.o
+ .debug_macro   0x000000000002b18e      0x452 ./Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.o
+ .debug_macro   0x000000000002b5e0       0x28 ./Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.o
+ .debug_macro   0x000000000002b608      0x44c ./Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ioreq.o
+ .debug_macro   0x000000000002ba54      0x44c ./Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_pipes.o
+ .debug_macro   0x000000000002bea0      0x4af ./Middlewares/Third_Party/FatFs/src/ff_gen_drv.o
+ .debug_macro   0x000000000002c34f      0x473 ./USB_HOST/App/usb_host.o
+ .debug_macro   0x000000000002c7c2      0x45c ./USB_HOST/Target/usbh_conf.o
+ .debug_macro   0x000000000002cc1e      0x243 ./USB_HOST/Target/usbh_platform.o
 
-.debug_line     0x0000000000000000    0x2b0dd
+.debug_line     0x0000000000000000    0x2b197
  .debug_line    0x0000000000000000      0xf0c ./Core/Src/console/console.o
  .debug_line    0x0000000000000f0c      0xad6 ./Core/Src/console/consoleCommands.o
  .debug_line    0x00000000000019e2      0xac0 ./Core/Src/console/consoleIo.o
  .debug_line    0x00000000000024a2      0x94f ./Core/Src/controllers/movementInputController.o
- .debug_line    0x0000000000002df1      0xe4a ./Core/Src/controllers/sessionController.o
- .debug_line    0x0000000000003c3b      0x972 ./Core/Src/drivers/accel_LIS3DH_driver.o
- .debug_line    0x00000000000045ad      0xba9 ./Core/Src/drivers/gyro_I3G450D_driver.o
- .debug_line    0x0000000000005156      0xff0 ./Core/Src/main.o
- .debug_line    0x0000000000006146      0xc22 ./Core/Src/retarget.o
- .debug_line    0x0000000000006d68      0xa2f ./Core/Src/stm32f4xx_hal_msp.o
- .debug_line    0x0000000000007797      0x8ad ./Core/Src/stm32f4xx_it.o
- .debug_line    0x0000000000008044      0x521 ./Core/Src/sysmem.o
- .debug_line    0x0000000000008565      0x824 ./Core/Src/system_stm32f4xx.o
- .debug_line    0x0000000000008d89      0x5f6 ./Core/Src/util.o
- .debug_line    0x000000000000937f       0x88 ./Core/Startup/startup_stm32f429zitx.o
- .debug_line    0x0000000000009407      0xac0 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.o
- .debug_line    0x0000000000009ec7      0xd39 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.o
- .debug_line    0x000000000000ac00      0x8e9 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_crc.o
- .debug_line    0x000000000000b4e9      0xfee ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.o
- .debug_line    0x000000000000c4d7      0xc26 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.o
- .debug_line    0x000000000000d0fd     0x1287 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_hcd.o
- .debug_line    0x000000000000e384     0x3a3f ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.o
- .debug_line    0x0000000000011dc3      0x81d ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.o
- .debug_line    0x00000000000125e0      0xe06 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.o
- .debug_line    0x00000000000133e6      0xe8a ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_sdram.o
- .debug_line    0x0000000000014270     0x1d14 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.o
- .debug_line    0x0000000000015f84     0x377e ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.o
- .debug_line    0x0000000000019702     0x1a87 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.o
- .debug_line    0x000000000001b189     0x2b2f ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.o
- .debug_line    0x000000000001dcb8      0xc4c ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_fmc.o
- .debug_line    0x000000000001e904     0x1b47 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_usb.o
- .debug_line    0x000000000002044b      0xb89 ./FATFS/App/fatfs.o
- .debug_line    0x0000000000020fd4      0xc6d ./FATFS/Target/usbh_diskio.o
- .debug_line    0x0000000000021c41     0x116f ./Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc.o
- .debug_line    0x0000000000022db0      0xdcf ./Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc_bot.o
- .debug_line    0x0000000000023b7f      0xdfb ./Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc_scsi.o
- .debug_line    0x000000000002497a     0x123d ./Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.o
- .debug_line    0x0000000000025bb7     0x1100 ./Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.o
- .debug_line    0x0000000000026cb7      0xb99 ./Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ioreq.o
- .debug_line    0x0000000000027850      0xb43 ./Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_pipes.o
- .debug_line    0x0000000000028393      0xc16 ./Middlewares/Third_Party/FatFs/src/ff_gen_drv.o
- .debug_line    0x0000000000028fa9      0xb52 ./USB_HOST/App/usb_host.o
- .debug_line    0x0000000000029afb      0xe0d ./USB_HOST/Target/usbh_conf.o
- .debug_line    0x000000000002a908      0x7d5 ./USB_HOST/Target/usbh_platform.o
+ .debug_line    0x0000000000002df1      0xf04 ./Core/Src/controllers/sessionController.o
+ .debug_line    0x0000000000003cf5      0x972 ./Core/Src/drivers/accel_LIS3DH_driver.o
+ .debug_line    0x0000000000004667      0xba9 ./Core/Src/drivers/gyro_I3G450D_driver.o
+ .debug_line    0x0000000000005210      0xff0 ./Core/Src/main.o
+ .debug_line    0x0000000000006200      0xc22 ./Core/Src/retarget.o
+ .debug_line    0x0000000000006e22      0xa2f ./Core/Src/stm32f4xx_hal_msp.o
+ .debug_line    0x0000000000007851      0x8ad ./Core/Src/stm32f4xx_it.o
+ .debug_line    0x00000000000080fe      0x521 ./Core/Src/sysmem.o
+ .debug_line    0x000000000000861f      0x824 ./Core/Src/system_stm32f4xx.o
+ .debug_line    0x0000000000008e43      0x5f6 ./Core/Src/util.o
+ .debug_line    0x0000000000009439       0x88 ./Core/Startup/startup_stm32f429zitx.o
+ .debug_line    0x00000000000094c1      0xac0 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.o
+ .debug_line    0x0000000000009f81      0xd39 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.o
+ .debug_line    0x000000000000acba      0x8e9 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_crc.o
+ .debug_line    0x000000000000b5a3      0xfee ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.o
+ .debug_line    0x000000000000c591      0xc26 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.o
+ .debug_line    0x000000000000d1b7     0x1287 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_hcd.o
+ .debug_line    0x000000000000e43e     0x3a3f ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.o
+ .debug_line    0x0000000000011e7d      0x81d ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.o
+ .debug_line    0x000000000001269a      0xe06 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.o
+ .debug_line    0x00000000000134a0      0xe8a ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_sdram.o
+ .debug_line    0x000000000001432a     0x1d14 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.o
+ .debug_line    0x000000000001603e     0x377e ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.o
+ .debug_line    0x00000000000197bc     0x1a87 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.o
+ .debug_line    0x000000000001b243     0x2b2f ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.o
+ .debug_line    0x000000000001dd72      0xc4c ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_fmc.o
+ .debug_line    0x000000000001e9be     0x1b47 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_usb.o
+ .debug_line    0x0000000000020505      0xb89 ./FATFS/App/fatfs.o
+ .debug_line    0x000000000002108e      0xc6d ./FATFS/Target/usbh_diskio.o
+ .debug_line    0x0000000000021cfb     0x116f ./Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc.o
+ .debug_line    0x0000000000022e6a      0xdcf ./Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc_bot.o
+ .debug_line    0x0000000000023c39      0xdfb ./Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc_scsi.o
+ .debug_line    0x0000000000024a34     0x123d ./Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.o
+ .debug_line    0x0000000000025c71     0x1100 ./Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.o
+ .debug_line    0x0000000000026d71      0xb99 ./Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ioreq.o
+ .debug_line    0x000000000002790a      0xb43 ./Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_pipes.o
+ .debug_line    0x000000000002844d      0xc16 ./Middlewares/Third_Party/FatFs/src/ff_gen_drv.o
+ .debug_line    0x0000000000029063      0xb52 ./USB_HOST/App/usb_host.o
+ .debug_line    0x0000000000029bb5      0xe0d ./USB_HOST/Target/usbh_conf.o
+ .debug_line    0x000000000002a9c2      0x7d5 ./USB_HOST/Target/usbh_platform.o
 
-.debug_str      0x0000000000000000    0xec0ed
+.debug_str      0x0000000000000000    0xec170
  .debug_str     0x0000000000000000    0xdd263 ./Core/Src/console/console.o
                                       0xdd5bb (size before relaxing)
  .debug_str     0x00000000000dd263      0x160 ./Core/Src/console/consoleCommands.o
@@ -10756,85 +10760,85 @@ LOAD /Applications/STM32CubeIDE.app/Contents/Eclipse/plugins/com.st.stm32cube.id
                                       0xddedb (size before relaxing)
  .debug_str     0x00000000000de445     0x1647 ./Core/Src/controllers/movementInputController.o
                                       0xdb55f (size before relaxing)
- .debug_str     0x00000000000dfa8c      0xc2c ./Core/Src/controllers/sessionController.o
-                                      0xdef6e (size before relaxing)
- .debug_str     0x00000000000e06b8      0x137 ./Core/Src/drivers/accel_LIS3DH_driver.o
+ .debug_str     0x00000000000dfa8c      0xcaf ./Core/Src/controllers/sessionController.o
+                                      0xdeff1 (size before relaxing)
+ .debug_str     0x00000000000e073b      0x137 ./Core/Src/drivers/accel_LIS3DH_driver.o
                                       0xda602 (size before relaxing)
- .debug_str     0x00000000000e07ef      0x38e ./Core/Src/drivers/gyro_I3G450D_driver.o
+ .debug_str     0x00000000000e0872      0x38e ./Core/Src/drivers/gyro_I3G450D_driver.o
                                       0xdb2f9 (size before relaxing)
- .debug_str     0x00000000000e0b7d     0x2ab3 ./Core/Src/main.o
+ .debug_str     0x00000000000e0c00     0x2ab3 ./Core/Src/main.o
                                       0xe2584 (size before relaxing)
- .debug_str     0x00000000000e3630     0x183e ./Core/Src/retarget.o
+ .debug_str     0x00000000000e36b3     0x183e ./Core/Src/retarget.o
                                       0xdfcba (size before relaxing)
- .debug_str     0x00000000000e4e6e      0x18b ./Core/Src/stm32f4xx_hal_msp.o
+ .debug_str     0x00000000000e4ef1      0x18b ./Core/Src/stm32f4xx_hal_msp.o
                                       0xdbfd6 (size before relaxing)
- .debug_str     0x00000000000e4ff9      0x4ac ./Core/Src/stm32f4xx_it.o
+ .debug_str     0x00000000000e507c      0x4ac ./Core/Src/stm32f4xx_it.o
                                       0xdb33c (size before relaxing)
- .debug_str     0x00000000000e54a5       0x6b ./Core/Src/sysmem.o
+ .debug_str     0x00000000000e5528       0x6b ./Core/Src/sysmem.o
                                        0x5df4 (size before relaxing)
- .debug_str     0x00000000000e5510       0xdb ./Core/Src/system_stm32f4xx.o
+ .debug_str     0x00000000000e5593       0xdb ./Core/Src/system_stm32f4xx.o
                                       0xd9ddf (size before relaxing)
- .debug_str     0x00000000000e55eb       0x37 ./Core/Src/util.o
+ .debug_str     0x00000000000e566e       0x37 ./Core/Src/util.o
                                        0x738a (size before relaxing)
- .debug_str     0x00000000000e5622       0x36 ./Core/Startup/startup_stm32f429zitx.o
+ .debug_str     0x00000000000e56a5       0x36 ./Core/Startup/startup_stm32f429zitx.o
                                          0xb6 (size before relaxing)
- .debug_str     0x00000000000e5658      0x632 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.o
+ .debug_str     0x00000000000e56db      0x632 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.o
                                       0xdaa02 (size before relaxing)
- .debug_str     0x00000000000e5c8a      0x31c ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.o
+ .debug_str     0x00000000000e5d0d      0x31c ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_cortex.o
                                       0xda6e7 (size before relaxing)
- .debug_str     0x00000000000e5fa6       0x8f ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_crc.o
+ .debug_str     0x00000000000e6029       0x8f ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_crc.o
                                       0xd9dfa (size before relaxing)
- .debug_str     0x00000000000e6035      0x315 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.o
+ .debug_str     0x00000000000e60b8      0x315 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.o
                                       0xda1e6 (size before relaxing)
- .debug_str     0x00000000000e634a       0xd2 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.o
+ .debug_str     0x00000000000e63cd       0xd2 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_gpio.o
                                       0xd9f5a (size before relaxing)
- .debug_str     0x00000000000e641c      0x545 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_hcd.o
+ .debug_str     0x00000000000e649f      0x545 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_hcd.o
                                       0xda5a9 (size before relaxing)
- .debug_str     0x00000000000e6961      0xa5f ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.o
+ .debug_str     0x00000000000e69e4      0xa5f ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c.o
                                       0xdad9c (size before relaxing)
- .debug_str     0x00000000000e73c0       0x3b ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.o
+ .debug_str     0x00000000000e7443       0x3b ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_i2c_ex.o
                                       0xda1ae (size before relaxing)
- .debug_str     0x00000000000e73fb      0x213 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.o
+ .debug_str     0x00000000000e747e      0x213 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_rcc.o
                                       0xda213 (size before relaxing)
- .debug_str     0x00000000000e760e      0x3cd ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_sdram.o
+ .debug_str     0x00000000000e7691      0x3cd ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_sdram.o
                                       0xda4ff (size before relaxing)
- .debug_str     0x00000000000e79db      0x531 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.o
+ .debug_str     0x00000000000e7a5e      0x531 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_spi.o
                                       0xda690 (size before relaxing)
- .debug_str     0x00000000000e7f0c      0xde9 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.o
+ .debug_str     0x00000000000e7f8f      0xde9 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.o
                                       0xdb146 (size before relaxing)
- .debug_str     0x00000000000e8cf5      0x493 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.o
+ .debug_str     0x00000000000e8d78      0x493 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.o
                                       0xda962 (size before relaxing)
- .debug_str     0x00000000000e9188      0x57f ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.o
+ .debug_str     0x00000000000e920b      0x57f ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_uart.o
                                       0xda79f (size before relaxing)
- .debug_str     0x00000000000e9707      0xa38 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_fmc.o
+ .debug_str     0x00000000000e978a      0xa38 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_fmc.o
                                       0xda9c9 (size before relaxing)
- .debug_str     0x00000000000ea13f      0x516 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_usb.o
+ .debug_str     0x00000000000ea1c2      0x516 ./Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_usb.o
                                       0xda6f6 (size before relaxing)
- .debug_str     0x00000000000ea655      0x1bb ./FATFS/App/fatfs.o
+ .debug_str     0x00000000000ea6d8      0x1bb ./FATFS/App/fatfs.o
                                       0xe086c (size before relaxing)
- .debug_str     0x00000000000ea810      0x9cc ./FATFS/Target/usbh_diskio.o
+ .debug_str     0x00000000000ea893      0x9cc ./FATFS/Target/usbh_diskio.o
                                       0xe11dd (size before relaxing)
- .debug_str     0x00000000000eb1dc      0x4b3 ./Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc.o
+ .debug_str     0x00000000000eb25f      0x4b3 ./Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc.o
                                       0xe0fb2 (size before relaxing)
- .debug_str     0x00000000000eb68f      0x1eb ./Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc_bot.o
+ .debug_str     0x00000000000eb712      0x1eb ./Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc_bot.o
                                       0xe0f26 (size before relaxing)
- .debug_str     0x00000000000eb87a       0x52 ./Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc_scsi.o
+ .debug_str     0x00000000000eb8fd       0x52 ./Middlewares/ST/STM32_USB_Host_Library/Class/MSC/Src/usbh_msc_scsi.o
                                       0xe0df0 (size before relaxing)
- .debug_str     0x00000000000eb8cc      0x316 ./Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.o
+ .debug_str     0x00000000000eb94f      0x316 ./Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_core.o
                                       0xe0584 (size before relaxing)
- .debug_str     0x00000000000ebbe2      0x1d6 ./Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.o
+ .debug_str     0x00000000000ebc65      0x1d6 ./Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ctlreq.o
                                       0xe0528 (size before relaxing)
- .debug_str     0x00000000000ebdb8       0xb2 ./Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ioreq.o
+ .debug_str     0x00000000000ebe3b       0xb2 ./Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_ioreq.o
                                       0xe032d (size before relaxing)
- .debug_str     0x00000000000ebe6a       0x80 ./Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_pipes.o
+ .debug_str     0x00000000000ebeed       0x80 ./Middlewares/ST/STM32_USB_Host_Library/Core/Src/usbh_pipes.o
                                       0xe02c3 (size before relaxing)
- .debug_str     0x00000000000ebeea       0xba ./Middlewares/Third_Party/FatFs/src/ff_gen_drv.o
+ .debug_str     0x00000000000ebf6d       0xba ./Middlewares/Third_Party/FatFs/src/ff_gen_drv.o
                                       0xe07cc (size before relaxing)
- .debug_str     0x00000000000ebfa4       0x97 ./USB_HOST/App/usb_host.o
+ .debug_str     0x00000000000ec027       0x97 ./USB_HOST/App/usb_host.o
                                       0xe0999 (size before relaxing)
- .debug_str     0x00000000000ec03b       0x8f ./USB_HOST/Target/usbh_conf.o
+ .debug_str     0x00000000000ec0be       0x8f ./USB_HOST/Target/usbh_conf.o
                                       0xe122c (size before relaxing)
- .debug_str     0x00000000000ec0ca       0x23 ./USB_HOST/Target/usbh_platform.o
+ .debug_str     0x00000000000ec14d       0x23 ./USB_HOST/Target/usbh_platform.o
                                       0xd9cdb (size before relaxing)
 
 .comment        0x0000000000000000       0x50

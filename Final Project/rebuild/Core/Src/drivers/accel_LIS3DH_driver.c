@@ -142,6 +142,10 @@ void AccelGetData(int16_t *acelX, int16_t*acelY, int16_t*acelZ)
 	*acelZ = LastZAcel;
 
 }
+HAL_StatusTypeDef Lis3dhInteruptSetup()
+{
+
+}
 void errorHandler()
 {
 	// handle the error

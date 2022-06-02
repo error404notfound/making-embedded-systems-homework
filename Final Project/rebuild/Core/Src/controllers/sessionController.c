@@ -13,6 +13,8 @@
 #include <sessionController.h>
 #include "movementInputController.h"
 #include "visualOutputController.h"
+#include "breath_trainer_mode.h"
+#include "colour_change_mode.h"
 #include <stdio.h>
 #include "console.h"
 #include "retarget.h"
@@ -23,11 +25,13 @@
 #define MAX_STATE_TIMEOUT 1000
 int userID = 12345678;
 
+
 typedef int (*stateInit )(void);
 typedef int (*ledOutput)(void);
 typedef int (*stateProcess)(void);
 typedef enum { START, IDLE_AWAKE, DEEP_SLEEP, WAITING_FOR_SELECTION, LOAD_MODE, IN_MODE,CLI_MODE } state_t;
 typedef enum { IDEL_AWAKE_OUTPUT, SLEEP_OUTPUT, WAITING_FOR_INPUT, CLI_MODE_OUTPUT, LOADING_MODE_OUTPUT} output_t;
+typedef enum { BREATHING_TRAINER, COLOUR_CHANGE} modeSelection_t;
 
 
 typedef struct {
@@ -83,6 +87,7 @@ static stateTableEntry_t  stateTabel[]={
 };
 state_t currentState;
 state_t previouseState;
+modeSelection_t currentMode;
 uint32_t timeStateStarted;
 uint8_t buttonPressed =0;
 uint8_t shakeToWakeTriggered;
@@ -118,7 +123,20 @@ void SessionControllerProcess()
 // check to see if current state has reached it time out.
 	stateTableEntry_t current = stateTabel[currentState];
 	uint32_t timeout = current.timeout;
+	// special case for timeout while in mode we pull the time out from the mode we are in.
+	if(currentState == IN_MODE)
+	{
+		switch(currentMode){
+		case value1:
+		 //code to be executed;
+		 break;  //optional
+		case value2:
+		 //code to be executed;
+		 break;  //optional
+		......
 
+		default:
+	}
 
 
 
@@ -145,12 +163,7 @@ void SessionControllerProcess()
 	{
 		// shake to wake response.
 	}
-	// in mode
-	if( 1 == inMode )
-	{
-		// pass movement data to mode
 
-	}
 	else{
 		// run out put for current state
 		// run proccess for current state.
