@@ -926,4 +926,4 @@ VP_USB_HOST_VS_USB_HOST_MSC_HS.Mode=MSC_HS
 VP_USB_HOST_VS_USB_HOST_MSC_HS.Signal=USB_HOST_VS_USB_HOST_MSC_HS
 board=STM32F429I-DISC1
 boardIOC=true
-isbadioc=true
+isbadioc=false

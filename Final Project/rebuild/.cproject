@@ -230,4 +230,5 @@
 			<resource resourceType="PROJECT" workspacePath="/stone_subsytem_rebuild"/>
 		</configuration>
 	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets"/>
 </cproject>

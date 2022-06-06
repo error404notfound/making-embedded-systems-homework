@@ -26,7 +26,9 @@ extern movementData_t lastAccel;
 void MovementControllerInit(I2C_HandleTypeDef *I2Cxhandle,SPI_HandleTypeDef *SPIxHandle) {
 	// Accelrometor Init
 	Lis3dhInit(I2Cxhandle);
+
 	I3G450D_Init(SPIxHandle);
+
 
 
 }
@@ -34,6 +36,13 @@ int MovementControllerProcess(){
 	// Gets for the gyroscope.
 	 I3G450D_loop();
 	 Lis3dhGetAcc();
+	int16_t acelX,acelY,acelZ;
+	AccelGetData(&acelX, &acelY, &acelZ);
+	printf("%d,%d,%d \n",acelX,acelY,acelZ);
 
 	return 0;
+}
+gesture_t getInterruptType( sensor_t sensor ){
+
+
 }

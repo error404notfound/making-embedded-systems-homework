@@ -3,19 +3,24 @@
  *
  *  Created on: May 31, 2022
  *      Author: jennie.stenhouse
+ *      Session controller is the main state machine for the system.
+ *      It handles the incoming interrupts and also runs the movementControllerProcess
+ *      It passing output to the output controller.
+ *      Modes have there own state machines including timeouts which are detalied in there indvidual .c
+ *      I have tried to keep this as generic as possible so that new modes ( or states ) can be added with out having to change the way
+ *      the system runs. It also allows for the addition of other sensors and outputs  - ie if we wanted to have haptics added or captive touch
+ *      or to swap out sensors this section of the system could remain unchanged.
+ *
  */
-
-
-
-
 
 
 #include <sessionController.h>
 #include "movementInputController.h"
 #include "visualOutputController.h"
-#include "breath_trainer_mode.h"
 #include "colour_change_mode.h"
+#include "meditation_breathing_mode.h"
 #include <stdio.h>
+
 #include "console.h"
 #include "retarget.h"
 #include "util.h"
@@ -26,23 +31,35 @@
 int userID = 12345678;
 
 
-typedef int (*stateInit )(void);
+typedef int (*stateFunc )(void);
+typedef int (*modeFunc )(void);
 typedef int (*ledOutput)(void);
-typedef int (*stateProcess)(void);
+
+
 typedef enum { START, IDLE_AWAKE, DEEP_SLEEP, WAITING_FOR_SELECTION, LOAD_MODE, IN_MODE,CLI_MODE } state_t;
 typedef enum { IDEL_AWAKE_OUTPUT, SLEEP_OUTPUT, WAITING_FOR_INPUT, CLI_MODE_OUTPUT, LOADING_MODE_OUTPUT} output_t;
 typedef enum { BREATHING_TRAINER, COLOUR_CHANGE} modeSelection_t;
 
 
 typedef struct {
-	/*Button press Response */ stateInit onButtonPress;
-	/*Gesture recon response */ stateInit onGestureRecognize;
-	/*Shake to wake */ stateInit onShakeToWake;
+	/*Button press Response */ stateFunc onButtonPress;
+	/*Gesture recon response */ stateFunc onGestureRecognize;
+	/*Shake to wake */ stateFunc onShakeToWake;
 	/*LED output */ ledOutput LedOutput;
-	/*OnEnd */stateInit onEnd;
+	/*OnEnd */stateFunc onEnd;
 	/* timeout */ int timeout;
-	/* stateProcess */ stateProcess stateProcess;
+	/* stateProcess */ stateFunc stateProcess;
 }stateTableEntry_t;
+
+typedef struct{
+
+	modeFunc onStart;
+	modeFunc modeProcess;
+	modeFunc onEnd;
+	int timeout;
+
+}modeTableEntry_t;
+
 
 // set up functions for each state.
 int Start();
@@ -53,6 +70,7 @@ int LoadMode();
 int CliMode();
 int StartPreviouseMode();
 int InMode();
+
 // Process for each state
 int StartProcess();
 int IdleAwakeProcess();
@@ -70,7 +88,7 @@ int WaitingForInputOutput();
 int CliModeOutput();
 int ModeLoading();
 
-//Cli mode needs to go back to previouse state if it gets togled out of handled with in the cliMode
+
 
 // state table
 static stateTableEntry_t  stateTabel[]={
@@ -83,22 +101,32 @@ static stateTableEntry_t  stateTabel[]={
 /* IN_MODE */	{ &CliMode,			NULL, 				NULL,		NULL, 		&IdleAwake, 800, &InModeProcess },
 /* CLI_MODE */	{ &StartPreviouseMode,NULL, 			NULL,		NULL, 	&StartPreviouseMode, MAX_STATE_TIMEOUT, &CliModeProcess },
 
-
 };
+// these methods are defined in the modes headers.
+static modeTableEntry_t modeTable[]={
+	{ &colourChangeInit,&colourChangeProcess,&colourChangeOnEnd,COLOUR_CHANGE_MODE_TIMEOUT},
+	{ &meditationBreathingInit,&meditationBreathingProcess,&meditationBreathingOnEnd,MEDIATION_BREATHING_MODE_TIMEOUT}
+};
+// Basic state managment
 state_t currentState;
+
 state_t previouseState;
-modeSelection_t currentMode;
+//
+modeTableEntry_t currentMode;
+
 uint32_t timeStateStarted;
+
+
 uint8_t buttonPressed =0;
 uint8_t shakeToWakeTriggered;
 uint8_t gestureRecognized;
 uint8_t loggingToUsbEnabled;
-uint8_t inMode;
+
 uint8_t cliMode =0;
 int currentDebugMode=0;
-// struct for loggin
-// mode, time in mode
-TIM_HandleTypeDef * timerHandle;
+int accelerometorInterrupt = 0;
+
+TIM_HandleTypeDef * timerHandler;
 
 // change which userID is used in saving activity & usage data.
 void ChangeUser(uint8_t newUserID ){
@@ -111,6 +139,10 @@ void SessionControllerInit(I2C_HandleTypeDef *I2Cxhandle,SPI_HandleTypeDef *SPIx
 
 	MovementControllerInit(I2Cxhandle,SPIxHandle);
 	ConsoleInit(HUARTxHandler);
+
+	// fill mode table;
+	//getBreathModeTableEntry(&modeTable[0] );
+
 	currentState = START;
 	timeStateStarted = HAL_GetTick();
 
@@ -123,19 +155,14 @@ void SessionControllerProcess()
 // check to see if current state has reached it time out.
 	stateTableEntry_t current = stateTabel[currentState];
 	uint32_t timeout = current.timeout;
+
+	//out put for training model
+	MovementControllerProcess();
+
 	// special case for timeout while in mode we pull the time out from the mode we are in.
 	if(currentState == IN_MODE)
 	{
-		switch(currentMode){
-		case value1:
-		 //code to be executed;
-		 break;  //optional
-		case value2:
-		 //code to be executed;
-		 break;  //optional
-		......
 
-		default:
 	}
 
 
@@ -159,9 +186,12 @@ void SessionControllerProcess()
 		// get the gesture tag from MovementController.
 
 	}
-	if( 1 == shakeToWakeTriggered)
+	if( 1 == accelerometorInterrupt)
 	{
-		// shake to wake response.
+		// The interrupt has been triggered.
+		// get what interrupted it from movementController.
+		gesture_t gesture =  getInterruptType( ACCELEROMETER );
+
 	}
 
 	else{
@@ -234,6 +264,7 @@ int StartPreviouseMode(){
 int InMode()
 {
 	currentState = IN_MODE;
+
 	timeStateStarted = HAL_GetTick();
 	debugPrint(" State = InMode");
 	return 0;
@@ -264,7 +295,9 @@ int CliModeProcess(){
 }
 int StartPreviouseModeProcess(){return 0;}
 
-int InModeProcess(){return 0;}
+int InModeProcess(){
+	currentMode.modeProcess();
+	return 0;}
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
@@ -278,6 +311,10 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 	if(HAL_GPIO_ReadPin (userButtonPort, userButtonPin)==GPIO_PIN_SET){
 
 		buttonPressed = 1;
+	}
+	if( GPIO_Pin == GPIO_PIN_8)
+	{
+		accelerometorInterrupt = 1;
 	}
 
 }

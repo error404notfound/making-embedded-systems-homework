@@ -25,6 +25,7 @@ uint16_t  LastYAcel;
 uint16_t  LastZAcel;
 
 void errorHandler();
+HAL_StatusTypeDef Lis3dhInteruptSetup();
 
 uint8_t LIS3DH_readReg(uint8_t lis3dhReg){
 
@@ -40,7 +41,7 @@ void LIS3DH_writeReg(uint8_t lis3dhReg, uint8_t lis3dhValue)
 
 
 
-void Lis3dhInit(I2C_HandleTypeDef *I2Cxhandle){
+HAL_StatusTypeDef Lis3dhInit(I2C_HandleTypeDef *I2Cxhandle){
 /*Once the device is powered up, it automatically downloads the calibration coefficients from
 the embedded flash to the internal registers. When the boot procedure is completed, i.e.
 after approximately 5 milliseconds, the device automatically enters power-down mode. To
@@ -81,7 +82,7 @@ LPen bit in CTRL_REG1, enable at least one of the axes and select the preferred 
 				ret = HAL_I2C_Master_Receive(I2Cx, LIS3DH_ADDR, reciveBuff, 2, HAL_MAX_DELAY);
 
 				sendBuff[0] = LIS3DH_REG_CTRL1;
-				sendBuff[1] = 0x57;
+				sendBuff[1] = LIS3DH_ON_100HZ;
 				ret = HAL_I2C_Master_Transmit(I2Cx, LIS3DH_ADDR, sendBuff, 2, HAL_MAX_DELAY);
 
 				//Read to make sure the write worked.
@@ -90,13 +91,15 @@ LPen bit in CTRL_REG1, enable at least one of the axes and select the preferred 
 				ret = HAL_I2C_Master_Transmit(I2Cx, LIS3DH_ADDR, sendBuff, 1, HAL_MAX_DELAY);
 				ret = HAL_I2C_Master_Receive(I2Cx, LIS3DH_ADDR, reciveBuff, 2, HAL_MAX_DELAY);
 
+				ret = Lis3dhInteruptSetup();
+
 
 	        }
 
 	    }
 
 
-
+return ret;
 
 
 
@@ -130,6 +133,9 @@ HAL_StatusTypeDef Lis3dhGetAcc(){
 	  val[2] = (int16_t)reciveBuff[5];
 	  val[2] = (val[2] * 256) + (int16_t)reciveBuff[4];
 
+	  LastXAcel = val[0];
+	  LastYAcel = val[1];
+	  LastZAcel = val[2];
 
 	return ret;
 }
@@ -144,6 +150,16 @@ void AccelGetData(int16_t *acelX, int16_t*acelY, int16_t*acelZ)
 }
 HAL_StatusTypeDef Lis3dhInteruptSetup()
 {
+	HAL_StatusTypeDef ret = HAL_OK;
+	uint8_t sendBuff[2];
+	uint8_t reciveBuff[12];
+	// set the double tap interrupt
+
+	sendBuff[0] = LIS3DH_REG_CTRL1;
+	sendBuff[1] = 0x57;
+	ret = HAL_I2C_Master_Transmit(I2Cx, LIS3DH_ADDR, sendBuff, 2, HAL_MAX_DELAY);
+
+	return ret;
 
 }
 void errorHandler()

@@ -1,5 +1,6 @@
-../Core/Src/util.c:15:6:debugPrint	16	static
-../Core/Src/util.c:23:6:setUserDebugLogging	16	static
-../Core/Src/util.c:27:5:getDebugLogging	4	static
-../Core/Src/util.c:31:6:pauseDebugLogging	4	static
-../Core/Src/util.c:32:6:resumeDebugLogging	4	static
+../Core/Src/util.c:16:6:debugPrint	16	static
+../Core/Src/util.c:24:6:setUserDebugLogging	16	static
+../Core/Src/util.c:28:5:getDebugLogging	4	static
+../Core/Src/util.c:32:6:pauseDebugLogging	4	static
+../Core/Src/util.c:33:6:resumeDebugLogging	4	static
+../Core/Src/util.c:34:6:errorHandling	24	static

@@ -1,0 +1,3 @@
+../Core/Src/modes/colour_change_mode.c:13:5:colourChangeInit	4	static
+../Core/Src/modes/colour_change_mode.c:17:5:colourChangeProcess	4	static
+../Core/Src/modes/colour_change_mode.c:20:5:colourChangeOnEnd	4	static

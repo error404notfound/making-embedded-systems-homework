@@ -1,0 +1,3 @@
+../Core/Src/drivers/gyro_I3G450D_driver.c:90:6:I3G450D_Init	16	static
+../Core/Src/drivers/gyro_I3G450D_driver.c:144:6:I3G450D_loop	104	static
+../Core/Src/drivers/gyro_I3G450D_driver.c:358:6:GyroGetData	24	static

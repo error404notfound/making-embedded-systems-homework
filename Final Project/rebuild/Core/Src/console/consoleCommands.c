@@ -19,7 +19,12 @@ static eCommandResult_T ConsoleCommandVer(const char buffer[]);
 static eCommandResult_T ConsoleCommandHelp(const char buffer[]);
 static eCommandResult_T ConsoleCommandParamExampleInt16(const char buffer[]);
 static eCommandResult_T ConsoleCommandParamExampleHexUint16(const char buffer[]);
+
+// these are the commands specific to the stone subsystem.
 static eCommandResult_T ConsoleCommandDebugPrint(const char buffer[]);
+static eCommandResult_T ConsoleCommandSetMode(const char buffer[]);
+static eCommandResult_T ConsoleCommandSetState(const char buffer[]);
+static eCommandResult_T ConsoleCommandSetStateTimeout(const char buffer[]);
 
 static const sConsoleCommandTable_T mConsoleCommandTable[] =
 {
@@ -28,7 +33,10 @@ static const sConsoleCommandTable_T mConsoleCommandTable[] =
 	{"ver", &ConsoleCommandVer, HELP("Get the version string")},
 	{"int", &ConsoleCommandParamExampleInt16, HELP("How to get a signed int16 from params list: int -321")},
 	{"u16h", &ConsoleCommandParamExampleHexUint16, HELP("How to get a hex u16 from the params list: u16h aB12")},
-	{"debug", &ConsoleCommandDebugPrint, HELP("Toggle Debug output")},
+	{"debug", &ConsoleCommandDebugPrint, HELP("Toggle Debug output on or off")},
+	{"setMode",&ConsoleCommandSetMode, HELP("Set the Mode see documentation for options")},
+	{"setState",&ConsoleCommandSetState, HELP("Set the State see documentation for options")},
+	{"setTimeout" ,&ConsoleCommandSetStateTimeout, HELP("Set the time out in milliseconds for the choosen state format state name : timeout")},
 
 
 
@@ -116,7 +124,7 @@ static eCommandResult_T ConsoleCommandDebugPrint(const char buffer[])
 	// this makes funciton about the expected input. values that have n as the second letter will also trigger debug on.
 	// All though it's great input sanitisation it's okay for this.
 	char command[5] ={0};
-	result = ConsoleReceiveParamString(buffer, 1, &command);
+	result = ConsoleReceiveParamString(buffer, 1, command);
 	char trigger = command[1];
 	if ('n'==trigger)
 	{
@@ -136,4 +144,19 @@ static eCommandResult_T ConsoleCommandDebugPrint(const char buffer[])
 	return result;
 
 }
+static eCommandResult_T ConsoleCommandSetMode(const char buffer[]){
 
+	eCommandResult_T result = COMMAND_SUCCESS;
+	char command[5] ={0};
+	// get the mode they want to set.
+	result = ConsoleReceiveParamString(buffer, 1, command);
+	return result;
+}
+static eCommandResult_T ConsoleCommandSetState(const char buffer[]){
+	eCommandResult_T result = COMMAND_SUCCESS;
+	char command[5] ={0};
+	result = ConsoleReceiveParamString(buffer, 1, command);
+
+	return result;
+}
+static eCommandResult_T ConsoleCommandSetStateTimeout(const char buffer[]){}

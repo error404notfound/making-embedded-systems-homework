@@ -1,7 +1,10 @@
-../Core/Src/console/consoleCommands.c:38:25:ConsoleCommandComment	16	static
-../Core/Src/console/consoleCommands.c:45:25:ConsoleCommandHelp	32	static
-../Core/Src/console/consoleCommands.c:66:25:ConsoleCommandParamExampleInt16	24	static
-../Core/Src/console/consoleCommands.c:82:25:ConsoleCommandParamExampleHexUint16	24	static
-../Core/Src/console/consoleCommands.c:96:25:ConsoleCommandVer	24	static
-../Core/Src/console/consoleCommands.c:108:31:ConsoleCommandsGetTable	4	static
-../Core/Src/console/consoleCommands.c:113:25:ConsoleCommandDebugPrint	24	static
+../Core/Src/console/consoleCommands.c:46:25:ConsoleCommandComment	16	static
+../Core/Src/console/consoleCommands.c:53:25:ConsoleCommandHelp	32	static
+../Core/Src/console/consoleCommands.c:74:25:ConsoleCommandParamExampleInt16	24	static
+../Core/Src/console/consoleCommands.c:90:25:ConsoleCommandParamExampleHexUint16	24	static
+../Core/Src/console/consoleCommands.c:104:25:ConsoleCommandVer	24	static
+../Core/Src/console/consoleCommands.c:116:31:ConsoleCommandsGetTable	4	static
+../Core/Src/console/consoleCommands.c:121:25:ConsoleCommandDebugPrint	24	static
+../Core/Src/console/consoleCommands.c:147:25:ConsoleCommandSetMode	24	static
+../Core/Src/console/consoleCommands.c:155:25:ConsoleCommandSetState	24	static
+../Core/Src/console/consoleCommands.c:162:25:ConsoleCommandSetStateTimeout	16	static

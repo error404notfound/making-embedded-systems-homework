@@ -1,2 +1,3 @@
 ../Core/Src/controllers/movementInputController.c:26:6:MovementControllerInit	16	static
-../Core/Src/controllers/movementInputController.c:33:5:MovementControllerProcess	8	static
+../Core/Src/controllers/movementInputController.c:35:5:MovementControllerProcess	16	static
+../Core/Src/controllers/movementInputController.c:45:11:getInterruptType	16	static

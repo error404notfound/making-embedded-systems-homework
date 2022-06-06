@@ -39,8 +39,9 @@ Core/Src/controllers/sessionController.o: \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usb.h \
  /Users/jennie.stenhouse/Documents/LEARNING/MAKING\ EMBEDDED\ SYSTEMS/making-embedded-systems-homework/Final\ Project/rebuild/Core/Inc/controllers/movementInputController.h \
  /Users/jennie.stenhouse/Documents/LEARNING/MAKING\ EMBEDDED\ SYSTEMS/making-embedded-systems-homework/Final\ Project/rebuild/Core/Inc/controllers/visualOutputController.h \
- /Users/jennie.stenhouse/Documents/LEARNING/MAKING\ EMBEDDED\ SYSTEMS/making-embedded-systems-homework/Final\ Project/rebuild/Core/Inc/modes/breath_trainer_mode.h \
  /Users/jennie.stenhouse/Documents/LEARNING/MAKING\ EMBEDDED\ SYSTEMS/making-embedded-systems-homework/Final\ Project/rebuild/Core/Inc/modes/colour_change_mode.h \
+ /Users/jennie.stenhouse/Documents/LEARNING/MAKING\ EMBEDDED\ SYSTEMS/making-embedded-systems-homework/Final\ Project/rebuild/Core/Inc/modes/mode_template.h \
+ /Users/jennie.stenhouse/Documents/LEARNING/MAKING\ EMBEDDED\ SYSTEMS/making-embedded-systems-homework/Final\ Project/rebuild/Core/Inc/modes/meditation_breathing_mode.h \
  /Users/jennie.stenhouse/Documents/LEARNING/MAKING\ EMBEDDED\ SYSTEMS/making-embedded-systems-homework/Final\ Project/rebuild/Core/Inc/console/console.h \
  ../Core/Inc/retarget.h ../Core/Inc/util.h
 /Users/jennie.stenhouse/Documents/LEARNING/MAKING\ EMBEDDED\ SYSTEMS/making-embedded-systems-homework/Final\ Project/rebuild/Core/Inc/controllers/sessionController.h:
@@ -82,8 +83,9 @@ Core/Src/controllers/sessionController.o: \
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usb.h:
 /Users/jennie.stenhouse/Documents/LEARNING/MAKING\ EMBEDDED\ SYSTEMS/making-embedded-systems-homework/Final\ Project/rebuild/Core/Inc/controllers/movementInputController.h:
 /Users/jennie.stenhouse/Documents/LEARNING/MAKING\ EMBEDDED\ SYSTEMS/making-embedded-systems-homework/Final\ Project/rebuild/Core/Inc/controllers/visualOutputController.h:
-/Users/jennie.stenhouse/Documents/LEARNING/MAKING\ EMBEDDED\ SYSTEMS/making-embedded-systems-homework/Final\ Project/rebuild/Core/Inc/modes/breath_trainer_mode.h:
 /Users/jennie.stenhouse/Documents/LEARNING/MAKING\ EMBEDDED\ SYSTEMS/making-embedded-systems-homework/Final\ Project/rebuild/Core/Inc/modes/colour_change_mode.h:
+/Users/jennie.stenhouse/Documents/LEARNING/MAKING\ EMBEDDED\ SYSTEMS/making-embedded-systems-homework/Final\ Project/rebuild/Core/Inc/modes/mode_template.h:
+/Users/jennie.stenhouse/Documents/LEARNING/MAKING\ EMBEDDED\ SYSTEMS/making-embedded-systems-homework/Final\ Project/rebuild/Core/Inc/modes/meditation_breathing_mode.h:
 /Users/jennie.stenhouse/Documents/LEARNING/MAKING\ EMBEDDED\ SYSTEMS/making-embedded-systems-homework/Final\ Project/rebuild/Core/Inc/console/console.h:
 ../Core/Inc/retarget.h:
 ../Core/Inc/util.h:

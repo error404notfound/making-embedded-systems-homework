@@ -1,7 +1,8 @@
-../Core/Src/drivers/accel_LIS3DH_driver.c:29:9:LIS3DH_readReg	16	static
-../Core/Src/drivers/accel_LIS3DH_driver.c:35:6:LIS3DH_writeReg	16	static
-../Core/Src/drivers/accel_LIS3DH_driver.c:43:6:Lis3dhInit	40	static
-../Core/Src/drivers/accel_LIS3DH_driver.c:105:19:Lis3dhGetAcc	40	static
-../Core/Src/drivers/accel_LIS3DH_driver.c:136:6:Lis3dhSetRange	16	static
-../Core/Src/drivers/accel_LIS3DH_driver.c:138:6:AccelGetData	24	static
-../Core/Src/drivers/accel_LIS3DH_driver.c:145:6:errorHandler	4	static
+../Core/Src/drivers/accel_LIS3DH_driver.c:30:9:LIS3DH_readReg	16	static
+../Core/Src/drivers/accel_LIS3DH_driver.c:36:6:LIS3DH_writeReg	16	static
+../Core/Src/drivers/accel_LIS3DH_driver.c:44:19:Lis3dhInit	40	static
+../Core/Src/drivers/accel_LIS3DH_driver.c:108:19:Lis3dhGetAcc	40	static
+../Core/Src/drivers/accel_LIS3DH_driver.c:142:6:Lis3dhSetRange	16	static
+../Core/Src/drivers/accel_LIS3DH_driver.c:144:6:AccelGetData	24	static
+../Core/Src/drivers/accel_LIS3DH_driver.c:151:19:Lis3dhInteruptSetup	32	static
+../Core/Src/drivers/accel_LIS3DH_driver.c:165:6:errorHandler	4	static

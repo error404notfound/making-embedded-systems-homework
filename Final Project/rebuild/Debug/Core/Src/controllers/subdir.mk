@@ -7,16 +7,19 @@
 C_SRCS += \
 ../Core/Src/controllers/movementInputController.c \
 ../Core/Src/controllers/sessionController.c \
+../Core/Src/controllers/usbController.c \
 ../Core/Src/controllers/visualOutputController.c 
 
 OBJS += \
 ./Core/Src/controllers/movementInputController.o \
 ./Core/Src/controllers/sessionController.o \
+./Core/Src/controllers/usbController.o \
 ./Core/Src/controllers/visualOutputController.o 
 
 C_DEPS += \
 ./Core/Src/controllers/movementInputController.d \
 ./Core/Src/controllers/sessionController.d \
+./Core/Src/controllers/usbController.d \
 ./Core/Src/controllers/visualOutputController.d 
 
 
@@ -27,7 +30,7 @@ Core/Src/controllers/%.o Core/Src/controllers/%.su: ../Core/Src/controllers/%.c 
 clean: clean-Core-2f-Src-2f-controllers
 
 clean-Core-2f-Src-2f-controllers:
-	-$(RM) ./Core/Src/controllers/movementInputController.d ./Core/Src/controllers/movementInputController.o ./Core/Src/controllers/movementInputController.su ./Core/Src/controllers/sessionController.d ./Core/Src/controllers/sessionController.o ./Core/Src/controllers/sessionController.su ./Core/Src/controllers/visualOutputController.d ./Core/Src/controllers/visualOutputController.o ./Core/Src/controllers/visualOutputController.su
+	-$(RM) ./Core/Src/controllers/movementInputController.d ./Core/Src/controllers/movementInputController.o ./Core/Src/controllers/movementInputController.su ./Core/Src/controllers/sessionController.d ./Core/Src/controllers/sessionController.o ./Core/Src/controllers/sessionController.su ./Core/Src/controllers/usbController.d ./Core/Src/controllers/usbController.o ./Core/Src/controllers/usbController.su ./Core/Src/controllers/visualOutputController.d ./Core/Src/controllers/visualOutputController.o ./Core/Src/controllers/visualOutputController.su
 
 .PHONY: clean-Core-2f-Src-2f-controllers
 
