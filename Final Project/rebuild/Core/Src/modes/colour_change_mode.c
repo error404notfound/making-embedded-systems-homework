@@ -10,6 +10,22 @@
 
 #include "colour_change_mode.h"
 
+// private functions.
+
+int breathingIn();
+int breathHold();
+int breathingOut();
+
+void breathingInProcess();
+void breathHoldProcess();
+void breathingOutProcess();
+
+void breathingInOutput();
+void breathHoldOutput();
+void breaingOutOutput();
+
+// internal state table
+static stateTableEntry_t  stateTabel[]={};
 int colourChangeInit(){
 
 	return 0;
