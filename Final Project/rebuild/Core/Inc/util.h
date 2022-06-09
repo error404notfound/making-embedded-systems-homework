@@ -15,7 +15,7 @@
 
 
 #define VERSION_STRING "StoneCode 0.0.0.1"
-typedef enum { SENSOR_INIT_ERROR,SENSOR_READ_ERROR, CONSOLE_BASED_ERROR, HAL_BASED_ERROR } stoneError_t;
+typedef enum { SENSOR_INIT_ERROR,SENSOR_READ_ERROR, CONSOLE_BASED_ERROR, HAL_BASED_ERROR,NO_ERROR, FILE_ERROR } stoneError_t;
 
 
 void debugPrint(char * buffer);

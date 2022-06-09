@@ -25,7 +25,7 @@ void breathHoldOutput();
 void breaingOutOutput();
 
 // internal state table
-static stateTableEntry_t  stateTabel[]={};
+//static stateTableEntry_t  stateTabel[]={};
 int colourChangeInit(){
 
 	return 0;

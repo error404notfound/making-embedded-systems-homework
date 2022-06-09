@@ -6,15 +6,21 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
 ../Core/Src/drivers/accel_LIS3DH_driver.c \
-../Core/Src/drivers/gyro_I3G450D_driver.c 
+../Core/Src/drivers/file_USB_driver.c \
+../Core/Src/drivers/gyro_I3G450D_driver.c \
+../Core/Src/drivers/leds_WS2812_driver.c 
 
 OBJS += \
 ./Core/Src/drivers/accel_LIS3DH_driver.o \
-./Core/Src/drivers/gyro_I3G450D_driver.o 
+./Core/Src/drivers/file_USB_driver.o \
+./Core/Src/drivers/gyro_I3G450D_driver.o \
+./Core/Src/drivers/leds_WS2812_driver.o 
 
 C_DEPS += \
 ./Core/Src/drivers/accel_LIS3DH_driver.d \
-./Core/Src/drivers/gyro_I3G450D_driver.d 
+./Core/Src/drivers/file_USB_driver.d \
+./Core/Src/drivers/gyro_I3G450D_driver.d \
+./Core/Src/drivers/leds_WS2812_driver.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
@@ -24,7 +30,7 @@ Core/Src/drivers/%.o Core/Src/drivers/%.su: ../Core/Src/drivers/%.c Core/Src/dri
 clean: clean-Core-2f-Src-2f-drivers
 
 clean-Core-2f-Src-2f-drivers:
-	-$(RM) ./Core/Src/drivers/accel_LIS3DH_driver.d ./Core/Src/drivers/accel_LIS3DH_driver.o ./Core/Src/drivers/accel_LIS3DH_driver.su ./Core/Src/drivers/gyro_I3G450D_driver.d ./Core/Src/drivers/gyro_I3G450D_driver.o ./Core/Src/drivers/gyro_I3G450D_driver.su
+	-$(RM) ./Core/Src/drivers/accel_LIS3DH_driver.d ./Core/Src/drivers/accel_LIS3DH_driver.o ./Core/Src/drivers/accel_LIS3DH_driver.su ./Core/Src/drivers/file_USB_driver.d ./Core/Src/drivers/file_USB_driver.o ./Core/Src/drivers/file_USB_driver.su ./Core/Src/drivers/gyro_I3G450D_driver.d ./Core/Src/drivers/gyro_I3G450D_driver.o ./Core/Src/drivers/gyro_I3G450D_driver.su ./Core/Src/drivers/leds_WS2812_driver.d ./Core/Src/drivers/leds_WS2812_driver.o ./Core/Src/drivers/leds_WS2812_driver.su
 
 .PHONY: clean-Core-2f-Src-2f-drivers
 

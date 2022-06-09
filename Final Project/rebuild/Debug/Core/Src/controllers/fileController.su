@@ -1,0 +1,8 @@
+../Core/Src/controllers/fileController.c:18:14:FileControllerInit	16	static
+../Core/Src/controllers/fileController.c:29:14:loadUser	24	static
+../Core/Src/controllers/fileController.c:33:14:saveUser	24	static
+../Core/Src/controllers/fileController.c:37:14:logSessionData	16	static
+../Core/Src/controllers/fileController.c:41:14:saveSessionData	16	static
+../Core/Src/controllers/fileController.c:45:14:logMovementData	16	static
+../Core/Src/controllers/fileController.c:49:14:saveMovementData	16	static
+../Core/Src/controllers/fileController.c:53:14:saveDebugPinData	24	static

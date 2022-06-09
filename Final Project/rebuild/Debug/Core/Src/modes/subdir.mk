@@ -5,13 +5,16 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-../Core/Src/modes/colour_change_mode.c 
+../Core/Src/modes/colour_change_mode.c \
+../Core/Src/modes/meditation_breathing_mode.c 
 
 OBJS += \
-./Core/Src/modes/colour_change_mode.o 
+./Core/Src/modes/colour_change_mode.o \
+./Core/Src/modes/meditation_breathing_mode.o 
 
 C_DEPS += \
-./Core/Src/modes/colour_change_mode.d 
+./Core/Src/modes/colour_change_mode.d \
+./Core/Src/modes/meditation_breathing_mode.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
@@ -21,7 +24,7 @@ Core/Src/modes/%.o Core/Src/modes/%.su: ../Core/Src/modes/%.c Core/Src/modes/sub
 clean: clean-Core-2f-Src-2f-modes
 
 clean-Core-2f-Src-2f-modes:
-	-$(RM) ./Core/Src/modes/colour_change_mode.d ./Core/Src/modes/colour_change_mode.o ./Core/Src/modes/colour_change_mode.su
+	-$(RM) ./Core/Src/modes/colour_change_mode.d ./Core/Src/modes/colour_change_mode.o ./Core/Src/modes/colour_change_mode.su ./Core/Src/modes/meditation_breathing_mode.d ./Core/Src/modes/meditation_breathing_mode.o ./Core/Src/modes/meditation_breathing_mode.su
 
 .PHONY: clean-Core-2f-Src-2f-modes
 

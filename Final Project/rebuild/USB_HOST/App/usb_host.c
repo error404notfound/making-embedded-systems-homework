@@ -35,7 +35,7 @@
 
 /* USER CODE BEGIN PFP */
 /* Private function prototypes -----------------------------------------------*/
-
+extern ApplicationTypeDef getUSBState();
 /* USER CODE END PFP */
 
 /* USB Host core handle declaration */
@@ -58,7 +58,7 @@ static void USBH_UserProcess(USBH_HandleTypeDef *phost, uint8_t id);
  * -- Insert your external function declaration here --
  */
 /* USER CODE BEGIN 1 */
-
+extern ApplicationTypeDef getUSBState(){return Appli_state;}
 /* USER CODE END 1 */
 
 /**
@@ -114,6 +114,7 @@ static void USBH_UserProcess  (USBH_HandleTypeDef *phost, uint8_t id)
 
   case HOST_USER_CLASS_ACTIVE:
   Appli_state = APPLICATION_READY;
+  //set flag to be ready
   break;
 
   case HOST_USER_CONNECTION:

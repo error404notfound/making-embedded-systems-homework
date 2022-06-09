@@ -38,7 +38,7 @@ int MovementControllerProcess(){
 	 Lis3dhGetAcc();
 	int16_t acelX,acelY,acelZ;
 	AccelGetData(&acelX, &acelY, &acelZ);
-	printf("%d,%d,%d \n",acelX,acelY,acelZ);
+	//printf("%d,%d,%d \n",acelX,acelY,acelZ);
 
 	return 0;
 }

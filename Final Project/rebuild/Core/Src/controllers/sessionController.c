@@ -13,17 +13,23 @@
  *
  */
 
-
+#include <stdio.h>
+// controllers.
 #include <sessionController.h>
 #include "movementInputController.h"
 #include "visualOutputController.h"
+#include "fileController.h"
+// modes
 #include "colour_change_mode.h"
 #include "meditation_breathing_mode.h"
-#include <stdio.h>
 
+// utilities
 #include "console.h"
 #include "retarget.h"
 #include "util.h"
+
+// user
+#include "user.h"
 
 
 // private varaibles.
@@ -128,10 +134,7 @@ int accelerometorInterrupt = 0;
 
 TIM_HandleTypeDef * timerHandler;
 
-// change which userID is used in saving activity & usage data.
-void ChangeUser(uint8_t newUserID ){
-	userID = newUserID;
-}
+
 
 void SessionControllerInit(I2C_HandleTypeDef *I2Cxhandle,SPI_HandleTypeDef *SPIxHandle,UART_HandleTypeDef * HUARTxHandler)
 {
@@ -139,17 +142,18 @@ void SessionControllerInit(I2C_HandleTypeDef *I2Cxhandle,SPI_HandleTypeDef *SPIx
 
 	MovementControllerInit(I2Cxhandle,SPIxHandle);
 	ConsoleInit(HUARTxHandler);
-
-	// fill mode table;
-	//getBreathModeTableEntry(&modeTable[0] );
-
+	FileControllerInit();
 	currentState = START;
 	timeStateStarted = HAL_GetTick();
+	ConsoleProcess();
+
+
 
 
 }
 void SessionControllerProcess()
 {
+
 
 
 // check to see if current state has reached it time out.
@@ -158,6 +162,8 @@ void SessionControllerProcess()
 
 	//out put for training model
 	MovementControllerProcess();
+
+
 
 	// special case for timeout while in mode we pull the time out from the mode we are in.
 	if(currentState == IN_MODE)
