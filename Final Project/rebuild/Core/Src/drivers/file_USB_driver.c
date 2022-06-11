@@ -39,7 +39,7 @@ uint32_t total, free_space;
 
 void Send_USB_Console_Message (char *string)
 {
-	debugPrint(string);
+	DebugPrint(string);
 }
 
 

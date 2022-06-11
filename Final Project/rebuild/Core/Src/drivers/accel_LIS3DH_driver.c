@@ -74,16 +74,22 @@ LPen bit in CTRL_REG1, enable at least one of the axes and select the preferred 
 	        } else {
 
 	        	// configure the sensor.
-	        	// Setting our resolution 100HZ so that we can use interrupts
+	        	// Setting our resolution 400HZ so that we can use double interrupts
 	        	// and that we will read all three axis
 				sendBuff[0]  = LIS3DH_REG_CTRL1  |LIS3DH_READ;
 
 				ret = HAL_I2C_Master_Transmit(I2Cx, LIS3DH_ADDR, sendBuff, 1, HAL_MAX_DELAY);
 				ret = HAL_I2C_Master_Receive(I2Cx, LIS3DH_ADDR, reciveBuff, 2, HAL_MAX_DELAY);
 
-				sendBuff[0] = LIS3DH_REG_CTRL1;
-				sendBuff[1] = LIS3DH_ON_100HZ;
+				sendBuff[0] = LIS3DH_REG_CTRL1|LIS3DH_WRITE;
+				sendBuff[1] = LIS3DH_ON_400HZ;
 				ret = HAL_I2C_Master_Transmit(I2Cx, LIS3DH_ADDR, sendBuff, 2, HAL_MAX_DELAY);
+
+				// set high resolution output
+				sendBuff[0] = LIS3DH_REG_CTRL4|LIS3DH_WRITE;
+				sendBuff[1] = LIS3DH_ON_400HZ;
+				ret = HAL_I2C_Master_Transmit(I2Cx, LIS3DH_ADDR, sendBuff, 2, HAL_MAX_DELAY);
+
 
 				//Read to make sure the write worked.
 				sendBuff[0]  = LIS3DH_REG_CTRL1  |LIS3DH_READ;
@@ -150,16 +156,62 @@ void AccelGetData(int16_t *acelX, int16_t*acelY, int16_t*acelZ)
 }
 HAL_StatusTypeDef Lis3dhInteruptSetup()
 {
+	// default to  unlatched.
 	HAL_StatusTypeDef ret = HAL_OK;
 	uint8_t sendBuff[2];
 	uint8_t reciveBuff[12];
 	// set the double tap interrupt
 
-	sendBuff[0] = LIS3DH_REG_CTRL1;
-	sendBuff[1] = 0x57;
+	// turn the click interrupt on.
+	sendBuff[0] = LIS3DH_REG_CTRL3 | LIS3DH_WRITE;
+	sendBuff[1] = 0x80;//il_click
 	ret = HAL_I2C_Master_Transmit(I2Cx, LIS3DH_ADDR, sendBuff, 2, HAL_MAX_DELAY);
 
+
+	// turn double click on for all axis
+	sendBuff[0] = LIS3DH_CLICK_CFG | LIS3DH_WRITE;
+	sendBuff[1] = 0x2A;// enable double click on all axes.
+	ret = HAL_I2C_Master_Transmit(I2Cx, LIS3DH_ADDR, sendBuff, 2, HAL_MAX_DELAY);
+	// configure threshold.
+	sendBuff[0] = LIS3DH_CLICK_THS | LIS3DH_WRITE;
+	sendBuff[1] = 60;// recomended from adafruit.
+	ret = HAL_I2C_Master_Transmit(I2Cx, LIS3DH_ADDR, sendBuff, 2, HAL_MAX_DELAY);
+	// set Time Limit
+	sendBuff[0] = LIS3DH_TIMELIMIT | LIS3DH_WRITE;
+	sendBuff[1] = 10;// recomended from adafruit.
+	ret = HAL_I2C_Master_Transmit(I2Cx, LIS3DH_ADDR, sendBuff, 2, HAL_MAX_DELAY);
+
+	// set time latency
+	sendBuff[0] = LIS3DH_TIME_LATENCY | LIS3DH_WRITE;
+	sendBuff[1] = 20;// recomended from adafruit.
+	ret = HAL_I2C_Master_Transmit(I2Cx, LIS3DH_ADDR, sendBuff, 2, HAL_MAX_DELAY);
+	// set time window
+	sendBuff[0] = LIS3DH_TIME_WINDOW | LIS3DH_WRITE;
+	sendBuff[1] = 255;// recomended from adafruit.
+	ret = HAL_I2C_Master_Transmit(I2Cx, LIS3DH_ADDR, sendBuff, 2, HAL_MAX_DELAY);
+
+	// read last set to make sure it worked?
+	sendBuff[0]  = LIS3DH_CLICK_SRC  |LIS3DH_READ;
+
+	ret = HAL_I2C_Master_Transmit(I2Cx, LIS3DH_ADDR, sendBuff, 1, HAL_MAX_DELAY);
+	ret = HAL_I2C_Master_Receive(I2Cx, LIS3DH_ADDR, reciveBuff, 2, HAL_MAX_DELAY);
 	return ret;
+
+}
+int PollInterrupt()
+{
+	HAL_StatusTypeDef ret = HAL_OK;
+	uint8_t sendBuff[2];
+	uint8_t reciveBuff[12];
+	uint8_t regValues=0;
+	sendBuff[0]  = LIS3DH_CLICK_SRC  |LIS3DH_READ;
+	ret = HAL_I2C_Master_Transmit(I2Cx, LIS3DH_ADDR, sendBuff, 1, HAL_MAX_DELAY);
+	ret = HAL_I2C_Master_Receive(I2Cx, LIS3DH_ADDR, reciveBuff, 2, HAL_MAX_DELAY);
+	regValues = reciveBuff[0];
+	if(regValues > 0)
+	{
+		int i =0;
+	}
 
 }
 void errorHandler()

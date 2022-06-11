@@ -54,7 +54,7 @@ Core/Src/controllers/fileController.o: \
  ../Middlewares/Third_Party/FatFs/src/ff_gen_drv.h \
  ../Middlewares/Third_Party/FatFs/src/diskio.h \
  ../Middlewares/Third_Party/FatFs/src/ff.h ../FATFS/Target/usbh_diskio.h \
- ../USB_HOST/App/usb_host.h
+ ../USB_HOST/App/usb_host.h ../Core/Inc/user.h
 /Users/jennie.stenhouse/Documents/LEARNING/MAKING\ EMBEDDED\ SYSTEMS/making-embedded-systems-homework/Final\ Project/rebuild/Core/Inc/controllers/fileController.h:
 ../Core/Inc/util.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
@@ -114,3 +114,4 @@ Core/Src/controllers/fileController.o: \
 ../Middlewares/Third_Party/FatFs/src/ff.h:
 ../FATFS/Target/usbh_diskio.h:
 ../USB_HOST/App/usb_host.h:
+../Core/Inc/user.h:

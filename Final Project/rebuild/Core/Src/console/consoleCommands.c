@@ -8,9 +8,11 @@
 
 #include <string.h>
 #include "consoleCommands.h"
+#include "fileController.h"
 #include "console.h"
 #include "consoleIo.h"
 #include "util.h"
+#include "user.h"
 
 #define IGNORE_UNUSED_VARIABLE(x)     if ( &x == &x ) {}
 
@@ -25,6 +27,9 @@ static eCommandResult_T ConsoleCommandDebugPrint(const char buffer[]);
 static eCommandResult_T ConsoleCommandSetMode(const char buffer[]);
 static eCommandResult_T ConsoleCommandSetState(const char buffer[]);
 static eCommandResult_T ConsoleCommandSetStateTimeout(const char buffer[]);
+static eCommandResult_T ConsoleCommandSetLogging(const char buffer[]);
+static eCommandResult_T ConsoleCommandSetLogging(const char buffer[]);
+static eCommandResult_T ConsoleCommandsetMainColour(const char buffer[]);
 
 static const sConsoleCommandTable_T mConsoleCommandTable[] =
 {
@@ -33,10 +38,15 @@ static const sConsoleCommandTable_T mConsoleCommandTable[] =
 	{"ver", &ConsoleCommandVer, HELP("Get the version string")},
 	{"int", &ConsoleCommandParamExampleInt16, HELP("How to get a signed int16 from params list: int -321")},
 	{"u16h", &ConsoleCommandParamExampleHexUint16, HELP("How to get a hex u16 from the params list: u16h aB12")},
+
 	{"debug", &ConsoleCommandDebugPrint, HELP("Toggle Debug output on or off")},
 	{"setMode",&ConsoleCommandSetMode, HELP("Set the Mode see documentation for options")},
 	{"setState",&ConsoleCommandSetState, HELP("Set the State see documentation for options")},
-	{"setTimeout" ,&ConsoleCommandSetStateTimeout, HELP("Set the time out in milliseconds for the choosen state format state name : timeout")},
+	{"setTimeout" ,&ConsoleCommandSetStateTimeout, HELP("Set the time out in milliseconds  state name : timeout")},
+	{"setLogging" ,&ConsoleCommandSetLogging, HELP("Start or stop movement logging to usb")},
+	{"saveSettings" ,&ConsoleCommandSetLogging, HELP("Save current user settings to usb")},
+	{"setMainColour" ,&ConsoleCommandsetMainColour, HELP("Save current user settings to usb")},
+
 
 
 
@@ -129,16 +139,17 @@ static eCommandResult_T ConsoleCommandDebugPrint(const char buffer[])
 	if ('n'==trigger)
 	{
 		// trigger is on
-		setUserDebugLogging(1);
+		SetUserDebugLogging(1);
 	}
 	else if('f'== trigger){
 
 		// trigger is off.
-		setUserDebugLogging(0);
+		SetUserDebugLogging(0);
 	}
 	else
 	{
 		//the inputs bad output guide text.
+		return COMMAND_ERROR;
 	}
 
 	return result;
@@ -159,4 +170,39 @@ static eCommandResult_T ConsoleCommandSetState(const char buffer[]){
 
 	return result;
 }
-static eCommandResult_T ConsoleCommandSetStateTimeout(const char buffer[]){}
+static eCommandResult_T ConsoleCommandSetStateTimeout(const char buffer[]){
+	eCommandResult_T result = COMMAND_SUCCESS;
+	return result;
+}
+static eCommandResult_T ConsoleCommandSetLogging(const char buffer[]){
+	eCommandResult_T result = COMMAND_SUCCESS;
+		// this makes funciton about the expected input. values that have n as the second letter will also trigger debug on.
+		// All though it's great input sanitisation it's okay for this.
+		char command[5] ={0};
+		result = ConsoleReceiveParamString(buffer, 1, command);
+		char trigger = command[1];
+		if ('n'==trigger)
+		{
+			// trigger is on
+			SetMovementUSBLogging(1);
+		}
+		else if('f'== trigger){
+
+			// trigger is off.
+			SetMovementUSBLogging(0);
+		}
+		else
+		{
+			//the inputs bad output guide text.
+			return COMMAND_ERROR;
+		}
+
+		return result;
+}
+
+static eCommandResult_T ConsoleCommandsetMainColour(const char buffer[]){
+	eCommandResult_T result = COMMAND_SUCCESS;
+	int r,g,b;
+	SetUserMainColour(r,g,b);
+	return result;
+}

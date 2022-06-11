@@ -13,11 +13,7 @@
 #include "accel_LIS3DH_regs.h"
 #include "stm32f4xx.h"
 /* error code */
-typedef enum
-{
-	NO_ERROR,
-	CONFIG_ERROR
-}LIS3DH_ErrorType;
+
 /* Range definitions. Map them to actual bitmasks. */
 #define RANGE_2G   CTRL_REG4_FS2G
 #define RANGE_4G   CTRL_REG4_FS4G
@@ -32,6 +28,7 @@ HAL_StatusTypeDef  Lis3dhInit(I2C_HandleTypeDef *I2Cxhandle);
 HAL_StatusTypeDef Lis3dhGetAcc();
 void Lis3dhSetRange(int8_t range);
 void AccelGetData(int16_t *x, int16_t*y, int16_t*z);
+int PollInterrupt();
 
 
 #endif /* INC_DRIVERS_ACCEL_LIS3DH_DRIVER_H_ */

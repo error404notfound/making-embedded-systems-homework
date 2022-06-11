@@ -9,11 +9,12 @@
 #define INC_CONTROLLERS_SESSIONCONTROLLER_H_
 
 #include "stm32f4xx_hal.h"
-
+#include "util.h"
 
 
 void SessionControllerInit(I2C_HandleTypeDef *I2Cxhandle,SPI_HandleTypeDef *SPIxHandle,UART_HandleTypeDef * HUARTxHandler);
 void SessionControllerProcess();
+
 
 
 

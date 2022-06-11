@@ -118,7 +118,7 @@ void ConsoleInit(UART_HandleTypeDef *huart)
 	uint32_t i;
 
 	ConsoleIoInit(huart);
-	ConsoleIoSendString("Welcome to the Consolinator, your gateway to testing code and hardware.");
+	ConsoleIoSendString("Stone subsytem CLI ");
 	ConsoleIoSendString(STR_ENDLINE);
 	ConsoleIoSendString(CONSOLE_PROMPT);
 	mReceivedSoFar = 0u;

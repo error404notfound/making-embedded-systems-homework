@@ -11,8 +11,9 @@
 
 int debugLogging = 0;
 int paused = 0;
+int logMovementData = 0;
 // system and user debugging need to be on to actually print.
-void debugPrint(char * buffer)
+void DebugPrint(char * buffer)
 {
 	if(debugLogging&!paused)
 	{
@@ -21,17 +22,23 @@ void debugPrint(char * buffer)
 	}
 }
 // user debugging
-void setUserDebugLogging ( int set )
+void SetUserDebugLogging ( int set )
 {
 	debugLogging = set;
 }
-int getDebugLogging( )
+int GetDebugLogging( )
 {
 	return debugLogging;
 }
+stoneError_t SetMovementUSBLogging(int flag){
+	logMovementData = 1;
+}
+int GetMovementUSBLogging(){
+	return logMovementData;
+}
 //  system debugging.
-void pauseDebugLogging(){paused = 1;}
-void resumeDebugLogging(){paused = 0;}
+void PauseDebugLogging(){paused = 1;}
+void ResumeDebugLogging(){paused = 0;}
 
 void errorHandling(stoneError_t error ){
 // Uses Red pin with different flashing rates for errors.

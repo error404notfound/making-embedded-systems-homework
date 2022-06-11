@@ -34,7 +34,7 @@
 
 // private varaibles.
 #define MAX_STATE_TIMEOUT 1000
-int userID = 12345678;
+
 
 
 typedef int (*stateFunc )(void);
@@ -118,8 +118,8 @@ state_t currentState;
 
 state_t previouseState;
 //
-modeTableEntry_t currentMode;
-
+modeSelection_t currentMode;
+modeTableEntry_t selectedMode;
 uint32_t timeStateStarted;
 
 
@@ -133,6 +133,7 @@ int currentDebugMode=0;
 int accelerometorInterrupt = 0;
 
 TIM_HandleTypeDef * timerHandler;
+
 
 
 
@@ -159,10 +160,20 @@ void SessionControllerProcess()
 // check to see if current state has reached it time out.
 	stateTableEntry_t current = stateTabel[currentState];
 	uint32_t timeout = current.timeout;
+	movementData_t accel;
+	movementData_t gyro;
 
 	//out put for training model
 	MovementControllerProcess();
+	// if we are logging the data.
+	if(1 == GetMovementUSBLogging())
+	{
+		GetLast( ACCELEROMETER,  &accel);
+		GetLast(GYROSCOPE, &gyro);
 
+
+
+	}
 
 
 	// special case for timeout while in mode we pull the time out from the mode we are in.
@@ -187,16 +198,12 @@ void SessionControllerProcess()
 
 		current.onButtonPress();
 	}
-	if( 1 == gestureRecognized ){
-		// gesture recognized response.
-		// get the gesture tag from MovementController.
 
-	}
 	if( 1 == accelerometorInterrupt)
 	{
 		// The interrupt has been triggered.
 		// get what interrupted it from movementController.
-		gesture_t gesture =  getInterruptType( ACCELEROMETER );
+		gesture_t gesture =  GetInterruptType( ACCELEROMETER );
 
 	}
 
@@ -212,35 +219,35 @@ void SessionControllerProcess()
 // set up functions for each state.
 int Start(){
 	timeStateStarted = HAL_GetTick();
-	debugPrint(" State = starting");
+	DebugPrint(" State = starting");
 	return 0;
 }
 int IdleAwake(){
 	previouseState = currentState;
 	currentState = IDLE_AWAKE;
 	timeStateStarted = HAL_GetTick();
-	debugPrint(" State = IdleAwake");
+	DebugPrint(" State = IdleAwake");
 	return 0;
 }
 int DeepSleep(){
 	previouseState = currentState;
 	currentState = DEEP_SLEEP;
 	timeStateStarted = HAL_GetTick();
-	debugPrint(" State = DeepSleep");
+	DebugPrint(" State = DeepSleep");
 	return 0;
 }
 int WaitingForSelection(){
 	previouseState = currentState;
 	currentState = WAITING_FOR_SELECTION;
 	timeStateStarted = HAL_GetTick();
-	debugPrint(" State = WaitingForSelection");
+	DebugPrint(" State = WaitingForSelection");
 	return 0;
 }
 int LoadMode(){
 	previouseState = currentState;
 	currentState = WAITING_FOR_SELECTION;
 	timeStateStarted = HAL_GetTick();
-	debugPrint(" State = LoadMode");
+	DebugPrint(" State = LoadMode");
 	return 0;
 }
 int CliMode(){
@@ -250,10 +257,10 @@ int CliMode(){
 	// clear the button press
 	buttonPressed = 0;
 	// in climode we want the debug output off while we are waiting for input.
-	pauseDebugLogging();
+	PauseDebugLogging();
 
 	timeStateStarted = HAL_GetTick();
-	debugPrint(" State = CliMode");
+	DebugPrint(" State = CliMode");
 
 	return 0;
 }
@@ -261,18 +268,18 @@ int StartPreviouseMode(){
 	currentState = previouseState;
 	previouseState = CLI_MODE;
 	// we also reset to our currentDebugMode
-	resumeDebugLogging();
+	ResumeDebugLogging();
 
 	timeStateStarted = HAL_GetTick();
-	debugPrint(" State = StartPreviouseMode");
+	DebugPrint(" State = StartPreviouseMode");
 	return 0;
 }
 int InMode()
 {
 	currentState = IN_MODE;
-
+	selectedMode = modeTable[currentMode];
 	timeStateStarted = HAL_GetTick();
-	debugPrint(" State = InMode");
+	DebugPrint(" State = InMode");
 	return 0;
 
 }
@@ -290,7 +297,27 @@ int IdleAwakeProcess(){return 0;}
 
 int DeepSleepProcess(){return 0;}
 
-int WaitingForSelectionProcess(){return 0;}
+int WaitingForSelectionProcess(){
+	// check to see if we had any control gestures.
+		gesture_t lastGesture  = GetLastGesture();
+
+		if( NO_GESTURE != lastGesture ){
+			// gesture recognized response.
+
+			if(TWIST_Y == lastGesture )
+			{ currentMode = COLOUR_CHANGE; }
+			if(SUDDEN_UP == lastGesture)
+			{currentMode = BREATHING_TRAINER;}
+			stateTableEntry_t current = stateTabel[currentState];
+			current.onGestureRecognize();
+
+			// get the gesture tag from MovementController.
+
+		}
+
+
+
+	return 0;}
 
 int LoadModeProcess(){return 0;}
 
@@ -302,8 +329,10 @@ int CliModeProcess(){
 int StartPreviouseModeProcess(){return 0;}
 
 int InModeProcess(){
-	currentMode.modeProcess();
+	selectedMode.modeProcess();
 	return 0;}
+
+
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {

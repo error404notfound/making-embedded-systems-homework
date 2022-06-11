@@ -15,6 +15,7 @@
 "./Core/Src/stm32f4xx_it.o"
 "./Core/Src/sysmem.o"
 "./Core/Src/system_stm32f4xx.o"
+"./Core/Src/user.o"
 "./Core/Src/util.o"
 "./Core/Src/modes/colour_change_mode.o"
 "./Core/Src/modes/meditation_breathing_mode.o"

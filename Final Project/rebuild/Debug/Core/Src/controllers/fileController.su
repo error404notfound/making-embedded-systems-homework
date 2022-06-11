@@ -1,8 +1,9 @@
-../Core/Src/controllers/fileController.c:18:14:FileControllerInit	16	static
-../Core/Src/controllers/fileController.c:29:14:loadUser	24	static
-../Core/Src/controllers/fileController.c:33:14:saveUser	24	static
-../Core/Src/controllers/fileController.c:37:14:logSessionData	16	static
-../Core/Src/controllers/fileController.c:41:14:saveSessionData	16	static
-../Core/Src/controllers/fileController.c:45:14:logMovementData	16	static
-../Core/Src/controllers/fileController.c:49:14:saveMovementData	16	static
-../Core/Src/controllers/fileController.c:53:14:saveDebugPinData	24	static
+../Core/Src/controllers/fileController.c:20:14:FileControllerInit	104	static
+../Core/Src/controllers/fileController.c:47:14:FileControllerProcess	4	static
+../Core/Src/controllers/fileController.c:51:14:LoadUser	24	static
+../Core/Src/controllers/fileController.c:55:14:SaveUser	24	static
+../Core/Src/controllers/fileController.c:59:14:LogSessionData	16	static
+../Core/Src/controllers/fileController.c:63:14:SaveSessionData	16	static
+../Core/Src/controllers/fileController.c:67:14:LogMovementData	24	static
+../Core/Src/controllers/fileController.c:71:14:SaveMovementData	16	static
+../Core/Src/controllers/fileController.c:75:14:SaveDebugPinData	24	static

@@ -58,7 +58,7 @@ static void USBH_UserProcess(USBH_HandleTypeDef *phost, uint8_t id);
  * -- Insert your external function declaration here --
  */
 /* USER CODE BEGIN 1 */
-extern ApplicationTypeDef getUSBState(){return Appli_state;}
+ApplicationTypeDef GetUSBState(){return Appli_state;}
 /* USER CODE END 1 */
 
 /**

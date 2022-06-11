@@ -669,7 +669,9 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-void prepareSleep(){HAL_FLASH_SLEEP_POWERDOWN_ENABLE();}
+void prepareSleep(){
+	//HAL_FLASH_SLEEP_POWERDOWN_ENABLE();
+}
 /* USER CODE END 4 */
 
 /**

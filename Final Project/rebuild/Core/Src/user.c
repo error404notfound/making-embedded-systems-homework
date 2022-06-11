@@ -4,14 +4,17 @@
  *  Created on: Jun 9, 2022
  *      Author: jennie.stenhouse
  */
-
-uint8_t userID = 12345;
+#include "user.h"
+#include <stdio.h>
+int userID = 123501;
 
 // change which userID is used in saving activity & usage data.
 void ChangeUser(uint8_t newUserID ){
 	userID = newUserID;
 }
-uint8_t GetUserID()
+int GetUserID()
 {
 	return userID;
 }
+void SetUserMainColour(int Red, int Green, int Blue)
+{}
