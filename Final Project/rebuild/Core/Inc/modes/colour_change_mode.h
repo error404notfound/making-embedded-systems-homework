@@ -15,7 +15,7 @@
 int colourChangeInit();
 int colourChangeProcess();
 int colourChangeOnEnd();
-
+int colourChangeGetTimeOut();
 
 
 

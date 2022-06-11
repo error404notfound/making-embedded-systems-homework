@@ -1,3 +1,4 @@
-../Core/Src/modes/meditation_breathing_mode.c:11:5:meditationBreathingInit	4	static
-../Core/Src/modes/meditation_breathing_mode.c:12:5:meditationBreathingProcess	4	static
-../Core/Src/modes/meditation_breathing_mode.c:13:5:meditationBreathingOnEnd	4	static
+../Core/Src/modes/meditation_breathing_mode.c:16:5:meditationBreathingInit	4	static
+../Core/Src/modes/meditation_breathing_mode.c:20:5:meditationBreathingProcess	4	static
+../Core/Src/modes/meditation_breathing_mode.c:24:5:meditationBreathingOnEnd	4	static
+../Core/Src/modes/meditation_breathing_mode.c:27:5:meditationGetTimeOut	4	static

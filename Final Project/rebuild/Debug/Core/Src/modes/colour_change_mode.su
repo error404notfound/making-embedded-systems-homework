@@ -1,3 +1,4 @@
-../Core/Src/modes/colour_change_mode.c:29:5:colourChangeInit	4	static
-../Core/Src/modes/colour_change_mode.c:33:5:colourChangeProcess	4	static
-../Core/Src/modes/colour_change_mode.c:36:5:colourChangeOnEnd	4	static
+../Core/Src/modes/colour_change_mode.c:28:5:colourChangeInit	4	static
+../Core/Src/modes/colour_change_mode.c:32:5:colourChangeProcess	4	static
+../Core/Src/modes/colour_change_mode.c:35:5:colourChangeOnEnd	4	static
+../Core/Src/modes/colour_change_mode.c:39:5:colourChangeGetTimeOut	4	static

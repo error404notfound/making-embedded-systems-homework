@@ -23,6 +23,16 @@ I2C_HandleTypeDef *I2Cx;
 uint16_t  LastXAcel;
 uint16_t  LastYAcel;
 uint16_t  LastZAcel;
+typedef struct {
+  uint8_t x                 : 1;
+  uint8_t y                 : 1;
+  uint8_t z                 : 1;
+  uint8_t sign              : 1;
+  uint8_t sclick            : 1;
+  uint8_t dclick            : 1;
+  uint8_t ia                : 1;
+  uint8_t not_used_01       : 1;
+} lis2dh12_click_src_t;
 
 void errorHandler();
 HAL_StatusTypeDef Lis3dhInteruptSetup();
@@ -164,17 +174,27 @@ HAL_StatusTypeDef Lis3dhInteruptSetup()
 
 	// turn the click interrupt on.
 	sendBuff[0] = LIS3DH_REG_CTRL3 | LIS3DH_WRITE;
-	sendBuff[1] = 0x80;//il_click
+	sendBuff[1] = 0x20;//il_click
 	ret = HAL_I2C_Master_Transmit(I2Cx, LIS3DH_ADDR, sendBuff, 2, HAL_MAX_DELAY);
+
+	sendBuff[0]  = LIS3DH_REG_CTRL3  |LIS3DH_READ;
+	ret = HAL_I2C_Master_Transmit(I2Cx, LIS3DH_ADDR, sendBuff, 1, HAL_MAX_DELAY);
+	ret = HAL_I2C_Master_Receive(I2Cx, LIS3DH_ADDR, reciveBuff, 2, HAL_MAX_DELAY);
+	//turn the latch on.
+	sendBuff[0] = LIS3DH_REG_CTRL5 | LIS3DH_WRITE;
+	sendBuff[1] = 0x8;//latch on
+	ret = HAL_I2C_Master_Transmit(I2Cx, LIS3DH_ADDR, sendBuff, 2, HAL_MAX_DELAY);
+
+	// read last set to make sure it worked?
 
 
 	// turn double click on for all axis
 	sendBuff[0] = LIS3DH_CLICK_CFG | LIS3DH_WRITE;
-	sendBuff[1] = 0x2A;// enable double click on all axes.
+	sendBuff[1] = 0x15;// enable double click on all axes.
 	ret = HAL_I2C_Master_Transmit(I2Cx, LIS3DH_ADDR, sendBuff, 2, HAL_MAX_DELAY);
 	// configure threshold.
 	sendBuff[0] = LIS3DH_CLICK_THS | LIS3DH_WRITE;
-	sendBuff[1] = 60;// recomended from adafruit.
+	sendBuff[1] = 100;// recomended from adafruit.
 	ret = HAL_I2C_Master_Transmit(I2Cx, LIS3DH_ADDR, sendBuff, 2, HAL_MAX_DELAY);
 	// set Time Limit
 	sendBuff[0] = LIS3DH_TIMELIMIT | LIS3DH_WRITE;
@@ -190,6 +210,13 @@ HAL_StatusTypeDef Lis3dhInteruptSetup()
 	sendBuff[1] = 255;// recomended from adafruit.
 	ret = HAL_I2C_Master_Transmit(I2Cx, LIS3DH_ADDR, sendBuff, 2, HAL_MAX_DELAY);
 
+	// set interrupt 1 duration
+	sendBuff[0] = LIS3DH_INT1_DURATION | LIS3DH_WRITE;
+	sendBuff[1] = 9;// recomended from adafruit.
+	ret = HAL_I2C_Master_Transmit(I2Cx, LIS3DH_ADDR, sendBuff, 2, HAL_MAX_DELAY);
+
+
+
 	// read last set to make sure it worked?
 	sendBuff[0]  = LIS3DH_CLICK_SRC  |LIS3DH_READ;
 
@@ -204,14 +231,12 @@ int PollInterrupt()
 	uint8_t sendBuff[2];
 	uint8_t reciveBuff[12];
 	uint8_t regValues=0;
+	 lis2dh12_click_src_t interruptSource;
 	sendBuff[0]  = LIS3DH_CLICK_SRC  |LIS3DH_READ;
 	ret = HAL_I2C_Master_Transmit(I2Cx, LIS3DH_ADDR, sendBuff, 1, HAL_MAX_DELAY);
 	ret = HAL_I2C_Master_Receive(I2Cx, LIS3DH_ADDR, reciveBuff, 2, HAL_MAX_DELAY);
 	regValues = reciveBuff[0];
-	if(regValues > 0)
-	{
-		int i =0;
-	}
+
 
 }
 void errorHandler()

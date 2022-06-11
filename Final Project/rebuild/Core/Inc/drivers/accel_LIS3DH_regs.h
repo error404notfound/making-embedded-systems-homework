@@ -34,6 +34,11 @@
 #define LIS3DH_REG_OUT_Z_H       0x2d
 
 
+#define LIS3DH_INT1_CFG			0x30
+#define LIS3DH_INT1_SRC			0x31
+#define LIS3DH_INT1_THS			0x32
+#define LIS3DH_INT1_DURATION	0x33
+
 #define LIS3DH_CLICK_CFG		0x38
 #define LIS3DH_CLICK_SRC		0x39
 #define LIS3DH_CLICK_THS		0x3a

@@ -20,6 +20,7 @@
 #include "visualOutputController.h"
 #include "fileController.h"
 // modes
+#include "mode_template.h"
 #include "colour_change_mode.h"
 #include "meditation_breathing_mode.h"
 
@@ -38,13 +39,12 @@
 
 
 typedef int (*stateFunc )(void);
-typedef int (*modeFunc )(void);
 typedef int (*ledOutput)(void);
 
 
 typedef enum { START, IDLE_AWAKE, DEEP_SLEEP, WAITING_FOR_SELECTION, LOAD_MODE, IN_MODE,CLI_MODE } state_t;
 typedef enum { IDEL_AWAKE_OUTPUT, SLEEP_OUTPUT, WAITING_FOR_INPUT, CLI_MODE_OUTPUT, LOADING_MODE_OUTPUT} output_t;
-typedef enum { BREATHING_TRAINER, COLOUR_CHANGE} modeSelection_t;
+
 
 
 typedef struct {
@@ -57,14 +57,7 @@ typedef struct {
 	/* stateProcess */ stateFunc stateProcess;
 }stateTableEntry_t;
 
-typedef struct{
 
-	modeFunc onStart;
-	modeFunc modeProcess;
-	modeFunc onEnd;
-	int timeout;
-
-}modeTableEntry_t;
 
 
 // set up functions for each state.
@@ -108,10 +101,10 @@ static stateTableEntry_t  stateTabel[]={
 /* CLI_MODE */	{ &StartPreviouseMode,NULL, 			NULL,		NULL, 	&StartPreviouseMode, MAX_STATE_TIMEOUT, &CliModeProcess },
 
 };
-// these methods are defined in the modes headers.
+// these methods are defined in the modes headers. for all the modes the timeout is adjusted if there is still activity.
 static modeTableEntry_t modeTable[]={
-	{ &colourChangeInit,&colourChangeProcess,&colourChangeOnEnd,COLOUR_CHANGE_MODE_TIMEOUT},
-	{ &meditationBreathingInit,&meditationBreathingProcess,&meditationBreathingOnEnd,MEDIATION_BREATHING_MODE_TIMEOUT}
+	{ &colourChangeInit,&colourChangeProcess,&colourChangeOnEnd,colourChangeGetTimeOut},
+	{ &meditationBreathingInit,&meditationBreathingProcess,&meditationBreathingOnEnd,meditationGetTimeOut}
 };
 // Basic state managment
 state_t currentState;

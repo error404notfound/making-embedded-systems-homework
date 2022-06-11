@@ -35,7 +35,10 @@ Core/Src/modes/meditation_breathing_mode.o: \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_hcd.h \
- ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usb.h
+ ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usb.h \
+ /Users/jennie.stenhouse/Documents/LEARNING/MAKING\ EMBEDDED\ SYSTEMS/making-embedded-systems-homework/Final\ Project/rebuild/Core/Inc/modes/meditation_breathing_mode.h \
+ /Users/jennie.stenhouse/Documents/LEARNING/MAKING\ EMBEDDED\ SYSTEMS/making-embedded-systems-homework/Final\ Project/rebuild/Core/Inc/modes/mode_template.h \
+ /Users/jennie.stenhouse/Documents/LEARNING/MAKING\ EMBEDDED\ SYSTEMS/making-embedded-systems-homework/Final\ Project/rebuild/Core/Inc/controllers/movementInputController.h
 ../Core/Inc/util.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 ../Core/Inc/stm32f4xx_hal_conf.h:
@@ -73,3 +76,6 @@ Core/Src/modes/meditation_breathing_mode.o: \
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_hcd.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_ll_usb.h:
+/Users/jennie.stenhouse/Documents/LEARNING/MAKING\ EMBEDDED\ SYSTEMS/making-embedded-systems-homework/Final\ Project/rebuild/Core/Inc/modes/meditation_breathing_mode.h:
+/Users/jennie.stenhouse/Documents/LEARNING/MAKING\ EMBEDDED\ SYSTEMS/making-embedded-systems-homework/Final\ Project/rebuild/Core/Inc/modes/mode_template.h:
+/Users/jennie.stenhouse/Documents/LEARNING/MAKING\ EMBEDDED\ SYSTEMS/making-embedded-systems-homework/Final\ Project/rebuild/Core/Inc/controllers/movementInputController.h:

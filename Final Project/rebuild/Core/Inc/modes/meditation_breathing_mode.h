@@ -13,9 +13,12 @@
 
 #define MEDIATION_BREATHING_MODE_TIMEOUT 1000
 
+typedef enum { BREATHING_START, BREATHING_IN, BREATHING_HOLD, BREATHING_OUT} modeState_t;
+
 int meditationBreathingInit();
 int meditationBreathingProcess();
 int meditationBreathingOnEnd();
+int meditationGetTimeOut();
 
 
 
