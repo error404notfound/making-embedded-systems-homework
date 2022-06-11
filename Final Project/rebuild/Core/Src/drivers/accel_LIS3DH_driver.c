@@ -168,43 +168,96 @@ HAL_StatusTypeDef Lis3dhInteruptSetup()
 
 	// turn the click interrupt on.
 	sendBuff[0] = LIS3DH_REG_CTRL3 | LIS3DH_WRITE;
-	sendBuff[1] = 0x20;//il_click
+	sendBuff[1] = 0x80;//il_click
 	ret = HAL_I2C_Master_Transmit(I2Cx, LIS3DH_ADDR, sendBuff, 2, HAL_MAX_DELAY);
+	if(ret != HAL_OK) {
 
+		        	//Handle error.
+		errorHandler();
+
+	}
 	sendBuff[0]  = LIS3DH_REG_CTRL3  |LIS3DH_READ;
 	ret = HAL_I2C_Master_Transmit(I2Cx, LIS3DH_ADDR, sendBuff, 1, HAL_MAX_DELAY);
 	ret = HAL_I2C_Master_Receive(I2Cx, LIS3DH_ADDR, reciveBuff, 2, HAL_MAX_DELAY);
+	if(ret != HAL_OK) {
+
+			        	//Handle error.
+			errorHandler();
+
+		}
 	//turn the latch on.
 	sendBuff[0] = LIS3DH_REG_CTRL5 | LIS3DH_WRITE;
 	sendBuff[1] = 0x8;//latch on
 	ret = HAL_I2C_Master_Transmit(I2Cx, LIS3DH_ADDR, sendBuff, 2, HAL_MAX_DELAY);
+	if(ret != HAL_OK) {
+
+			        	//Handle error.
+			errorHandler();
+
+		}
 
 	// turn double click on for all axis
 	sendBuff[0] = LIS3DH_CLICK_CFG | LIS3DH_WRITE;
 	sendBuff[1] = 0x15;//single click 0x2a == double tap
 	ret = HAL_I2C_Master_Transmit(I2Cx, LIS3DH_ADDR, sendBuff, 2, HAL_MAX_DELAY);
+	if(ret != HAL_OK) {
+
+			        	//Handle error.
+			errorHandler();
+
+		}
 	// configure threshold.
 	sendBuff[0] = LIS3DH_CLICK_THS | LIS3DH_WRITE;
 	sendBuff[1] = 100;// recomended from adafruit.
 	ret = HAL_I2C_Master_Transmit(I2Cx, LIS3DH_ADDR, sendBuff, 2, HAL_MAX_DELAY);
+	if(ret != HAL_OK) {
+
+			        	//Handle error.
+			errorHandler();
+
+		}
 	// set Time Limit
 	sendBuff[0] = LIS3DH_TIMELIMIT | LIS3DH_WRITE;
 	sendBuff[1] = 10;// recomended from adafruit.
 	ret = HAL_I2C_Master_Transmit(I2Cx, LIS3DH_ADDR, sendBuff, 2, HAL_MAX_DELAY);
+	if(ret != HAL_OK) {
+
+			        	//Handle error.
+			errorHandler();
+
+		}
 
 	// set time latency
 	sendBuff[0] = LIS3DH_TIME_LATENCY | LIS3DH_WRITE;
 	sendBuff[1] = 20;// recomended from adafruit.
 	ret = HAL_I2C_Master_Transmit(I2Cx, LIS3DH_ADDR, sendBuff, 2, HAL_MAX_DELAY);
+	if(ret != HAL_OK) {
+
+			        	//Handle error.
+			errorHandler();
+
+		}
 	// set time window
 	sendBuff[0] = LIS3DH_TIME_WINDOW | LIS3DH_WRITE;
 	sendBuff[1] = 255;// recomended from adafruit.
 	ret = HAL_I2C_Master_Transmit(I2Cx, LIS3DH_ADDR, sendBuff, 2, HAL_MAX_DELAY);
+	if(ret != HAL_OK) {
+
+			        	//Handle error.
+			errorHandler();
+
+		}
 
 	// set interrupt 1 duration
 	sendBuff[0] = LIS3DH_INT1_DURATION | LIS3DH_WRITE;
 	sendBuff[1] = 9;// recomended from adafruit.
 	ret = HAL_I2C_Master_Transmit(I2Cx, LIS3DH_ADDR, sendBuff, 2, HAL_MAX_DELAY);
+	if(ret != HAL_OK) {
+
+			        	//Handle error.
+			errorHandler();
+
+		}
 
 
 
@@ -213,6 +266,12 @@ HAL_StatusTypeDef Lis3dhInteruptSetup()
 
 	ret = HAL_I2C_Master_Transmit(I2Cx, LIS3DH_ADDR, sendBuff, 1, HAL_MAX_DELAY);
 	ret = HAL_I2C_Master_Receive(I2Cx, LIS3DH_ADDR, reciveBuff, 2, HAL_MAX_DELAY);
+	if(ret != HAL_OK) {
+
+			        	//Handle error.
+			errorHandler();
+
+		}
 	return ret;
 
 }
@@ -226,18 +285,26 @@ int PollInterrupt()
 	sendBuff[0]  = LIS3DH_CLICK_SRC  |LIS3DH_READ;
 	ret = HAL_I2C_Master_Transmit(I2Cx, LIS3DH_ADDR, sendBuff, 1, HAL_MAX_DELAY);
 	ret = HAL_I2C_Master_Receive(I2Cx, LIS3DH_ADDR, reciveBuff, 2, HAL_MAX_DELAY);
+	if(ret != HAL_OK) {
+
+			        	//Handle error.
+			errorHandler();
+
+		}
 	regValues = reciveBuff[0];
 	if( regValues > 0 )
 	{
 		// there was an interrupt.
+		return 1;
 
 	}
-
+	else return 0;
 
 }
 void errorHandler()
 {
-	// handle the error
+	// something shitty has happened.
+	int i = 0;
 }
 
 

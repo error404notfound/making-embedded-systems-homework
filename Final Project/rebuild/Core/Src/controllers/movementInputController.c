@@ -21,6 +21,8 @@ extern movementData_t lastAccel;
 #define RAD_TO_DEG(angleInRadians)      ((double)(angleInRadians) * 180.0f / M_PI)
 #define ACC_TO_G(acceleration)          (((double)(acceleration) / 100.0f) / 9.80665f) // convert acceleration m/s² to gravity 9,80665 m/s²
 
+// From adafruit magic wand detection -
+
 // running average buffer
 // thresholds for basic gestures.
 

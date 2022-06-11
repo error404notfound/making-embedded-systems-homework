@@ -170,9 +170,10 @@ void SessionControllerProcess()
 
 
 	// special case for timeout while in mode we pull the time out from the mode we are in.
+	// users stay in mode until they explicitly exit or  meet another criteria ( like no movement ) defined by there mode.
 	if(currentState == IN_MODE)
 	{
-
+		timeStateStarted = HAL_GetTick();// just for testing.
 	}
 
 
