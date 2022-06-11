@@ -6,12 +6,6 @@
  */
 
 
-
-
-
-
-
-
 #include "accel_LIS3DH_driver.h"
 #include "accel_LIS3DH_regs.h"
 #include "stm32f4xx_hal.h"
@@ -84,7 +78,7 @@ LPen bit in CTRL_REG1, enable at least one of the axes and select the preferred 
 	        } else {
 
 	        	// configure the sensor.
-	        	// Setting our resolution 400HZ so that we can use double interrupts
+	        	// Setting our resolution 400HZ so that we can use tap interrupts
 	        	// and that we will read all three axis
 				sendBuff[0]  = LIS3DH_REG_CTRL1  |LIS3DH_READ;
 
@@ -185,12 +179,9 @@ HAL_StatusTypeDef Lis3dhInteruptSetup()
 	sendBuff[1] = 0x8;//latch on
 	ret = HAL_I2C_Master_Transmit(I2Cx, LIS3DH_ADDR, sendBuff, 2, HAL_MAX_DELAY);
 
-	// read last set to make sure it worked?
-
-
 	// turn double click on for all axis
 	sendBuff[0] = LIS3DH_CLICK_CFG | LIS3DH_WRITE;
-	sendBuff[1] = 0x15;// enable double click on all axes.
+	sendBuff[1] = 0x15;//single click 0x2a == double tap
 	ret = HAL_I2C_Master_Transmit(I2Cx, LIS3DH_ADDR, sendBuff, 2, HAL_MAX_DELAY);
 	// configure threshold.
 	sendBuff[0] = LIS3DH_CLICK_THS | LIS3DH_WRITE;
@@ -236,6 +227,11 @@ int PollInterrupt()
 	ret = HAL_I2C_Master_Transmit(I2Cx, LIS3DH_ADDR, sendBuff, 1, HAL_MAX_DELAY);
 	ret = HAL_I2C_Master_Receive(I2Cx, LIS3DH_ADDR, reciveBuff, 2, HAL_MAX_DELAY);
 	regValues = reciveBuff[0];
+	if( regValues > 0 )
+	{
+		// there was an interrupt.
+
+	}
 
 
 }
