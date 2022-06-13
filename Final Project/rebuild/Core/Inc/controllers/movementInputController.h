@@ -12,7 +12,7 @@
 #include "stm32f4xx_hal.h"
 #include "util.h"
 
-typedef enum { SUDDEN_UP, FULL_CIRCLE, DOUBLE_TAP, TWIST_Y, TWIST_Z, TWIST_X, NO_GESTURE } gesture_t;
+typedef enum { NO_GESTURE ,SUDDEN_UP, FULL_CIRCLE, DOUBLE_TAP, TWIST_Y, TWIST_Z, TWIST_X } gesture_t;
 
 typedef struct{
 	int16_t x;

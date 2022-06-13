@@ -22,6 +22,19 @@ extern movementData_t lastAccel;
 #define ACC_TO_G(acceleration)          (((double)(acceleration) / 100.0f) / 9.80665f) // convert acceleration m/s² to gravity 9,80665 m/s²
 
 // From adafruit magic wand detection -
+// flick detection
+#define FLICKTRIG 17000 // lower = more senstive
+
+// Wrist twist
+#define WRISTDIFF 13000 // lower = more senstive
+#define WRISTGY  25000 // higher = more senstive
+
+typedef enum {horiz,vertical,mid}orientation;
+
+
+int wristTwist = 0;
+int flick = 0;
+orientation orient = horiz;
 
 // running average buffer
 // thresholds for basic gestures.
@@ -36,19 +49,35 @@ void MovementControllerInit(I2C_HandleTypeDef *I2Cxhandle,SPI_HandleTypeDef *SPI
 
 }
 int MovementControllerProcess(){
-	// Gets for the gyroscope.
-	 I3G450D_loop();
+
+	// Process the Acellerometor
 	 Lis3dhGetAcc();
 	int16_t acelX,acelY,acelZ;
 	AccelGetData(&acelX, &acelY, &acelZ);
-	//printf("%d,%d,%d \n",acelX,acelY,acelZ);
-	int interrupt = PollInterrupt();
+
+
+	// Process the gyro.
+	int16_t gX,gY,gZ;
+	I3G450D_loop();
+	GyroGetData(&gX, &gY, &gZ);
+
+
+	HAL_Delay(100);
 
 	return 0;
 }
 gesture_t GetInterruptType( sensor_t sensor ){
 
+	gesture_t interruptType;
 
+	if(ACCELEROMETER == sensor)
+	{
+		AccelGetInerrrupt(&interruptType);
+	}
+	if(GYROSCOPE == sensor)
+	{
+		GyroGetInerrrupt(&interruptType);
+	}
 }
 gesture_t GetLastGesture(){
 	return lastGesture;
@@ -76,3 +105,4 @@ void GetLast( sensor_t sensor,  movementData_t * data)
 		}
 
 }
+

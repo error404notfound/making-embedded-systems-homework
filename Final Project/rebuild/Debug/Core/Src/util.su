@@ -5,4 +5,4 @@
 ../Core/Src/util.c:36:5:GetMovementUSBLogging	4	static
 ../Core/Src/util.c:40:6:PauseDebugLogging	4	static
 ../Core/Src/util.c:41:6:ResumeDebugLogging	4	static
-../Core/Src/util.c:43:6:errorHandling	24	static
+../Core/Src/util.c:43:6:StoneErrorHandling	24	static

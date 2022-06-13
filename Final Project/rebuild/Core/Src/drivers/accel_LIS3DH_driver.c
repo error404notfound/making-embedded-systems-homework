@@ -275,7 +275,7 @@ HAL_StatusTypeDef Lis3dhInteruptSetup()
 	return ret;
 
 }
-int PollInterrupt()
+int AccelGetInerrrupt()
 {
 	HAL_StatusTypeDef ret = HAL_OK;
 	uint8_t sendBuff[2];

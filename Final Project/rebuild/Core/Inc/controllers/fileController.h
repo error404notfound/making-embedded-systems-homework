@@ -25,5 +25,7 @@ stoneError_t SaveDebugPinData(GPIO_TypeDef * port, uint16_t pin, uint16_t timepe
 stoneError_t LogMovementData(uint16_t x, uint16_t y, uint16_t z , sensor_t sensor);
 stoneError_t SaveMovementData();
 
+stoneError_t checkUSBConnected();
+
 
 #endif /* INC_CONTROLLERS_USBCONTROLLER_H_ */

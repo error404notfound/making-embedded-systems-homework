@@ -14,6 +14,7 @@
  */
 
 #include <stdio.h>
+
 // controllers.
 #include <sessionController.h>
 #include "movementInputController.h"
@@ -34,7 +35,7 @@
 
 
 // private varaibles.
-#define MAX_STATE_TIMEOUT 1000
+#define MAX_STATE_TIMEOUT 120000
 
 
 
@@ -92,12 +93,12 @@ int ModeLoading();
 // state table
 static stateTableEntry_t  stateTabel[]={
 				// Button Press, Gesture Recognized, Shake to wake, Led output, Timeout/completion , timeout length in milliseconds stateprocces
-/*START*/		{ NULL,				NULL, 				NULL,		NULL, 		&IdleAwake, 		800,&StartProcess },
-/*IDEL AWAKE */	{ &CliMode,			NULL, 				NULL,		NULL, 		&WaitingForSelection, 800, &IdleAwakeProcess },
-/*DEEP SLEEP */	{ &CliMode,			NULL, 				IdleAwake,	NULL, 		&DeepSleep, 800, &DeepSleepProcess },
-/* WAITING */	{ &CliMode,			LoadMode, 			NULL,		NULL, 		&DeepSleep, 800 , &WaitingForSelectionProcess},
-/* LOAD_MODE */	{ &CliMode,			NULL, 				NULL,		NULL, 		&InMode, 800 , &LoadModeProcess},
-/* IN_MODE */	{ &CliMode,			NULL, 				NULL,		NULL, 		&IdleAwake, 800, &InModeProcess },
+/*START*/		{ &CliMode,				NULL, 				NULL,		NULL, 		&IdleAwake, 		1000,&StartProcess },
+/*IDEL AWAKE */	{ &CliMode,			NULL, 				NULL,		NULL, 		&WaitingForSelection, MAX_STATE_TIMEOUT, &IdleAwakeProcess },
+/*DEEP SLEEP */	{ &CliMode,			NULL, 				IdleAwake,	NULL, 		&DeepSleep, MAX_STATE_TIMEOUT, &DeepSleepProcess },
+/* WAITING */	{ &CliMode,			LoadMode, 			NULL,		NULL, 		&DeepSleep, MAX_STATE_TIMEOUT , &WaitingForSelectionProcess},
+/* LOAD_MODE */	{ &CliMode,			NULL, 				NULL,		NULL, 		&InMode, MAX_STATE_TIMEOUT , &LoadModeProcess},
+/* IN_MODE */	{ &CliMode,			NULL, 				NULL,		NULL, 		&IdleAwake, MAX_STATE_TIMEOUT, &InModeProcess },
 /* CLI_MODE */	{ &StartPreviouseMode,NULL, 			NULL,		NULL, 	&StartPreviouseMode, MAX_STATE_TIMEOUT, &CliModeProcess },
 
 };
@@ -108,8 +109,8 @@ static modeTableEntry_t modeTable[]={
 };
 // Basic state managment
 state_t currentState;
-
-state_t previouseState;
+stateTableEntry_t current;
+state_t previouseState = START;
 //
 modeSelection_t currentMode;
 modeTableEntry_t selectedMode;
@@ -151,18 +152,17 @@ void SessionControllerProcess()
 
 
 // check to see if current state has reached it time out.
-	stateTableEntry_t current = stateTabel[currentState];
+	current = stateTabel[currentState];
 	uint32_t timeout = current.timeout;
 	movementData_t accel;
 	movementData_t gyro;
 
-	//out put for training model
+	//
 	MovementControllerProcess();
 	// if we are logging the data.
 	if(1 == GetMovementUSBLogging())
 	{
-		GetLast( ACCELEROMETER,  &accel);
-		GetLast(GYROSCOPE, &gyro);
+		FileControllerProcess();
 
 
 
@@ -178,7 +178,7 @@ void SessionControllerProcess()
 
 
 
-	//MovementControllerProcess();
+
 
 
 	if ( HAL_GetTick() - timeStateStarted > timeout )
@@ -252,7 +252,7 @@ int CliMode(){
 	buttonPressed = 0;
 	// in climode we want the debug output off while we are waiting for input.
 	PauseDebugLogging();
-
+	printf("CLI MODE - waiting command\n");
 	timeStateStarted = HAL_GetTick();
 	DebugPrint(" State = CliMode");
 
@@ -331,19 +331,19 @@ int InModeProcess(){
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
 	uint16_t userButtonPin = GPIO_PIN_0;
-	GPIO_TypeDef *userButtonPort = GPIOA;
+	uint16_t accelInterruptPin = GPIO_PIN_8;
 
 	// make sure we are  using the right pin for the user button.
 
 
 
-	if(HAL_GPIO_ReadPin (userButtonPort, userButtonPin)==GPIO_PIN_SET){
+	if( GPIO_Pin == userButtonPin){
 
 		buttonPressed = 1;
 	}
-	if( GPIO_Pin == GPIO_PIN_8)
+	if( GPIO_Pin == accelInterruptPin)
 	{
-		accelerometorInterrupt = 1;
+		GetInterruptType( ACCELEROMETER );
 	}
 
 }

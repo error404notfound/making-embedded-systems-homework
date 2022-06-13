@@ -190,6 +190,9 @@ void Error_Handler(void);
 #define HSYNC_GPIO_Port GPIOC
 #define G6_Pin GPIO_PIN_7
 #define G6_GPIO_Port GPIOC
+#define Accel_interrupt_Pin GPIO_PIN_8
+#define Accel_interrupt_GPIO_Port GPIOC
+#define Accel_interrupt_EXTI_IRQn EXTI9_5_IRQn
 #define I2C3_SDA_Pin GPIO_PIN_9
 #define I2C3_SDA_GPIO_Port GPIOC
 #define STLINK_RX_Pin GPIO_PIN_9

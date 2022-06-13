@@ -1,5 +1,5 @@
-../Core/Src/controllers/sessionController.c:133:6:SessionControllerInit	24	static
-../Core/Src/controllers/sessionController.c:148:6:SessionControllerProcess	72	static
+../Core/Src/controllers/sessionController.c:134:6:SessionControllerInit	24	static
+../Core/Src/controllers/sessionController.c:149:6:SessionControllerProcess	40	static
 ../Core/Src/controllers/sessionController.c:214:5:Start	8	static
 ../Core/Src/controllers/sessionController.c:219:5:IdleAwake	8	static
 ../Core/Src/controllers/sessionController.c:226:5:DeepSleep	8	static

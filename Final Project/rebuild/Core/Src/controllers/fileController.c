@@ -10,10 +10,16 @@
 
 
 #include <fileController.h>
+#include <stdio.h>
+#include <inttypes.h>
+
 #include "stm32f4xx_hal.h"
 #include "file_USB_driver.h"
 #include "usb_host.h"
 #include "user.h"
+#include 	"util.h"
+#include "movementInputController.h"
+
 
 int logMovement = 0;
 
@@ -26,26 +32,62 @@ stoneError_t FileControllerInit(){
 	}
 	Mount_USB();
 	// check to see if a dir for this user already exists.
-	char path[80]={0};
-	int userID = GetUserID();
-	sprintf(path,"/%d/%user_prefs.txt\n",userID,userID);
-	FRESULT res = Check_File( path );
 
+	int userID = GetUserID();
+	char *path = malloc(20*sizeof(char));
+	sprintf(path,"/%d/prefs.txt\n",userID);
+	FRESULT res = Check_File( path );
+	// if there is no existing folder creat one and the files that the program uses.
 	if(FR_NO_PATH == res)
 	{
+
 		sprintf(path,"/%d",userID);
 		res = Create_Dir(path);
 		sprintf(path,"/%d/prefs.txt",userID);
-		res = Create_File(path);
+		res = Create_File(path);// User settings
+		sprintf(path,"/%d/MOVELOG.txt",userID);
+		res = Create_File(path);// Movement Log
+		sprintf(path,"/%d/SESSION.txt",userID);
+		res = Create_File(path);// Movement Log
+
 
 	}
+	free(path);
 
-	// if not make a directory for that user
 
 	return ret;
 }
 stoneError_t FileControllerProcess(){
+	MX_USB_HOST_Process();
 
+	if (1 == GetMovementUSBLogging())
+	{
+
+		int userID = GetUserID();
+		// get the movement data and barf it out to file along with Haltick. which isn't entirely accurate at this point.
+		// todo: change this to using ping pong buffers.
+		uint32_t tick  = HAL_GetTick();
+		// get gyro
+		movementData_t gyroData;
+		GetLast( GYROSCOPE,  & gyroData);
+		// get accel
+		movementData_t accelData;
+		GetLast( ACCELEROMETER,  & accelData);
+		//write it to a buffer.
+		char *pathBuf = malloc(16*sizeof(char));
+		sprintf(pathBuf,"/%d/MOVELOG.txt",userID);
+		char *buf = malloc(80*sizeof(char));
+		sprintf(buf,"%lu :%d,%d,%d,%d,%d,%d \n",tick,accelData.x,accelData.y,accelData.z,gyroData.x,gyroData.y,gyroData.z);
+		Update_File(pathBuf, buf);
+		free(buf);
+		free(pathBuf);
+
+
+
+
+
+
+	}
 
 }
 stoneError_t LoadUser(uint8_t userID){
@@ -76,7 +118,19 @@ stoneError_t SaveDebugPinData(GPIO_TypeDef * port, uint16_t pin,uint16_t timeper
 	stoneError_t ret = NO_ERROR;
 		return ret;
 }
-
+stoneError_t checkUSBConnected(){
+	 MX_USB_HOST_Process();
+	char path[40] = {0};
+	int userID = GetUserID();
+	sprintf(path,"/%d/prefs.txt\n",userID,userID);
+	FRESULT res = Check_File( path );
+	if(res!=FR_OK)
+	{
+		return NO_USB;
+	}
+	else return NO_ERROR;
+	free(path);
+}
 
 
 

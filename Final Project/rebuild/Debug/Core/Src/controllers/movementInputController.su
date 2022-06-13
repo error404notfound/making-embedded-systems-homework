@@ -1,5 +1,5 @@
-../Core/Src/controllers/movementInputController.c:29:6:MovementControllerInit	16	static
-../Core/Src/controllers/movementInputController.c:38:5:MovementControllerProcess	24	static
-../Core/Src/controllers/movementInputController.c:49:11:GetInterruptType	16	static
-../Core/Src/controllers/movementInputController.c:53:11:GetLastGesture	4	static
-../Core/Src/controllers/movementInputController.c:57:6:GetLast	32	static
+../Core/Src/controllers/movementInputController.c:42:6:MovementControllerInit	16	static
+../Core/Src/controllers/movementInputController.c:51:5:MovementControllerProcess	24	static
+../Core/Src/controllers/movementInputController.c:69:11:GetInterruptType	24	static
+../Core/Src/controllers/movementInputController.c:82:11:GetLastGesture	4	static
+../Core/Src/controllers/movementInputController.c:86:6:GetLast	32	static

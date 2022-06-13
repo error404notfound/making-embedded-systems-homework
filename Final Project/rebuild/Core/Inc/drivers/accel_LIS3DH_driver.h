@@ -28,7 +28,7 @@ HAL_StatusTypeDef  Lis3dhInit(I2C_HandleTypeDef *I2Cxhandle);
 HAL_StatusTypeDef Lis3dhGetAcc();
 void Lis3dhSetRange(int8_t range);
 void AccelGetData(int16_t *x, int16_t*y, int16_t*z);
-int PollInterrupt();
+int AccelGetInerrrupt();// querying the
 
 
 #endif /* INC_DRIVERS_ACCEL_LIS3DH_DRIVER_H_ */

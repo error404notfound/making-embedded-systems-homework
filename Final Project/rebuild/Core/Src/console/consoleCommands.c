@@ -181,19 +181,24 @@ static eCommandResult_T ConsoleCommandSetLogging(const char buffer[]){
 		char command[5] ={0};
 		result = ConsoleReceiveParamString(buffer, 1, command);
 		char trigger = command[1];
-		if ('n'==trigger)
-		{
-			// trigger is on
-			SetMovementUSBLogging(1);
-		}
-		else if('f'== trigger){
+		//if(checkUSBConnected() == NO_ERROR){
+			if ('n'==trigger)
+			{
+				// trigger is on
+				SetMovementUSBLogging(1);
+			}
+			else if('f'== trigger){
 
-			// trigger is off.
-			SetMovementUSBLogging(0);
-		}
+				// trigger is off.
+				SetMovementUSBLogging(0);
+			}
+		//}
+
+
 		else
 		{
 			//the inputs bad output guide text.
+			printf("No USB Connected\n");
 			return COMMAND_ERROR;
 		}
 

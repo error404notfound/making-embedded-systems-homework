@@ -31,7 +31,7 @@ int GetDebugLogging( )
 	return debugLogging;
 }
 stoneError_t SetMovementUSBLogging(int flag){
-	logMovementData = 1;
+	logMovementData = flag;
 }
 int GetMovementUSBLogging(){
 	return logMovementData;
@@ -40,7 +40,7 @@ int GetMovementUSBLogging(){
 void PauseDebugLogging(){paused = 1;}
 void ResumeDebugLogging(){paused = 0;}
 
-void errorHandling(stoneError_t error ){
+void StoneErrorHandling(stoneError_t error ){
 // Uses Red pin with different flashing rates for errors.
 //SENSOR_INIT_ERROR, CONSOLE_BASED_ERROR, HAL_BASED_ERROR
 	int delay = 0;
@@ -57,6 +57,9 @@ void errorHandling(stoneError_t error ){
 			 break;
 	case(HAL_BASED_ERROR):
 			delay = 10000;
+			 break;
+	case(HARD_FAULT):
+			delay = 10;
 			 break;
 	default:
 			 delay = 1;

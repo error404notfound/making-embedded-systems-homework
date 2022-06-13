@@ -361,4 +361,7 @@ void GyroGetData(int16_t *x, int16_t*y, int16_t*z)
 	*y = Angle_Y;
 	*z = Angle_Z;
 }
+int GyroGetInerrrupt()
+{// no interrupt gestures currently.
+	return 0;}
 

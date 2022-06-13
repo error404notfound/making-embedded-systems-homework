@@ -5,5 +5,5 @@
 ../Core/Src/drivers/accel_LIS3DH_driver.c:152:6:Lis3dhSetRange	16	static
 ../Core/Src/drivers/accel_LIS3DH_driver.c:154:6:AccelGetData	24	static
 ../Core/Src/drivers/accel_LIS3DH_driver.c:161:19:Lis3dhInteruptSetup	32	static
-../Core/Src/drivers/accel_LIS3DH_driver.c:278:5:PollInterrupt	40	static
+../Core/Src/drivers/accel_LIS3DH_driver.c:278:5:AccelGetInerrrupt	40	static
 ../Core/Src/drivers/accel_LIS3DH_driver.c:304:6:errorHandler	16	static

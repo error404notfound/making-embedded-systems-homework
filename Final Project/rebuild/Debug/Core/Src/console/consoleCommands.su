@@ -9,4 +9,4 @@
 ../Core/Src/console/consoleCommands.c:166:25:ConsoleCommandSetState	24	static
 ../Core/Src/console/consoleCommands.c:173:25:ConsoleCommandSetStateTimeout	24	static
 ../Core/Src/console/consoleCommands.c:177:25:ConsoleCommandSetLogging	24	static
-../Core/Src/console/consoleCommands.c:203:25:ConsoleCommandsetMainColour	32	static
+../Core/Src/console/consoleCommands.c:208:25:ConsoleCommandsetMainColour	32	static
